@@ -16,13 +16,8 @@
     </head>
     <body>
         
-        <div clas="header">
+        <div class="header">
             <div class="row">
-                <div class="col-md-1 logoContainer">
-                    <div class="logo">
-                        
-                    </div>
-                </div>
 
                 <div class="col-md-6">
                     <div class="nav">
@@ -30,7 +25,18 @@
                             <ul class="pull-left">
                                 <li class="logo">LOGO</li>
                                 <li><a href="#">Calendar</a></li>
-                                <li><a href="#">Logs</a></li>
+                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Logs<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">ARC</a></li>
+                                        <li><a href="#">Hangboard</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Stats<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">ARC</a></li>
+                                        <li><a href="#">Hangboard</a></li>
+                                    </ul>
+                                </li>
                                 <li><a href="#">RCTM Page</a></li>
                             </ul>
                         </div>

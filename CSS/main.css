@@ -1,15 +1,13 @@
 .header {
     position: relative;
+    left: 10px;
 }
 
 .logoContainer {
 }
 
-/*
+
 .logo {
-    position: absolute;
-    left: 10px;
-    top: 10px;
+    margin-right: 20px;
 }
 
-*/

@@ -1,6 +1,17 @@
+body {
+    overflow: hidden;
+}
+
+.contentContainer {
+    overflow: auto;
+}
+
+.row {
+}
+
 .header {
     position: relative;
-    left: 10px;
+    width: 100%;
 }
 
 .logoContainer {
@@ -9,5 +20,113 @@
 
 .logo {
     margin-right: 20px;
+}
+
+.nav a {
+    color: #4141ff;
+}
+
+.hangboardHeader {
+    position: relative;
+    height: 50px;
+    width: 100%;
+}
+
+.hangboardPic_left {
+    display: inline-block;
+    position: absolute;
+    left: 100px; 
+    top: -20px;
+}
+
+.hangboardPic_right {
+    display: inline-block;
+    position: absolute;
+    left: 285px; 
+    top: -21px;
+}
+
+.hangboardPic_left img {
+    width: 50%;
+    height: auto;
+}
+
+.hangboardPic_right img {
+    width: 50%;
+    height: auto;
+}
+
+
+.titleContainer {
+    position: relative;
+    height: 100px;
+}
+
+
+.calendarTitle h1 {
+    position: absolute;
+    top: -70px;
+    font-size: 50px;
+}
+
+.pagecontentContainer {
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    height:500px;
+    top: -80px;
+    width: 99%;
+}
+
+/* Calendar page */
+
+.calendarContainer {
+    position: absoulte;
+    width: 100%;
+    top: 10px;
+}
+
+.calDay {
+    width: 90%;
+    outline: #c4c4ff solid;
+    position: absolute;
+}
+
+.calSpacer {
+    height: 40px;
+    
+}
+
+.calendarContainer .row .col-md-1 {
+    height: 100px;
+}
+
+/* Bootstrap changes */
+.col-xs-12 {
+    float:left}
+.col-xs-11 {
+    float:left}
+.col-xs-10 {
+    float:left}
+.col-xs-9 {
+    float:left}
+.col-xs-8 {
+    float:left}
+.col-xs-7 {
+    float:left}
+.col-xs-6 {
+    float:left}
+.col-xs-5 {
+    float:left}
+.col-xs-4 {
+    float:left}
+.col-xs-3 {
+    float:left}
+.col-xs-2 {
+    float:left}
+.col-xs-1 {
+    float:left}
+.col-xs-0 {
+    float:left;
 }
 

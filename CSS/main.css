@@ -2,8 +2,13 @@ body {
     overflow: hidden;
 }
 
+.showDiv {
+    visibility: visible
+}
+
 .contentContainer {
     overflow: auto;
+    visibility: hidden;
 }
 
 .row {
@@ -62,11 +67,18 @@ body {
     height: 100px;
 }
 
+.calendarTitle {
+    height: 1em;
+    width: 100%;
+}
 
 .calendarTitle h1 {
     position: absolute;
     top: -70px;
+    left: 40%;
     font-size: 50px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pagecontentContainer {

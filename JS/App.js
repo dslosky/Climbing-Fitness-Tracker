@@ -1,8 +1,11 @@
 var main = function () {
-   
     
     $(window).resize(function () {
         if (window.innerWidth < 1000) {
+            
+            window.moveTo(0, 0); 
+            window.resizeTo(screen.width, screen.height)
+            
             $('body').css({
                 "overflow":"auto" });
             
@@ -18,7 +21,12 @@ var main = function () {
         }); 
     
     fluidToStatic()
-        
+   
+    // fade in the page. We have to turn off the display and make the div visible before we can fade it in
+    $('.contentContainer').css("display", "none");
+    $('.contentContainer').css("visibility", "visible");
+    $('.contentContainer').fadeIn(600);
+       
     
 };
 
@@ -58,15 +66,6 @@ function fluidToStatic() {
                 "top": $(this).offset().top
         }); 
     });
-     /*   
-    $('title').each(function() {
-            $(this).appendTo('body')
-            $(this).css({
-                    "position": "absolute",
-                    "left": $(this).offset().left,
-                    "top": $(this).offset().top
-            }); 
-    });            */
 };
 
 

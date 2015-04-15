@@ -94,6 +94,8 @@
                                             <div class="dayInfo">
                                                 <p>Info</p>
                                             </div>
+                                            <div class="caldayGrad">
+                                            </div>
                                         </div>
                                      </div>';
                             }

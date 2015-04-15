@@ -20,7 +20,16 @@ var main = function () {
             
         }); 
     
+    // Make the page static once it's been fluidly created
     fluidToStatic()
+    
+    $('.calDay').hover(function() {
+        $(this).children('.caldayGrad').fadeTo(600,1)
+   
+    }, function() {
+        $(this).children('.caldayGrad').fadeTo(600,0)
+    });
+    
    
     // fade in the page. We have to turn off the display and make the div visible before we can fade it in
     $('.contentContainer').css("display", "none");

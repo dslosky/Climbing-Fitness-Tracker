@@ -100,8 +100,9 @@ body {
 
 .calDay {
     width: 90%;
-    outline: #c4c4ff solid;
+    border: #c4c4ff solid;
     position: absolute;
+    border-radius: 5px;
 }
 
 .calSpacer {

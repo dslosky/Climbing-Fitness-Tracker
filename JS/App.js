@@ -48,6 +48,9 @@ var main = function () {
             $('.calendarOptionsButton span').removeClass('glyphicon-chevron-left');
             $('.calendarOptionsButton span').addClass('glyphicon-chevron-right');
             
+            // Hide options menu
+            $('.optionsBody').animate({ 'width' : 'hide'}, 600)
+            
         } else {
             $(this).animate({
                 'marginLeft': "+="+$(this).width()*3
@@ -56,9 +59,14 @@ var main = function () {
             $(this).addClass('moved');
             $('.calendarOptionsButton span').removeClass('glyphicon-chevron-right');
             $('.calendarOptionsButton span').addClass('glyphicon-chevron-left');
+            
+            // show options menu
+            $('.optionsBody').animate({ 'width' : 'show'}, 600)
         };
     });
     
+    // hide the options menu
+    $('.optionsBody').css({ "display" : "none"});
    
     // fade in the page. We have to turn off the display and make the div visible before we can fade it in
     $('.contentContainer').css("display", "none");

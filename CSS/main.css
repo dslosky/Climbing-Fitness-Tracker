@@ -74,7 +74,7 @@ body {
 
 .calendarTitle h1 {
     position: absolute;
-    top: -70px;
+    top: -75%;
     left: 40%;
     font-size: 50px;
     margin-left: auto;
@@ -123,6 +123,20 @@ body {
     color: #4141ff;
     width: 12%;
     cursor: pointer;
+}
+
+.optionsBody{
+    position: relative;
+    left: 45%;
+    top: -20%;
+    font-size: 1.2em;
+    color: #4141ff;
+    width: 36%;
+}
+
+#toolbar {
+    padding: 4px;
+    display: inline-block;
 }
 
 /* Gradient in the calendar */

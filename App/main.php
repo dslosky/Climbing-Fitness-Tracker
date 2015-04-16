@@ -72,7 +72,9 @@
                                     <p class="calendarOptionsButton"><span class="glyphicon glyphicon-chevron-right"></span>Calendar Options</p>
                                 </div>
                                 <div class="optionsBody">
-
+                                    <div id="toolbar" class="ui-widget-header ui-corner-all">
+                                        <button type="button" class="btn btn-default" id="test">Test</button>
+                                    </div>
                                 </div>
                             
                         </div>

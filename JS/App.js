@@ -36,6 +36,29 @@ var main = function () {
         $(this).children('.caldayGradright').fadeTo(100,0)
     });
     
+    // Make the options title slide when clicked
+    $('.calendarOptionsButton').click(function() {
+        
+        if ($(this).is('.moved')) { 
+            $(this).animate({
+                'marginLeft': "-="+$(this).width()*3
+            }, 600);
+            
+            $(this).removeClass('moved');
+            $('.calendarOptionsButton span').removeClass('glyphicon-chevron-left');
+            $('.calendarOptionsButton span').addClass('glyphicon-chevron-right');
+            
+        } else {
+            $(this).animate({
+                'marginLeft': "+="+$(this).width()*3
+            }, 600);
+            
+            $(this).addClass('moved');
+            $('.calendarOptionsButton span').removeClass('glyphicon-chevron-right');
+            $('.calendarOptionsButton span').addClass('glyphicon-chevron-left');
+        };
+    });
+    
    
     // fade in the page. We have to turn off the display and make the div visible before we can fade it in
     $('.contentContainer').css("display", "none");

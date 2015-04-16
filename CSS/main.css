@@ -115,6 +115,17 @@ body {
     height: 100px;
 }
 
+.optionsTitle p {
+    position: relative;
+    left: 45%;
+    top: 25%;
+    font-size: 1.2em;
+    color: #4141ff;
+    width: 12%;
+    cursor: pointer;
+}
+
+/* Gradient in the calendar */
 .caldayGradbottom {
     height: 20%;
     width: 100%;

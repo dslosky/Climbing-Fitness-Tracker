@@ -62,23 +62,27 @@
 
             <div class="titleContainer">
                 <div class="calendarTitle">
-                        <h1 class="title">Training Calendar</h1>
+                    <div class="row">
+                        <h1 class="title">Training Calendar</h1> 
+                    </div>
+                    <div class="row">
+                        <div class="optionsContainer">
+                            
+                                <div class="optionsTitle">
+                                    <p class="calendarOptionsButton"><span class="glyphicon glyphicon-chevron-right"></span>Calendar Options</p>
+                                </div>
+                                <div class="optionsBody">
+
+                                </div>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="optionsContainer">
-                <div class="calendarOptions">
-                    <div class="optionsTitle">
-                    </div>
-                    <div class="optionsBody">
-                        
-                    </div>
-                </div>
-            </div>
 
-            <div class="optionsContainer">
 
-            </div>
+
 
             <div class="pagecontentContainer">
 

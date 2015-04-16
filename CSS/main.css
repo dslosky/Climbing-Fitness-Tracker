@@ -103,6 +103,7 @@ body {
     border: #c4c4ff solid;
     position: absolute;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .calSpacer {
@@ -114,16 +115,55 @@ body {
     height: 100px;
 }
 
-.caldayGrad {
-    height: 77%;
+.caldayGradbottom {
+    height: 20%;
     width: 100%;
     z-index: -1;
     position: relative;
-    top: -50%;
-    background: -webkit-linear-gradient(0deg, rgba(0,0,255,.3) , rgba(0,0,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(0deg, rgba(0,0,255,.3) , rgba(0,0,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(0deg, rgba(0,0,255,.3) , rgba(0,0,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(0deg, rgba(0,0,255,.3) , rgba(0,0,255,0)); /* Standard syntax (must be last) */
+    top: 7%;
+    background: -webkit-linear-gradient(0deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(0deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(0deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* Standard syntax (must be last) */
+    opacity: 0;
+}
+
+.caldayGradtop {
+    height: 20%;
+    width: 100%;
+    z-index: -1;
+    position: relative;
+    top: -101%;
+    background: -webkit-linear-gradient(180deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* Standard syntax (must be last) */
+    opacity: 0;
+}
+.caldayGradleft {
+    height: 101%;
+    width: 20%;
+    z-index: -1;
+    position: relative;
+    top: -116%;
+    background: -webkit-linear-gradient(90deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(90deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* Standard syntax (must be last) */
+    opacity: 0;
+}
+
+.caldayGradright {
+    height: 101%;
+    width: 20%;
+    z-index: -1;
+    position: relative;
+    top: -216%;
+    left: 80%;
+    background: -webkit-linear-gradient(270deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(270deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(270deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(270deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* Standard syntax (must be last) */
     opacity: 0;
 }
 

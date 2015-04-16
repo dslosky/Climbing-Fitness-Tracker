@@ -24,10 +24,16 @@ var main = function () {
     fluidToStatic()
     
     $('.calDay').hover(function() {
-        $(this).children('.caldayGrad').fadeTo(600,1)
+        $(this).children('.caldayGradbottom').fadeTo(1200,1)
+        $(this).children('.caldayGradtop').fadeTo(1200,1)
+        $(this).children('.caldayGradleft').fadeTo(1200,1)
+        $(this).children('.caldayGradright').fadeTo(1200,1)
    
     }, function() {
-        $(this).children('.caldayGrad').fadeTo(600,0)
+        $(this).children('.caldayGradbottom').fadeTo(100,0)
+        $(this).children('.caldayGradtop').fadeTo(100,0)
+        $(this).children('.caldayGradleft').fadeTo(100,0)
+        $(this).children('.caldayGradright').fadeTo(100,0)
     });
     
    

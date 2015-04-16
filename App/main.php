@@ -65,6 +65,16 @@
                         <h1 class="title">Training Calendar</h1>
                 </div>
             </div>
+            
+            <div class="optionsContainer">
+                <div class="calendarOptions">
+                    <div class="optionsTitle">
+                    </div>
+                    <div class="optionsBody">
+                        
+                    </div>
+                </div>
+            </div>
 
             <div class="optionsContainer">
 
@@ -94,7 +104,13 @@
                                             <div class="dayInfo">
                                                 <p>Info</p>
                                             </div>
-                                            <div class="caldayGrad">
+                                            <div class="caldayGradbottom">
+                                            </div>
+                                            <div class="caldayGradtop">
+                                            </div>
+                                            <div class="caldayGradleft">
+                                            </div>
+                                            <div class="caldayGradright">
                                             </div>
                                         </div>
                                      </div>';

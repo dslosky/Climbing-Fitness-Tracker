@@ -72,8 +72,27 @@
                                     <p class="calendarOptionsButton"><span class="glyphicon glyphicon-chevron-right"></span>Calendar Options</p>
                                 </div>
                                 <div class="optionsBody">
-                                    <div id="toolbar" class="ui-widget-header ui-corner-all">
-                                        <button type="button" class="btn btn-default" id="test">Test</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary calendarDateButton">Start Date</button>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            Load Workouts <span class="caret"></span></button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li class="beginnerClick"><a href="#">Beginner</a></li>
+                                                <li class="intermediateClick"><a href="#">Intermediate</a></li>
+                                                <li class="advancedClick"><a href="#">Advanced</a></li>
+                                                <li class="previousClick"><a href="#">Previous</a></li>
+                                                </ul>
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Samsung</button>
+                                        <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        Sony <span class="caret"></span></button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Tablet</a></li>
+                                            <li><a href="#">Smartphone</a></li>
+                                        </ul>
+                                        </div>
                                     </div>
                                 </div>
                             
@@ -85,53 +104,81 @@
 
 
 
-
             <div class="pagecontentContainer">
+                
+                <div class="row weekDays">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-1" style="left: .8%">
+                            <p>Sunday</p>
+                        </div>
+                        <div class="col-xs-1" style="left: .4%">
+                            <p>Monday</p>
+                        </div>
+                        <div class="col-xs-1">
+                            <p>Tuesday</p>
+                        </div>
+                        <div class="col-xs-1" style="left: -.7%">
+                            <p>Wednesday</p>
+                        </div>
+                        <div class="col-xs-1" style="left: -.4%">
+                            <p>Thursday</p>
+                        </div>
+                        <div class="col-xs-1" style="left: .1%">
+                            <p>Friday</p>
+                        </div>
+                        <div class="col-xs-1" style="left: -.5%">
+                            <p>Saturday</p>
+                        </div>
+                    </div>
+                
+                <div class="scrollBox">
+                    
+                    <div class="calendarContainer">
+                        <?php
+                            for ($i = 1; $i <= 14; $i++) {
+                                echo '<div class="row calRow">
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-2">
+                                            <h3>Week ' . $i . '</h3>
+                                        </div>';
 
-                <div class="calendarContainer">
-                    <?php
-                        for ($i = 1; $i <= 14; $i++) {
-                            echo '<div class="row calSpacer"></div>';
-                            echo '<div class="row calRow">
-                                    <div class="col-xs-2"></div>
-                                    <div class="col-xs-2">
-                                        <h3>Week ' . $i . '</h3>
-                                    </div>';
+                                for ($j = 1; $j <= 7; $j++) {
 
-                            for ($j = 1; $j <= 7; $j++) {
+                                    echo '<div class="col-xs-1">
+                                            <div class="calDay day' . $j . 'week' . $i . '">
+                                                <div class="dayInfo">
+                                                    <p>date</p>
+                                                </div>
+                                                <div class="workoutTitle">
+                                                    <h3>Workout</h3>
+                                                </div>
+                                                <div class=dayDate>
+                                                </div>
+                                                <div class="caldayGradbottom">
+                                                </div>
+                                                <div class="caldayGradtop">
+                                                </div>
+                                                <div class="caldayGradleft">
+                                                </div>
+                                                <div class="caldayGradright">
+                                                </div>
+                                            </div>
+                                         </div>';
+                                }
 
-                                echo '<div class="col-xs-1">
-                                        <div class="calDay" id="day' . $j . 'week' . $i . '">
-                                            <div class="workoutTitle">
-                                                <h3>Workout</h3>
-                                            </div>
-                                            <div class=dayDate>
-                                            </div>
-                                            <div class="dayInfo">
-                                                <p>Info</p>
-                                            </div>
-                                            <div class="caldayGradbottom">
-                                            </div>
-                                            <div class="caldayGradtop">
-                                            </div>
-                                            <div class="caldayGradleft">
-                                            </div>
-                                            <div class="caldayGradright">
-                                            </div>
-                                        </div>
-                                     </div>';
+                                echo '</div>';
+                                echo '<div class="row calSpacer">
+                                        <div class="col-xs-12"><p> </p></div>
+                                      </div>';
+                                
+                                echo '<div class="row calSpacer"></div>';
+
                             }
-
-                            echo '</div>';
-                            echo '<div class="row calSpacer">
-                                    <div class="col-xs-12"><p> </p></div>
-                                  </div>';
-
-                        }
-                    ?>
+                        ?>
+                    </div>
                 </div>
-            </div>
-        </div>               
+            </div>               
+        </div>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="/JS/jquery-ui.js"></script>

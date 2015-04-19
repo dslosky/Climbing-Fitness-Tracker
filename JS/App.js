@@ -67,11 +67,19 @@ var main = function () {
     
     // hide the options menu
     $('.optionsBody').css({ "display" : "none"});
+    
+    // set cal date
+    $('.calendarDateButton').click(function() {
+        $('.day1week1').datepicker("setDate", "+0");
+        
+    });
    
     // fade in the page. We have to turn off the display and make the div visible before we can fade it in
     $('.contentContainer').css("display", "none");
     $('.contentContainer').css("visibility", "visible");
     $('.contentContainer').fadeIn(600);
+    
+    
        
     
 };

@@ -73,26 +73,28 @@
                                 </div>
                                 <div class="optionsBody">
                                     <div class="btn-group">
+                                        <button type="button" class="btn btn-primary calendarDateButton">New</button>
                                         <button type="button" class="btn btn-primary calendarDateButton">Start Date</button>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                             Load Workouts <span class="caret"></span></button>
                                             <ul class="dropdown-menu" role="menu">
+                                                <li class="emptyClick"><a href="#">Empty</a></li>
                                                 <li class="beginnerClick"><a href="#">Beginner</a></li>
                                                 <li class="intermediateClick"><a href="#">Intermediate</a></li>
                                                 <li class="advancedClick"><a href="#">Advanced</a></li>
                                                 <li class="previousClick"><a href="#">Previous</a></li>
                                                 </ul>
                                         </div>
-                                        <button type="button" class="btn btn-primary">Samsung</button>
                                         <div class="btn-group">
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        Sony <span class="caret"></span></button>
+                                        View Previous <span class="caret"></span></button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Tablet</a></li>
-                                            <li><a href="#">Smartphone</a></li>
+                                            <li><a href="#">Date1</a></li>
+                                            <li><a href="#">Date2</a></li>
                                         </ul>
                                         </div>
+                                        <button type="button" class="btn btn-primary">Delete</button>
                                     </div>
                                 </div>
                             
@@ -108,13 +110,13 @@
                 
                 <div class="row weekDays">
                         <div class="col-xs-4"></div>
-                        <div class="col-xs-1" style="left: .8%">
+                        <div class="col-xs-1" style="left: .7%">
                             <p>Sunday</p>
                         </div>
-                        <div class="col-xs-1" style="left: .4%">
+                        <div class="col-xs-1" style="left: .5%">
                             <p>Monday</p>
                         </div>
-                        <div class="col-xs-1">
+                        <div class="col-xs-1" style="left: .2%">
                             <p>Tuesday</p>
                         </div>
                         <div class="col-xs-1" style="left: -.7%">
@@ -123,7 +125,7 @@
                         <div class="col-xs-1" style="left: -.4%">
                             <p>Thursday</p>
                         </div>
-                        <div class="col-xs-1" style="left: .1%">
+                        <div class="col-xs-1" style="left: .3%">
                             <p>Friday</p>
                         </div>
                         <div class="col-xs-1" style="left: -.5%">

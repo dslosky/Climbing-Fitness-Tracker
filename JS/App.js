@@ -79,7 +79,23 @@ var main = function () {
     $('.contentContainer').css("visibility", "visible");
     $('.contentContainer').fadeIn(600);
     
-    
+    $(".newCalButton").click(function() {                
+
+      $.ajax({    //create an ajax request to load_page.php
+        type: "GET",
+        url: "/PHP/blankCalendar.php",             
+        dataType: "html",   //expect html to be returned                
+        success: function(response){
+            $('.weekDays p').css({opacity: 0});
+            $('.calendarContainer').css({opacity: 0});
+            $('.calendarContainer').html(response);
+            
+            $('.calendarContainer').animate({opacity: 1}, 600);
+            $('.weekDays p').animate({opacity: 1}, 600);
+        }
+
+    });
+    });
        
     
 };

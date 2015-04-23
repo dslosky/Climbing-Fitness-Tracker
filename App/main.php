@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="optionsBody">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary calendarDateButton">New</button>
+                                        <button type="button" class="btn btn-primary newCalButton">New</button>
                                         <button type="button" class="btn btn-primary calendarDateButton">Start Date</button>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -110,25 +110,25 @@
                 
                 <div class="row weekDays">
                         <div class="col-xs-4"></div>
-                        <div class="col-xs-1" style="left: .7%">
+                        <div class="col-xs-1" style="left: 1.2%">
                             <p>Sunday</p>
                         </div>
-                        <div class="col-xs-1" style="left: .5%">
+                        <div class="col-xs-1" style="left: 1.2%">
                             <p>Monday</p>
                         </div>
-                        <div class="col-xs-1" style="left: .2%">
+                        <div class="col-xs-1" style="left: .8%">
                             <p>Tuesday</p>
                         </div>
-                        <div class="col-xs-1" style="left: -.7%">
+                        <div class="col-xs-1" style="left: 0%">
                             <p>Wednesday</p>
                         </div>
-                        <div class="col-xs-1" style="left: -.4%">
+                        <div class="col-xs-1" style="left: .3%">
                             <p>Thursday</p>
                         </div>
-                        <div class="col-xs-1" style="left: .3%">
+                        <div class="col-xs-1" style="left: 1%">
                             <p>Friday</p>
                         </div>
-                        <div class="col-xs-1" style="left: -.5%">
+                        <div class="col-xs-1" style="left: .3%">
                             <p>Saturday</p>
                         </div>
                     </div>
@@ -136,6 +136,7 @@
                 <div class="scrollBox">
                     
                     <div class="calendarContainer">
+                        <!--
                         <?php
                             for ($i = 1; $i <= 14; $i++) {
                                 echo '<div class="row calRow">
@@ -177,6 +178,7 @@
 
                             }
                         ?>
+-->
                     </div>
                 </div>
             </div>               

@@ -1,0 +1,45 @@
+/* This is css for the opening page */
+
+body {
+    overflow: hidden;
+    opacity: 0;
+}
+
+.bodyCover {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background: #a1a1a1;
+    opacity: .3;
+    z-index: 100;
+    display: none;
+}
+
+.loginBox {
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    height: 60%;
+    width: 40%;
+    background: #FFFFFF;
+    z-index: 200;
+    display: none;
+}
+
+.upperBuffer {
+    height: 30%;
+}
+
+.enterSite {
+    margin-left: 23%;
+}
+
+.loginBox {
+    display: none;
+}
+
+.signin{
+    display: none;
+}

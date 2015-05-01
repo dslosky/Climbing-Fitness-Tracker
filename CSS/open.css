@@ -33,6 +33,7 @@ body {
     display: none;
 }
 
+<<<<<<< HEAD
 .loginBoxBuffer {
     height: 20%;
 }
@@ -71,6 +72,8 @@ body {
     z-index: 999;
 }
 
+=======
+>>>>>>> c756ac0fd7baa6ce145ce05dbd1631faaa989655
 .upperBuffer {
     height: 30%;
 }

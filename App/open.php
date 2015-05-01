@@ -34,6 +34,7 @@
                         </div>
                         <div class="col-md-3">
                         </div>
+
                     </div>
                     <a class="toSignUp" style="color: #4141ff">Sign Up</a>
                 </div>
@@ -64,7 +65,6 @@
         <!-- ------------------------- Page Content -------------------------------- -->
         
         <div class="pagecontentContainer">
-                       
             <div class="jumbotron">
                 <h1>The Rock Climber's Training Log</h1>
             </div>

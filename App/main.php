@@ -15,22 +15,6 @@
         
     </head>
     <body>
-        
-        <!----------------------------- Log in window ------------------------------ -->
-        <div class="loginBox">
-            <nav class="main-nav">
-                <ul>
-                    <!-- all your main menu links here -->
-                    <li><a class="cd-signin" href="#0">Sign in</a></li>
-                    <li><a class="cd-signup" href="#0">Sign up</a></li>
-                </ul>
-            </nav>
-            
-            
-            
-        </div>
-        <!-- ----------------------------------------------------------------------- -->
-        
         <div class="contentContainer">
             <div class="header">
                 <div class="row">

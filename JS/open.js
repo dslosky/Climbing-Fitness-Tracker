@@ -16,8 +16,7 @@ main = function() {
         $('.loginBox').fadeIn(600);
         $('.bodyCover').fadeIn(600);
     });
-    
-    // the login window
+
     $('.toSignIn').click(function () {
         $('.SignUp').hide(600);
         $('.SignIn').show(600);
@@ -28,6 +27,7 @@ main = function() {
         $('.SignUp').show(600);
     });
     
+
     $('.exitLogin').click(function() {
         $('.loginBox').fadeOut(600);
         $('.bodyCover').fadeOut(600);

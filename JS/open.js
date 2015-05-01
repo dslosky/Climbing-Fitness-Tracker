@@ -17,6 +17,7 @@ main = function() {
         $('.bodyCover').fadeIn(600);
     });
     
+    // the login window
     $('.toSignIn').click(function () {
         $('.SignUp').hide(600);
         $('.SignIn').show(600);
@@ -27,6 +28,20 @@ main = function() {
         $('.SignUp').show(600);
     });
     
+    $('.exitLogin').click(function() {
+        $('.loginBox').fadeOut(600);
+        $('.bodyCover').fadeOut(600);
+    });
+    
+    $('.enterSite').hover(function() {
+        $(this).css({backgroundColor: "#315B76",
+                     color: "#B98645",
+                     'font-weight': 'bold'});
+    }, function() {
+        $(this).css({backgroundColor: "#B98645",
+                     color: "#315B76",
+                     'font-weight': 'normal'});
+    });
     
     // once the JS is loaded, load the page
     $('body').animate({opacity: 1}, 600);

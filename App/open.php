@@ -9,61 +9,50 @@
     </head>
     <body>
         <!----------------------------- Log in window ------------------------------ -->
-<!--
-        <div id="form-content" class="modal hide fade in loginBox" style="display: none;">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal">×</a>
-                <h3>Log In</h3>
-            </div>
-            <div class="modal-body">
-                <form class="loginForm" name="loginForm">
-                    <div class="SignIn">
-                        <div class="row">
-                            <div class="col-md-1">
-                                <p>Username:</p>
-                            </div>
-                            <div class="col-md-1">
-                                <input type="text" name="username">
-                            </div>
-                        </div>
-                        <a class="toSignUp" style="color: #4141ff">Sign Up</a>
-                    </div>
-                    <div class="SignUp">
-                        <div class="row">
-                            <div class="col-md-1">
-                                <p>Password:</p>
-                            </div>
-                            <div class="col-md-1">
-                                <input type="text" name="pasword">
-                            </div>
-                        </div>
-                        <a class="toSignIn">Sign In</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-        -->
         
         <div class="loginBox">
             <form class="loginForm" name="loginForm">
+                <div class="row">
+                    <p class="exitLogin">X</p>
+                </div>
+                <div class="loginBoxBuffer">
+                </div>
                 <div class="SignIn">
                     <div class="row">
-                        <div class="col-md-1">
+                        <div class="col-md-12 loginBoxHeader">
+                            <h3>Sign Up</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-2">
                             <p>Username:</p>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-4">
                             <input type="text" name="username">
+                        </div>
+                        <div class="col-md-3">
                         </div>
                     </div>
                     <a class="toSignUp" style="color: #4141ff">Sign Up</a>
                 </div>
                 <div class="SignUp">
                     <div class="row">
-                        <div class="col-md-1">
+                        <div class="col-md-12 loginBoxHeader">
+                            <h3>Sign Up</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-2">
                             <p>Password:</p>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-4">
                             <input type="text" name="pasword">
+                        </div>
+                        <div class="col-md-3">
                         </div>
                     </div>
                     <a class="toSignIn">Sign In</a>
@@ -75,6 +64,7 @@
         <!-- ------------------------- Page Content -------------------------------- -->
         
         <div class="pagecontentContainer">
+                       
             <div class="jumbotron">
                 <h1>The Rock Climber's Training Log</h1>
             </div>
@@ -95,7 +85,6 @@
         
         <div class="bodyCover">
         </div>
-        
     </body>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

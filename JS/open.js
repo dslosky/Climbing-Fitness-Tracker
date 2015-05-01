@@ -13,7 +13,8 @@ main = function() {
             });
         */
         
-        $('.loginBox').show(600);
+        $('.loginBox').fadeIn(600);
+        $('.bodyCover').fadeIn(600);
     });
     
     $('.toSignIn').click(function () {

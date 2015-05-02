@@ -5,7 +5,7 @@ body {
     opacity: 0;
     background: #000000;
     background-image: url("/Images/hangHands_dark.jpg");
-    background-size: 100% auto;
+    background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -33,7 +33,6 @@ body {
     display: none;
 }
 
-<<<<<<< HEAD
 .loginBoxBuffer {
     height: 20%;
 }
@@ -72,17 +71,25 @@ body {
     z-index: 999;
 }
 
-=======
->>>>>>> c756ac0fd7baa6ce145ce05dbd1631faaa989655
 .upperBuffer {
     height: 30%;
 }
 
 .enterSite {
-    margin-left: 23%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
     background: #B98645;
-    color: "#315B76";
+    color: #315B76;
     text-align: center;
+    width: 20em;
+    height: 4em;
+    cursor: pointer;
+}
+
+.enterSite h1 {
+    position: relative;
+    top: -20%;
 }
 
 .loginBox {

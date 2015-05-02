@@ -76,7 +76,7 @@
                     
                 </div>
                 <div class="col-md-2 enterContainer">
-                    <button type="button" class="btn enterSite">Get Strong</button>
+                    <div  class="enterSite"><h1>Get Strong</h1></div>
                 </div>
             </div>
         </div>

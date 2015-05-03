@@ -111,6 +111,7 @@ body {
 
 .calDay {
     width: 90%;
+    height: 6em;
     border: #c4c4ff solid;
     position: absolute;
     border-radius: 5px;
@@ -118,7 +119,7 @@ body {
 }
 
 .calSpacer {
-    height: 40px;
+    height: 2em;
     
 }
 
@@ -152,11 +153,11 @@ body {
 
 /* Gradient in the calendar */
 .caldayGradbottom {
-    height: 20%;
+    height: 2em;
     width: 100%;
     z-index: -1;
     position: relative;
-    top: -5%;
+    top: -1.7em;
     background: -webkit-linear-gradient(0deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(0deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(0deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Firefox 3.6 to 15 */
@@ -165,11 +166,11 @@ body {
 }
 
 .caldayGradtop {
-    height: 20%;
+    height: 2em;
     width: 100%;
     z-index: -1;
     position: relative;
-    top: -109%;
+    top: -7.5em;
     background: -webkit-linear-gradient(180deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(180deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(180deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Firefox 3.6 to 15 */
@@ -177,11 +178,11 @@ body {
     opacity: 0;
 }
 .caldayGradleft {
-    height: 101%;
-    width: 20%;
+    height: 5.8em;
+    width: 2em;
     z-index: -1;
     position: relative;
-    top: -125%;
+    top: -9.45em;
     background: -webkit-linear-gradient(90deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(90deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(90deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Firefox 3.6 to 15 */
@@ -190,12 +191,12 @@ body {
 }
 
 .caldayGradright {
-    height: 101%;
-    width: 20%;
+    height: 5.8em;
+    width: 2em;
     z-index: -1;
     position: relative;
-    top: -228%;
-    left: 80%;
+    top: -15.4em;
+    left: 73%;
     background: -webkit-linear-gradient(270deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(270deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(270deg, rgba(196,196,255,.8) , rgba(196,196,255,0)); /* For Firefox 3.6 to 15 */

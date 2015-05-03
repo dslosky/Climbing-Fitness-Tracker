@@ -18,26 +18,27 @@ body {
     width: 100%;
     background: #a1a1a1;
     opacity: .3;
-    z-index: 100;
+    z-index: 2;
     display: none;
 }
 
 .loginBox {
     position: absolute;
-    left: 30%;
     top: 20%;
+    left: 30%;
     height: 60%;
     width: 40%;
-    background: #FFFFFF;
-    z-index: 200;
+    background: #B98645;
+    z-index: 3;
     display: none;
 }
 
 .loginBoxBuffer {
-    height: 20%;
+    height: 10%;
 }
 
 .loginBoxHeader {
+    margin-top: 5%;
     text-align: center;
 }
 
@@ -46,6 +47,23 @@ body {
     margin-right: 5%;
     margin-top: 1%;
     cursor: pointer;
+}
+
+.signUp {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background: #315B76;
+    color: #B98645;
+    text-align: center;
+    width: 15em;
+    height: 3em;
+    cursor: pointer;
+}
+
+.signUp h3 {
+    position: relative;
+    top: 20%;
 }
 
 /* background picture */
@@ -68,7 +86,7 @@ body {
     color: #ffffff;
     background: rgba(196, 196, 255, .5);
     text-align: center;
-    z-index: 999;
+    z-index: 1;
 }
 
 .upperBuffer {
@@ -96,6 +114,6 @@ body {
     display: none;
 }
 
-.signin{
+.loginWindow{
     display: none;
 }

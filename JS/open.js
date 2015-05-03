@@ -12,19 +12,19 @@ main = function() {
             modal: true
             });
         */
-        
+        //$('.loginBox').centerHor()
         $('.loginBox').fadeIn(600);
         $('.bodyCover').fadeIn(600);
     });
 
     $('.toSignIn').click(function () {
-        $('.SignUp').hide(600);
-        $('.SignIn').show(600);
+        $('.signupWindow').hide(600);
+        $('.loginWindow').show(600);
     });
     
     $('.toSignUp').click(function () {
-        $('.SignIn').hide(600);
-        $('.SignUp').show(600);
+        $('.loginWindow').hide(600);
+        $('.signupWindow').show(600);
     });
     
 
@@ -73,5 +73,7 @@ function openToStatic() {
                 "top": $(this).offset().top
             }); 
         
-    }); 
+    });
+    
+    //$('body').css("position","absolute");
 };

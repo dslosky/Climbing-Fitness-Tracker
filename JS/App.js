@@ -23,26 +23,27 @@ var main = function () {
     // Make the page static once it's been fluidly created
     fluidToStatic()
     
-    $('.calDay').on("mouseenter", ".collection_add_to", function () {
+    $('body').on("mouseenter", ".calDay", function () {
             $(this).children('.caldayGradbottom').stop(true).fadeTo(1200,1)
             $(this).children('.caldayGradtop').stop(true).fadeTo(1200,1)
             $(this).children('.caldayGradleft').stop(true).fadeTo(1200,1)
             $(this).children('.caldayGradright').stop(true).fadeTo(1200,1) 
     });
-    
+    /*
     $('body').on("mouseenter", function () {
             $(this).children('.caldayGradbottom').stop(true).fadeTo(1200,1)
             $(this).children('.caldayGradtop').stop(true).fadeTo(1200,1)
             $(this).children('.caldayGradleft').stop(true).fadeTo(1200,1)
             $(this).children('.caldayGradright').stop(true).fadeTo(1200,1) 
     });
-     /*
-        mouseleave: function() {
+    */
+     
+     $(document).on("mouseleave", '.calDay', function() {
             $(this).children('.caldayGradbottom').stop(true).fadeTo(600,0)
             $(this).children('.caldayGradtop').stop(true).fadeTo(600,0)
             $(this).children('.caldayGradleft').stop(true).fadeTo(600,0)
-            $(this).children('.caldayGradright').stop(true).fadeTo(600,0) }
-    }); */
+            $(this).children('.caldayGradright').stop(true).fadeTo(600,0)
+    }); 
     
     // Make the options title slide when clicked
     $('.calendarOptionsButton').click(function() {

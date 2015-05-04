@@ -22,89 +22,68 @@
                 </div>
                 <div class="loginBoxBuffer">
                 </div>
+                <div class="row loginResponse">
+                    <div class="col-md-12">
+                        <p></p>
+                    </div>
+                </div>
                 <div class="loginWindow">
-                    <!--
                     <div class="row">
-                        <div class="col-md-12 loginBoxHeader">
-                            <h3>Sign In</h3>
-                        </div>
-                    </div>
-                    -->
-                    <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-2">
-                            <p>Username:</p>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="username">
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12">
+                            <div class="usernameContainer signinField">
+                                <input type="username" name="username" id="username" placeholder="Username" />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-2">
-                            <p>Password:</p>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="password">
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12">
+                            <div class="passwordContainer signinField">
+                                <input type="password" name="password" id="password" placeholder="Password" />
+                            </div>
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn SignIn">Continue</button>
+                            <div class="passConf signinField" style="visibility: hidden">
+                                <input type="text" name="passwordConf" id="passwordConf" placeholder="Confirm Password" />
+                            </div>
                         </div>
                     </div>
                     
-                    <a class="toSignUp" style="color: #4141ff">Sign Up</a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="signIn">
+                                <h3>Sign In</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="text-align: center; margin-top: 1%;">
+                        <div class="col-md-12">
+                            <p style="font-style: italic">Don't have an account? <a class="toSignUp" style="color: #4141ff; cursor: pointer;">Sign Up</a></p>
+                        </div>
+                    </div>
                 </div>
                 <div class="signupWindow">
-                    <!--
                     <div class="row">
-                        <div class="col-md-12 loginBoxHeader">
-                            <h3>Sign Up</h3>
-                        </div>
-                    </div>
-                    -->
-                    <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-2">
-                            <p>Username:</p>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="username">
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12">
+                            <div class="usernameContainer signinField">
+                                <input type="username" name="usernameUp" id="usernameUp" placeholder="Username" />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-2">
-                            <p>Password:</p>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="password">
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12">
+                            <div class="passwordContainer signinField">
+                                <input type="password" name="passwordUp" id="passwordUp" placeholder="Password" />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-2">
-                            <p>Confirm Password:</p>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="passwordConf">
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12">
+                            <div class="passConf signinField">
+                                <input type="password" name="passwordConfUp" id="passwordConfUp" placeholder="Confirm Password" />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -114,7 +93,11 @@
                             </div>
                         </div>
                     </div>
-                    <a class="toSignIn">Sign In</a>
+                    <div class="row" style="text-align: center; margin-top: 1%;">
+                        <div class="col-md-12">
+                            <p style="font-style: italic">Already have an account? <a class="toSignIn" style="color: #4141ff; cursor: pointer;">Sign In</a></p>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

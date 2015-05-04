@@ -96,6 +96,10 @@ body {
     margin-right: auto;
 }
 
+.noCalendar {
+    
+}
+
 .weekDays p {
     width: 90%;
     font-weight: bold;

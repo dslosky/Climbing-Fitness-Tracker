@@ -4,35 +4,10 @@ main = function() {
     // Show login window when the login button is clicked
     $('.enterSite').click(function() {
         // make the loginBox appear as a dialogue
-        
-        /*
-        //$('#tabs').tabs();
-        $('.loginBox').dialog({
-            width: '30%',
-            modal: true
-            });
-        */
-        //$('.loginBox').centerHor()
         $('.loginBox').fadeIn(600);
         $('.bodyCover').fadeIn(600);
     });
-
-    $('.toSignIn').click(function () {
-        $('.signupWindow').hide(600);
-        $('.loginWindow').show(600);
-    });
-    
-    $('.toSignUp').click(function () {
-        $('.loginWindow').hide(600);
-        $('.signupWindow').show(600);
-    });
-    
-
-    $('.exitLogin').click(function() {
-        $('.loginBox').fadeOut(600);
-        $('.bodyCover').fadeOut(600);
-    });
-    
+    // change colors on hover
     $('.enterSite').hover(function() {
         $(this).css({backgroundColor: "#315B76",
                      color: "#B98645",
@@ -42,6 +17,139 @@ main = function() {
                      color: "#315B76",
                      'font-weight': 'normal'});
     });
+
+    // login box
+    $('.toSignIn').click(function () {
+        $('.signupWindow').css({
+            "z-index": 0});
+        $('.loginWindow').css({
+            "z-index": 4});
+        $('.signupWindow').fadeOut(600);
+        $('.loginWindow').fadeIn(600);
+    });
+    
+    $('.toSignUp').click(function () {
+        $('.signupWindow').css({
+            "z-index": 4});
+        $('.loginWindow').css({
+            "z-index": 0});
+        $('.loginWindow').fadeOut(600);
+        $('.signupWindow').fadeIn(600);
+    });
+    
+    // close the window
+    $('.exitLogin').click(function() {
+        $('.loginBox').fadeOut(600);
+        $('.bodyCover').fadeOut(600);
+    });
+    
+    $('.signin').hover(function() {
+        $(this).css({backgroundColor: "#B98645",
+                     color: "#315B76",
+                     'font-weight': 'normal'});
+            }, function() {
+        $(this).css({backgroundColor: "#315B76",
+                     color: "#B98645",
+                     'font-weight': 'bold'});
+
+    });
+    
+    $('.signUp').hover(function() {
+        $(this).css({backgroundColor: "#B98645",
+                     color: "#315B76",
+                     'font-weight': 'normal'});
+            }, function() {
+        $(this).css({backgroundColor: "#315B76",
+                     color: "#B98645",
+                     'font-weight': 'bold'});
+
+    });
+    
+    $('.signUp').click(function() {
+        var username = $('#usernameUp').val()
+        var password = $('#passwordUp').val()
+        var passwordConf = $('#passwordConfUp').val()
+        
+        if (password === passwordConf) {
+            
+            $.ajax({
+                type: "POST",
+                url: "/PHP/open/signup.php",
+                data: "username=" + username + "&password=" + password,
+                success: function(html){    
+                    if(html === 'false')    {
+                        // $("#add_err").css('display', 'inline', 'important');
+                        // $("#add_err").html("<img src='images/alert.png' />Wrong username or password");
+                        $('.loginResponse p').html('This username already exists!');
+                        $('#usernameUp').css("color", "#FF0000");
+                    } else {
+                        // $("#add_err").html("right username or password");
+                        window.location="main.php";
+                        /* Load the main page through ajax
+                        $.ajax({
+                            type: "GET",
+                            url: "/App/main.php",
+                            dataType: "html",
+                            success: function(response) {
+                                $('body').html(response);
+                                $('body').css("background", "#FFFFFF");
+                            }
+                        });
+                        */
+                    }
+                },
+                beforeSend:function() {
+                    // show some loading window
+                    
+                }
+            });
+            return false;
+        } else {
+            $('.loginResponse p').html("Passwords don't match!")    
+        };
+    });
+    
+    $('.signIn').click(function() {
+        var username = $('#username').val()
+        var password = $('#password').val()
+    
+        $.ajax({
+            type: "POST",
+            url: "/PHP/open/login.php",
+            data: "username=" + username + "&password=" + password,
+            success: function(html){    
+                if(html === 'false')    {
+                    // $("#add_err").css('display', 'inline', 'important');
+                    // $("#add_err").html("<img src='images/alert.png' />Wrong username or password");
+                    $('.loginResponse p').html('Wrong username or password');
+                    $('#usernameUp').css("color", "#FF0000");
+                } else {
+                    // $("#add_err").html("right username or password");
+                    window.location="/App/main.php";
+                    /* Load the main page through ajax
+                        $.ajax({
+                            type: "GET",
+                            url: "/App/main.php",
+                            dataType: "html",
+                            success: function(response) {
+                                $('body').html(response);
+                                $('body').css("background", "#FFFFFF");
+                            }
+                        });
+                    */
+                }
+            },
+            beforeSend:function() {
+                // show some loading window
+                
+            }
+        });
+        return false;  
+    });
+    //*************************************************************
+
+
+    
     
     // once the JS is loaded, load the page
     $('body').animate({opacity: 1}, 600);

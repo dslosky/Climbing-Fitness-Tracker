@@ -75,7 +75,7 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    height:80%;
+    height:87%;
     top: 0%;
     width: 99%;
 }
@@ -104,7 +104,7 @@ body {
     width: 90%;
     font-weight: bold;
     display: inline-block;
-    opacity: 0;
+    opacity: 1;
 }
 
 .calendarContainer {
@@ -133,8 +133,8 @@ body {
 
 .optionsTitle p {
     position: relative;
-    left: 45%;
-    top: 25%;
+    left: 42%;
+    top: 35%;
     font-size: 1.2em;
     color: #4141ff;
     width: 12%;
@@ -143,11 +143,26 @@ body {
 
 .optionsBody{
     position: relative;
-    left: 45%;
-    top: -20%;
+    left: 42%;
+    top: -30%;
     font-size: 1.2em;
     color: #4141ff;
     width: 36%;
+}
+
+.emptyCal {
+    height:90%;
+    width: 95%;
+    margin-top: 0%;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #a3a3a3;
+    border-style: dashed;
+    border-radius: 1%;
+    color: #a3a3a3;
+    text-align: center;
+    display: none;
+    cursor: pointer;
 }
 
 #toolbar {
@@ -208,6 +223,33 @@ body {
     opacity: 0;
 }
 
+.bodyCover {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background: #000000;
+    opacity: .6;
+    z-index: 2;
+    display: none;
+}
+
+.addCalPopup {
+    position: absolute;
+    left: 33%;
+    top: 10%;
+    height: 80%;
+    width: 33%;
+    background: #FFFFFF;
+    opacity: 1;
+    z-index: 3;
+    display: none;
+}
+
+.calDayPopup {
+    display: none;
+}
 /* Bootstrap changes */
 .col-xs-12 {
     float:left}

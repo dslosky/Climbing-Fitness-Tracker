@@ -78,30 +78,28 @@ main = function() {
                 data: "username=" + username + "&password=" + password,
                 success: function(html){    
                     if(html === 'false')    {
-                        // $("#add_err").css('display', 'inline', 'important');
-                        // $("#add_err").html("<img src='images/alert.png' />Wrong username or password");
                         $('.loginResponse p').html('This username already exists!');
                         $('#usernameUp').css("color", "#FF0000");
                     } else {
-                        // $("#add_err").html("right username or password");
-                        window.location="main.php";
-                        /* Load the main page through ajax
+                        // Load climber's data using ajax 
                         $.ajax({
                             type: "GET",
-                            url: "/App/main.php",
+                            url: "/PHP/data/getData.php",
                             dataType: "html",
                             success: function(response) {
                                 $('body').html(response);
                                 $('body').css("background", "#FFFFFF");
                             }
                         });
-                        */
+                        
+                        // window.location="main.php";
                     }
                 },
                 beforeSend:function() {
                     // show some loading window
                     
                 }
+                
             });
             return false;
         } else {
@@ -124,19 +122,20 @@ main = function() {
                     $('.loginResponse p').html('Wrong username or password');
                     $('#usernameUp').css("color", "#FF0000");
                 } else {
-                    // $("#add_err").html("right username or password");
-                    window.location="/App/main.php";
-                    /* Load the main page through ajax
-                        $.ajax({
-                            type: "GET",
-                            url: "/App/main.php",
-                            dataType: "html",
-                            success: function(response) {
-                                $('body').html(response);
-                                $('body').css("background", "#FFFFFF");
-                            }
-                        });
-                    */
+                    // Load climber's data using ajax 
+                    $.ajax({
+                        type: "GET",
+                        url: "/PHP/data/getData.php",
+                        dataType: "html",
+                        success: function(response) {
+                            $('body').html(response);
+                            $('body').css("background", "#FFFFFF");
+                        }
+                    });
+                    
+                    window.location="/App/calendar.php";
+
+
                 }
             },
             beforeSend:function() {

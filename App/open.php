@@ -130,6 +130,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/JS/jquery-ui.js"></script>
+    <script src="/JS/jquery.cookie.js"></script>
     <script src="/JS/bootstrap.js"></script>
     <script src="/JS/all.js"></script>
     <script src="/JS/open.js"></script>

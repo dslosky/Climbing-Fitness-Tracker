@@ -1,17 +1,42 @@
 <?php
+if (!session_id()){session_start();};
 
-/*
- * To change this template use Tools | Templates.
- */
+if (!isset($_COOKIE['username'])) {
+    header("location: /App/open.php");
+};
+
+
+
+
+while (!isset($_SESSION['username'])) {
+    include($_SERVER[DOCUMENTROOT]/PHP/data/getData.php);
+}
+
+
+
+$username = $_SESSION['username'];
+
+//if (count($calendars) > 0) {
+if (isset($_SESSION['calendars']))  { 
+    $calendars = $_SESSION['calendars'];
+    
+    // get all calendar names in array
+    $calNames = [];
+    foreach ($calendars as $cal) {
+        array_push($calNames, $cal['StartDate'] . ' - ' . $cal['EndDate']);
+    };
+};
+
+
+
 ?>
-
 <HTML>
     <head>
         <title>RCTL</title>
         
         <link href="/CSS/bootstrap.css" rel="stylesheet">
         <link href="/CSS/jquery-ui.css" rel="stylesheet">
-        <link href="/CSS/main.css" rel="stylesheet">
+        <link href="/CSS/calendar.css" rel="stylesheet">
         
     </head>
     <body>
@@ -20,9 +45,9 @@
                 <div class="row">
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="nav">
-                                <div class="container">
+                        <div class="col-md-12">
+                            <div class="nav" style="width: 100%">
+                                <div class="container" style="width: 100%">
                                     <ul class="pull-left">
                                         <li class="logo">LOGO</li>
                                         <li><a href="#">Calendar</a></li>
@@ -38,7 +63,11 @@
                                                 <li><a href="#">Hangboard</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">RCTM Page</a></li>
+                                        <li><a href="#">Other</a></li>
+                                    </ul>
+                                    <ul class="pull-right" style="display: inline-block">
+                                        <li><a href="#" class="userInfo">Welcome, <?php echo $username; ?></a></li>
+                                        <li><a href="#" class="logOut">Log Out</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -59,6 +88,32 @@
                     </div>
                 </div>
             </div>
+
+            <div class="addCalPopup">
+                <div class="row" style="width: 100%; right: 0px">
+                    <div class="col-md-12" style="left: 5%">
+                        <p class="exitAddCal" style="text-align: right; right: 3%; cursor: pointer; display: inline-block; position: absolute;">X</p>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%; text-align: center; margin: 0px;">
+                    <h1 class="title">Create a Calendar</h1>
+                </div>
+            </div>
+            
+            <div class="calDayPopup">
+                <div class="row"></div>
+                <div class="row dayTitle">
+                    <h1></h1>
+                </div>
+                <div class="workoutsContainer">
+                    
+                </div>
+                <div class="row">
+                    <div class="whatever"></div>
+                </div>
+            </div>
+
+
 
             <div class="titleContainer">
                 <div class="calendarTitle">
@@ -90,8 +145,11 @@
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         View Previous <span class="caret"></span></button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Date1</a></li>
-                                            <li><a href="#">Date2</a></li>
+                                            <?php
+                                                foreach ($calNames as $name) {
+                                                    echo "<li><a href='#'>$name</a></li>";
+                                                };
+                                            ?>
                                         </ul>
                                         </div>
                                         <button type="button" class="btn btn-primary">Delete</button>
@@ -133,60 +191,45 @@
                         </div>
                     </div>
                 
-                <div class="scrollBox">
+                
                     
-                    <div class="calendarContainer">
-                        <!--
+                    
                         <?php
-                            for ($i = 1; $i <= 14; $i++) {
-                                echo '<div class="row calRow">
-                                        <div class="col-xs-2"></div>
-                                        <div class="col-xs-2">
-                                            <h3>Week ' . $i . '</h3>
-                                        </div>';
-
-                                for ($j = 1; $j <= 7; $j++) {
-
-                                    echo '<div class="col-xs-1">
-                                            <div class="calDay day' . $j . 'week' . $i . '">
-                                                <div class="dayInfo">
-                                                    <p>date</p>
-                                                </div>
-                                                <div class="workoutTitle">
-                                                    <h3>Workout</h3>
-                                                </div>
-                                                <div class=dayDate>
-                                                </div>
-                                                <div class="caldayGradbottom">
-                                                </div>
-                                                <div class="caldayGradtop">
-                                                </div>
-                                                <div class="caldayGradleft">
-                                                </div>
-                                                <div class="caldayGradright">
-                                                </div>
-                                            </div>
-                                         </div>';
-                                }
-
-                                echo '</div>';
-                                echo '<div class="row calSpacer">
-                                        <div class="col-xs-12"><p> </p></div>
-                                      </div>';
+                            //if (count($calendars) > 0) {
+                            if ((isset($calendars)) && (count($calendars) > 0)) {     
+                                echo '<div class="calendarContainer full">
+                                        <div class="scrollBox">';
                                 
-                                echo '<div class="row calSpacer"></div>';
-
-                            }
+                                // run loadCalendar with a specific calendar loaded to the server
+                                $_SESSION['calendar'] = $calendars['calendar' . (count($calendars)-1)];
+                                include_once "$_SERVER[DOCUMENT_ROOT]/PHP/loadCalendar.php";
+                                
+                                echo '</div>';
+                            } else {
+                                echo '<div class="calendarContainer empty">';
+                            };
                         ?>
--->
-                    </div>
+                        
+                        <div class='emptyCal newCalButton'> 
+                            <h1 style='margin-top: 10%'>You don't have any calendars</h1> 
+                            <h3>Click here to create a new one!</h3> 
+                        </div>
+
                 </div>
             </div>               
         </div>
         
+        <div class="bodyCover">
+        </div>
+        
+
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="/JS/jquery-ui.js"></script>
+        <script src="/JS/jquery.cookie.js"></script>
         <script src="/JS/bootstrap.js"></script>
-        <script src="/JS/App.js"></script>
+        <script src="/JS/calendar.js"></script>
     </body>
 </HTML>
+
+<?php session_commit(); ?>

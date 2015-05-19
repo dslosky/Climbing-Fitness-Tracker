@@ -1,3 +1,9 @@
+var all = function() {
+    
+};
+
+$(document).ready(all);
+
 function centerHor() {
     this.css("position","absolute");
     this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 

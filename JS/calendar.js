@@ -20,6 +20,20 @@ var main = function () {
             
         }); 
     
+    if ($('.calendarContainer').is(".empty")) {
+        $('.weekDays p').hide();
+        
+        /*
+        $('.calendarContainer').html("<div class='emptyCal'> \
+                                        <h1 style='margin-top: 10%'>You don't have any calendars</h1> \
+                                        <h3>Click here to create a new one!</h3> \
+                                      </div>");
+        */
+        
+        $('.emptyCal').show()
+        
+    };
+
     // Make the page static once it's been fluidly created
     fluidToStatic()
     
@@ -82,6 +96,9 @@ var main = function () {
     
     $(".newCalButton").click(function() {                
 
+        $('.bodyCover').fadeIn(600);
+        $('.addCalPopup').fadeIn(600);
+        /*
       $.ajax({    //create an ajax request to load_page.php
         type: "GET",
         url: "/PHP/blankCalendar.php",             
@@ -95,9 +112,35 @@ var main = function () {
             $('.weekDays p').animate({opacity: 1}, 600);
         }
 
+        });
+        
+        */
     });
+    
+    $('.exitAddCal').click(function() {
+    
+        $('.addCalPopup').fadeOut(600)
+        $('.bodyCover').fadeOut(600)
+    
     });
-       
+    
+    $('.logOut').on("click", function() {
+        
+        $.removeCookie('username', { path: '/' });
+        
+        $('.bodyCover').fadeIn(600, function() {
+            $.ajax({
+               type: "GET",
+               url: "/PHP/logout.php",
+               dataType: "html",
+               success: function() {
+                   window.location="/App/open.php";
+               }
+           });   
+        });
+        
+        
+    });
     
 };
 

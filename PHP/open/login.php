@@ -1,11 +1,10 @@
 <?php
-
+if (!session_id()){session_start();};
 include_once "$_SERVER[DOCUMENT_ROOT]/PHP/config.php";
  
-session_start();
 $username = $_POST['username'];
-$password = ($_POST['password']);
-$qry = "SELECT username FROM Users WHERE username='".$username."' and password='".$password."'";
+$password = $_POST['password'];
+$qry = "SELECT username,id FROM Users WHERE username='".$username."' and password='".$password."'";
 
 $result = $conn->query($qry);
 
@@ -19,7 +18,11 @@ if ($result != False) {
 $result->close();
 if( $num_row == 1 ) {
     
+    setcookie("username", $row['username'], time() + 600000, "/");
+    setcookie("id", $row['id'], time() + 600000, "/");
+    
     $_SESSION['username'] = $row['username'];
+    $_SESSION['id'] = $row['id'];
     echo 'true';
     
 }
@@ -29,4 +32,6 @@ else {
 
 }
 
+$conn->close();
+exit();
 ?>

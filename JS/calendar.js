@@ -141,8 +141,22 @@ var main = function () {
         
         
     });
+  
+    //$('#jqDrop').selectmenu();
     
+    $('.createCal').hover(function() {
+    $(this).css({backgroundColor: "#315B76",
+                 color: "#B98645",
+                 'font-weight': 'normal'});
+        }, function() {
+    $(this).css({backgroundColor: "#B98645",
+                 color: "#315B76",
+                 'font-weight': 'bold'});
+
+    });
 };
+
+
 
 $(document).ready(main);
 

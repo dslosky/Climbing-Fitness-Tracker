@@ -91,12 +91,49 @@ if (isset($_SESSION['calendars']))  {
 
             <div class="addCalPopup">
                 <div class="row" style="width: 100%; right: 0px">
-                    <div class="col-md-12" style="left: 5%">
+                    <div class="col-md-12" style="left: 5%; width: 100%">
                         <p class="exitAddCal" style="text-align: right; right: 3%; cursor: pointer; display: inline-block; position: absolute;">X</p>
                     </div>
                 </div>
-                <div class="row" style="width: 100%; text-align: center; margin: 0px;">
-                    <h1 class="title">Create a Calendar</h1>
+                <div class="addCalHeader">
+                    <div class="row" style="width: 100%; text-align: center; margin: 0px;">
+                        <h1 class="title">Create a Calendar</h1>
+                    </div>
+                </div>
+                <div class="calOptionsContainer">
+                    <div class="row newCalBuffer"></div>
+                    <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 10%;">
+                        <div class="startDateContainer">
+                            <p>Start Date: </p><input type=text name=startDate id=startDate />
+                        </div>
+                    </div>
+                    <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 10%;">
+                        <div class="endDateContainer">
+                            <p>End Date: </p><input type=text name=endDate id=endDate />
+                        </div>
+                    </div>
+                    <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 20%;">
+                        <div class="durationContainer">
+                            <h2 style="width: 100%">Workout Duration: </h2>
+                            <h3 style="width: 100%"> </h3>
+                        </div>
+                    </div>
+                    <div class="selectWorkoutsContainer">
+
+                        <select class="workoutsDrop" id="workoutsDrop">
+                            <option value="" selected>-- Load Default Workouts --</option>
+                            <option value="noneSelect">None</option>
+                            <option value="beginnerSelect">Beginner</option>
+                            <option value="intSelect">Intermediate</option>
+                            <option value="advSelect">Advanced</option>
+                            <option value="prevSelect">Previous</option>
+                        </select>
+                        
+                    </div>
+                    
+                    <div class="createContainer">
+                        <div class="createCal"><h1>Go</h1></div>
+                    </div>
                 </div>
             </div>
             
@@ -130,17 +167,6 @@ if (isset($_SESSION['calendars']))  {
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary newCalButton">New</button>
                                         <button type="button" class="btn btn-primary calendarDateButton">Start Date</button>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                            Load Workouts <span class="caret"></span></button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li class="emptyClick"><a href="#">Empty</a></li>
-                                                <li class="beginnerClick"><a href="#">Beginner</a></li>
-                                                <li class="intermediateClick"><a href="#">Intermediate</a></li>
-                                                <li class="advancedClick"><a href="#">Advanced</a></li>
-                                                <li class="previousClick"><a href="#">Previous</a></li>
-                                                </ul>
-                                        </div>
                                         <div class="btn-group">
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         View Previous <span class="caret"></span></button>
@@ -232,4 +258,4 @@ if (isset($_SESSION['calendars']))  {
     </body>
 </HTML>
 
-<?php session_commit(); ?>
+<?php exit(); ?>

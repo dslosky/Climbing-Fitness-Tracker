@@ -235,16 +235,126 @@ body {
     display: none;
 }
 
+/* new cal popup stuff */
+
 .addCalPopup {
     position: absolute;
-    left: 33%;
+    left: 35%;
     top: 10%;
-    height: 80%;
-    width: 33%;
+    height: 70%;
+    width: 30%;
     background: #FFFFFF;
     opacity: 1;
     z-index: 3;
     display: none;
+}
+
+.addCalHeader {
+    width: 90%;
+    left: 5%;
+    margin-top: 10%;
+    border-radius: 10%;
+    position: relative;
+    display: inline-block;
+    height: 15%;
+    background: #c4c4ff;
+}
+
+.calOptionsContainer {
+    position: relative;
+    width: 100%;
+    top: 5%;
+    height: 80%;
+}
+
+.newCalBuffer {
+    height: 10%;
+    position: absolute;
+}
+
+.startDateContainer {
+    position: absolute;
+    margin-left: 10%;
+    height: 10%;
+    width: 80%;
+    height 10%;
+}
+
+.startDateContainer p {
+    display: inline;
+    font-weight: bold;
+}
+
+.startDateContainer input {
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.endDateContainer {
+    position: absolute;
+    margin-left: 10%;
+    height: 10%;
+    width: 80%;
+    height 10%;
+    top: 10%;
+}
+
+.endDateContainer p {
+    display: inline;
+    font-weight: bold;
+}
+
+.endDateContainer input {
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.selectWorkoutsContainer {
+    width: 100%;
+    height: 10%;
+}
+
+.durationContainer {
+    position: relative;
+    top: -15%;
+    width: 100%;
+    height: 100%;
+}
+
+.workoutsDrop {
+    position: relative;
+    top: 75%;
+    left: 10%;
+    height: 100%;
+    width: 80%;
+    height 10%;
+}
+
+.workoutsDrop select {
+    text-align: center;
+}
+
+.createContainer {
+    width: 100%;
+    height: 15%;
+    margin-top: 15%;
+}
+
+.createCal {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background: #B98645;
+    color: #315B76;
+    text-align: center;
+    width: 20em;
+    height: 4em;
+    cursor: pointer;
+}
+
+.createCal h1 {
+    position: relative;
+    top: 15%;
 }
 
 .calDayPopup {

@@ -154,6 +154,101 @@ var main = function () {
                  'font-weight': 'bold'});
 
     });
+    
+    $('#startDate').datepicker({
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      onSelect: function() {
+        if ($('#endDate').val() && $('#startDate').val()) {
+            var start = $('#startDate').val().split('/');
+            var end = $('#endDate').val().split('/');
+            var startDate = new Date(start[2], start[0], start[1]);
+            var endDate = new Date(end[2], end[0], end[1]);
+            
+            var diff = endDate - startDate;
+            
+            if (diff < 0) {
+                var temp = endDate
+                endDate = startDate
+                startDate = temp
+                
+                diff = endDate - startDate
+            }
+            
+            var weeks = Math.ceil(diff/1000/60/60/24/7);
+            
+            if (weeks < 1) {
+                weeks = 1
+                $('.durationContainer h3').html(weeks + " Week");
+            } else {
+            $('.durationContainer h3').html(weeks + " Weeks");
+            
+            };
+        } else if ($('#startDate')) {
+            var start = $('#startDate').val().split('/');
+            var startDate = new Date(start[2], start[0], start[1]);
+            var endDate = new Date();
+            
+            endDate = startDate + 7 * 14;
+            
+            $('#endDate').html(endDate.getDate);
+            
+            var diff = endDate - startDate;
+            
+            if (diff < 0) {
+                var temp = endDate
+                endDate = startDate
+                startDate = temp
+                
+                diff = endDate - startDate
+            }
+            
+            var weeks = Math.ceil(diff/1000/60/60/24/7);
+            
+            if (weeks < 1) {
+                weeks = 1
+                $('.durationContainer h3').html(weeks + " Week");
+            } else {
+            $('.durationContainer h3').html(weeks + " Weeks");
+            
+            };
+                
+        };
+      }
+      
+    });
+    $('#endDate').datepicker({
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      onSelect: function() {
+        if ($('#endDate').val() && $('#startDate').val()) {
+            var start = $('#startDate').val().split('/');
+            var end = $('#endDate').val().split('/');
+            var startDate = new Date(start[2], start[0], start[1]);
+            var endDate = new Date(end[2], end[0], end[1]);
+            
+            var diff = endDate - startDate;
+            
+            if (diff < 0) {
+                var temp = endDate
+                endDate = startDate
+                startDate = temp
+                
+                diff = endDate - startDate
+            }
+            
+            var weeks = Math.ceil(diff/1000/60/60/24/7);
+            
+            if (weeks < 1) {
+                weeks = 1
+                $('.durationContainer h3').html(weeks + " Week");
+            } else {
+            $('.durationContainer h3').html(weeks + " Weeks");
+            
+            };
+        }
+      }
+    });
 };
 
 
@@ -196,7 +291,9 @@ function fluidToStatic() {
     });
 };
 
-
+function dateDiffWeeks(startDate, endDate) {
+    
+}
 
 
 

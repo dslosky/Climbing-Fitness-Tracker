@@ -104,12 +104,12 @@ if (isset($_SESSION['calendars']))  {
                     <div class="row newCalBuffer"></div>
                     <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 10%;">
                         <div class="startDateContainer">
-                            <p>Start Date: </p><input type=text name=startDate id=startDate />
+                            <p>Start Date: </p><input type="text" name="startDate" id="startDate" class="startDate"/>
                         </div>
                     </div>
                     <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 10%;">
                         <div class="endDateContainer">
-                            <p>End Date: </p><input type=text name=endDate id=endDate />
+                            <p>End Date: </p><input type="text" name="endDate" id="endDate" />
                         </div>
                     </div>
                     <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 20%;">

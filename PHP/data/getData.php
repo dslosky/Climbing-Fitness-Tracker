@@ -7,6 +7,9 @@ include_once "$_SERVER[DOCUMENT_ROOT]/PHP/config.php";
 $_SESSION['username'] = $_COOKIE['username'];
 $_SESSION['id'] = $_COOKIE['id'];
 
+echo 'user: ' . $_SESSION['username'];
+echo 'id: ' . $_SESSION['id'];
+
 $username = $_SESSION['username'];
 $id = $_SESSION['id'];
 
@@ -57,70 +60,87 @@ $other = $conn->query($otherqry);
 $user = $conn->query($userqry);
 
 // extract info from sql objects
-$calArray = [];
-$i = 0;
-while ($row = $calendars->fetch_assoc()){
-    $calArray['calendar' . $i] = $row;
-    $i++;
-}
 
-$arcArray = [];
-$i = 0;
-while ($row = $arc->fetch_assoc()){
-    $arcArray['arc' . $i] = $row;
-    $i++;
-}
+if ($calendars != false) {
+    $calArray = [];
+    $i = 0;
+    while ($row = $calendars->fetch_assoc()){
+        $calArray['calendar' . $i] = $row;
+        $i++;
+    };
+};
 
-$hangArray = [];
-$i = 0;
-while ($row = $hang->fetch_assoc()){
-    $hangArray['hang' . $i] = $row;
-    $i++;
-}
+if ($arc != false) {
+    $arcArray = [];
+    $i = 0;
+    while ($row = $arc->fetch_assoc()){
+        $arcArray['arc' . $i] = $row;
+        $i++;
+    };
+};
 
-$campusArray = [];
-$i = 0;
-while ($row = $campus->fetch_assoc()){
-    $campusArray['campus' . $i] = $row;
-    $i++;
-}
+if ($hang != false) {
+    $hangArray = [];
+    $i = 0;
+    while ($row = $hang->fetch_assoc()){
+        $hangArray['hang' . $i] = $row;
+        $i++;
+    };
+};
 
-$lbcArray = [];
-$i = 0;
-while ($row = $lbc->fetch_assoc()){
-    $lbcArray['lbc' . $i] = $row;
-    $i++;
-}
+if ($campus != false) {
+    $campusArray = [];
+    $i = 0;
+    while ($row = $campus->fetch_assoc()){
+        $campusArray['campus' . $i] = $row;
+        $i++;
+    };
+};
 
-$limitArray = [];
-$i = 0;
-while ($row = $limitB->fetch_assoc()){
-    $limitArray['limit' . $i] = $row;
-    $i++;
-}
+if ($lbc != false) {
+    $lbcArray = [];
+    $i = 0;
+    while ($row = $lbc->fetch_assoc()){
+        $lbcArray['lbc' . $i] = $row;
+        $i++;
+    };
+};
 
-$omArray = [];
-$i = 0;
-while ($row = $om->fetch_assoc()){
-    $omArray['om' . $i] = $row;
-    $i++;
-}
+if ($limitB != false) {
+    $limitArray = [];
+    $i = 0;
+    while ($row = $limitB->fetch_assoc()){
+        $limitArray['limit' . $i] = $row;
+        $i++;
+    };
+};
 
-$otherArray = [];
-$i = 0;
-while ($row = $other->fetch_assoc()){
-    $otherArray['other' . $i] = $row;
-    $i++;
-}
+if ($om != false) {
+    $omArray = [];
+    $i = 0;
+    while ($row = $om->fetch_assoc()){
+        $omArray['om' . $i] = $row;
+        $i++;
+    };
+};
 
-//if (gettype($user) != 'boolean') {
+if ($other != false) {
+    $otherArray = [];
+    $i = 0;
+    while ($row = $other->fetch_assoc()){
+        $otherArray['other' . $i] = $row;
+        $i++;
+    };
+};
+
+if ($user != false) {
     $userArray = [];
     $i = 0;
     while ($row = $user->fetch_assoc()){
         $userArray['user' . $i] = $row;
         $i++;
     };
-//};
+};
 // store arrays as session variables
 
 $_SESSION['calendars'] = $calArray;

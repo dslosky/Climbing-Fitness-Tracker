@@ -4,6 +4,10 @@ include_once "$_SERVER[DOCUMENT_ROOT]/PHP/config.php";
  
 $username = $_POST['username'];
 $password = $_POST['password'];
+
+//echo 'user' . $username;
+//echo 'pass' . $password;
+
 $qry = "SELECT username,id FROM Users WHERE username='".$username."' and password='".$password."'";
 
 $result = $conn->query($qry);
@@ -15,7 +19,7 @@ if ($result != False) {
     $num_row = 0;
 };
 
-$result->close();
+//$result->close();
 if( $num_row == 1 ) {
     
     setcookie("username", $row['username'], time() + 600000, "/");
@@ -31,6 +35,9 @@ else {
     echo 'false';
 
 }
+
+//echo $qry;
+//echo $num_row;
 
 $conn->close();
 exit();

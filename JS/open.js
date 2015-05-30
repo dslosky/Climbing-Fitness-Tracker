@@ -75,7 +75,8 @@ main = function() {
             $.ajax({
                 type: "POST",
                 url: "/PHP/open/signup.php",
-                data: "username=" + username + "&password=" + password,
+                data: {username: username, password: password},
+                dataType: "html",
                 success: function(html){    
                     if(html === 'false')    {
                         $('.loginResponse p').html('This username already exists!');
@@ -92,7 +93,7 @@ main = function() {
                             }
                         });
                         
-                        // window.location="main.php";
+                        window.location="/App/calendar.php";
                     }
                 },
                 beforeSend:function() {
@@ -108,13 +109,14 @@ main = function() {
     });
     
     $('.signIn').click(function() {
-        var username = $('#username').val()
-        var password = $('#password').val()
-    
+        var user = $('#username').val()
+        var pass = $('#password').val()
+        
         $.ajax({
             type: "POST",
             url: "/PHP/open/login.php",
-            data: "username=" + username + "&password=" + password,
+            dataType: "html",
+            data: { username: user, password: pass},
             success: function(html){    
                 if(html === 'false')    {
                     // $("#add_err").css('display', 'inline', 'important');
@@ -122,6 +124,8 @@ main = function() {
                     $('.loginResponse p').html('Wrong username or password');
                     $('#usernameUp').css("color", "#FF0000");
                 } else {
+                    //$('body').html(html);
+                    
                     // Load climber's data using ajax 
                     $.ajax({
                         type: "GET",
@@ -136,7 +140,7 @@ main = function() {
                     window.location="/App/calendar.php";
 
 
-                }
+                }       
             },
             beforeSend:function() {
                 // show some loading window

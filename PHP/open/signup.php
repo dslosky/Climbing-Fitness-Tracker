@@ -27,9 +27,12 @@ else {
     $qry = "INSERT INTO Users (username, password) VALUES ('".$username."', '".$password."')";
     $result = $conn->query($qry);
     
-    $_SESSION['username'] = $row['username'];
-    echo $qry;
+    setcookie("username", $username, time() + 600000, "/");
+    $_SESSION['username'] = $username;
+//    echo $qry;
     echo 'true';
+    
+    echo $username;
 }
 
 ?>

@@ -2,7 +2,7 @@
 if (!session_id()){session_start();};
 
 if (!isset($_COOKIE['username'])) {
-    header("location: /App/open.php");
+    //header("location: /App/open.php");
 };
 
 

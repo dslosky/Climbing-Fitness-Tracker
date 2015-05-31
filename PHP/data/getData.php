@@ -59,6 +59,8 @@ $om = $conn->query($omqry);
 $other = $conn->query($otherqry);
 $user = $conn->query($userqry);
 
+
+
 // extract info from sql objects
 
 if ($calendars != false) {

@@ -117,6 +117,7 @@ var main = function () {
         */
     });
     
+    // -------------------- Add Calendar Window ----------------------------
     $('.exitAddCal').click(function() {
     
         $('.addCalPopup').fadeOut(600)
@@ -124,23 +125,37 @@ var main = function () {
     
     });
     
-    $('.logOut').on("click", function() {
+    // create a new calendar
+    $('.createCal .go').click(function() {
+        var start = $('#startDate').val().split('/');
+        var end = $('#endDate').val().split('/');
+        var workouts = $('#workoutsDrop').val()
+        var weeks = $('.durationContainer h3').html().split(' ')[0]
         
-        $.removeCookie('username', { path: '/' });
+        start = start[2] + '-' + start[0] + '-' + start[1]
+        end = end[2] + '-' + end[0] + '-' + end[1]
         
-        $('.bodyCover').fadeIn(600, function() {
-            $.ajax({
-               type: "GET",
-               url: "/PHP/logout.php",
-               dataType: "html",
-               success: function() {
-                   window.location="/App/open.php";
-               }
-           });   
+        $.ajax({    //create an ajax request to load_page.php
+        type: "POST",
+        url: "/PHP/calendar/newCalendar.php",
+        data: {startDate: start, endDate: end, workouts: workouts, weeks: weeks} ,
+        dataType: "html",   //expect html to be returned                
+        success: function(response){
+            $('.weekDays p').css({opacity: 1});
+            $('.calendarContainer').css({opacity: 1});
+            $('.calendarContainer').addClass('full');
+
+            $('.calendarContainer').html(response);
+            
+            $('.calendarContainer').animate({opacity: 1}, 600);
+            $('.weekDays p').animate({opacity: 1}, 600);
+        }
+
         });
         
-        
+    
     });
+
   
     //$('#jqDrop').selectmenu();
     
@@ -154,6 +169,8 @@ var main = function () {
                  'font-weight': 'bold'});
 
     });
+    
+    
     
     $('#startDate').datepicker({
       showOtherMonths: true,
@@ -186,12 +203,35 @@ var main = function () {
             };
         } else if ($('#startDate')) {
             var start = $('#startDate').val().split('/');
+            
+            start[0] = parseInt(start[0]) - 1
+            
             var startDate = new Date(start[2], start[0], start[1]);
-            var endDate = new Date();
+            var endDate = new Date((startDate.getYear() + 1900), startDate.getMonth(), startDate.getDate())
             
-            endDate = startDate + 7 * 14;
+            //endDate = startDate
             
-            $('#endDate').html(endDate.getDate);
+            endDate.setDate(endDate.getDate() + 95)
+            
+            var endDay = ""
+            var endMonth = ""
+            var endYear = ""
+            
+            if ((endDate.getDate()) < 10) {
+                endDay = "0" + (endDate.getDate())
+            } else {
+                endDay = (endDate.getDate())
+            }
+            
+            if ((endDate.getMonth() + 1) < 10) {
+                endMonth = "0" + (endDate.getMonth() + 1)
+            } else {
+                endMonth = (endDate.getMonth() + 1)
+            }
+            
+            endYear = endDate.getYear() + 1900
+            
+            $('#endDate').val(endMonth + '/' + endDay + '/' + endYear);
             
             var diff = endDate - startDate;
             
@@ -248,6 +288,25 @@ var main = function () {
             };
         }
       }
+    });
+
+//--------------------- Log Out ------------------------------     
+    $('.logOut').on("click", function() {
+        
+        $.removeCookie('username', { path: '/' });
+        
+        $('.bodyCover').fadeIn(600, function() {
+            $.ajax({
+               type: "GET",
+               url: "/PHP/logout.php",
+               dataType: "html",
+               success: function() {
+                   window.location="/App/open.php";
+               }
+           });   
+        });
+        
+        
     });
 };
 

@@ -1,6 +1,9 @@
 <?php
     $calendar = $_SESSION['calendar'];
-    for ($i = 1; $i <= 14; $i++) {
+    
+    echo '<div class="scrollBox">';
+    
+    for ($i = 1; $i <= $calendar['weeks']; $i++) {
         echo '<div class="row calRow">
                 <div class="col-xs-2"></div>
                 <div class="col-xs-2">
@@ -36,8 +39,8 @@
                 <div class="col-xs-12"><p> </p></div>
               </div>';
         
-        echo '<div class="row calSpacer"></div>';
-    
+        //echo '<div class="row calSpacer"></div>';
+        
     }
-
+    echo '</div>';
 ?>

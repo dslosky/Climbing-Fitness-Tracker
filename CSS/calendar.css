@@ -122,6 +122,10 @@ body {
     cursor: pointer;
 }
 
+.calRow {
+    height: 17%;
+}
+
 .calSpacer {
     height: 2em;
     

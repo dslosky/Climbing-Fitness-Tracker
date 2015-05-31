@@ -2,7 +2,7 @@
 if (!session_id()){session_start();};
 
 if (!isset($_COOKIE['username'])) {
-    //header("location: /App/open.php");
+    header("location: /App/open.php");
 };
 
 
@@ -132,7 +132,7 @@ if (isset($_SESSION['calendars']))  {
                     </div>
                     
                     <div class="createContainer">
-                        <div class="createCal"><h1>Go</h1></div>
+                        <div class="createCal"><h1 class="go">Go</h1></div>
                     </div>
                 </div>
             </div>
@@ -172,9 +172,11 @@ if (isset($_SESSION['calendars']))  {
                                         View Previous <span class="caret"></span></button>
                                         <ul class="dropdown-menu" role="menu">
                                             <?php
-                                                foreach ($calNames as $name) {
-                                                    echo "<li><a href='#'>$name</a></li>";
-                                                };
+                                                if (isset($calNames)) {
+                                                    foreach ($calNames as $name) {
+                                                        echo "<li><a href='#'>$name</a></li>";
+                                                    };
+                                                }
                                             ?>
                                         </ul>
                                         </div>
@@ -223,12 +225,12 @@ if (isset($_SESSION['calendars']))  {
                         <?php
                             //if (count($calendars) > 0) {
                             if ((isset($calendars)) && (count($calendars) > 0)) {     
-                                echo '<div class="calendarContainer full">
-                                        <div class="scrollBox">';
+                                echo '<div class="calendarContainer full">';
                                 
                                 // run loadCalendar with a specific calendar loaded to the server
-                                $_SESSION['calendar'] = $calendars['calendar' . (count($calendars)-1)];
-                                include_once "$_SERVER[DOCUMENT_ROOT]/PHP/loadCalendar.php";
+                                //$_SESSION['calendar'] = $calendars['calendar' . (count($calendars)-1)];
+                                $_SESSION['calendar'] = end($calendars);
+                                include_once "$_SERVER[DOCUMENT_ROOT]/PHP/calendar/loadCalendar.php";
                                 
                                 echo '</div>';
                             } else {
@@ -255,6 +257,7 @@ if (isset($_SESSION['calendars']))  {
         <script src="/JS/jquery.cookie.js"></script>
         <script src="/JS/bootstrap.js"></script>
         <script src="/JS/calendar.js"></script>
+        <script src="/JS/all.js"</script>
     </body>
 </HTML>
 

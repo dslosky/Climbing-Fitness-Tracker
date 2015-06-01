@@ -196,25 +196,25 @@ if (isset($_SESSION['calendars']))  {
                 
                 <div class="row weekDays">
                         <div class="col-xs-4"></div>
-                        <div class="col-xs-1" style="left: 1.2%">
+                        <div class="col-xs-1" style="text-align: center; left: .25%">
                             <p>Sunday</p>
                         </div>
-                        <div class="col-xs-1" style="left: 1.2%">
+                        <div class="col-xs-1" style="text-align: center; left: .1%;">
                             <p>Monday</p>
                         </div>
-                        <div class="col-xs-1" style="left: .8%">
+                        <div class="col-xs-1" style="text-align: center">
                             <p>Tuesday</p>
                         </div>
-                        <div class="col-xs-1" style="left: 0%">
+                        <div class="col-xs-1" style="text-align: center; left: -.1%">
                             <p>Wednesday</p>
                         </div>
-                        <div class="col-xs-1" style="left: .3%">
+                        <div class="col-xs-1" style="text-align: center; left: -.15%">
                             <p>Thursday</p>
                         </div>
-                        <div class="col-xs-1" style="left: 1%">
+                        <div class="col-xs-1" style="text-align: center; left: -.25%">
                             <p>Friday</p>
                         </div>
-                        <div class="col-xs-1" style="left: .3%">
+                        <div class="col-xs-1" style="text-align: center; left: -.25%">
                             <p>Saturday</p>
                         </div>
                     </div>

@@ -21,7 +21,7 @@ var main = function () {
         }); 
     
     if ($('.calendarContainer').is(".empty")) {
-        $('.weekDays p').hide();
+        $('.weekDays p').css("opacity", "0");
         
         /*
         $('.calendarContainer').html("<div class='emptyCal'> \
@@ -135,24 +135,28 @@ var main = function () {
         start = start[2] + '-' + start[0] + '-' + start[1]
         end = end[2] + '-' + end[0] + '-' + end[1]
         
+        $('.weekDays p').animate({opacity: 1}, 600);
+        $('.calendarContainer').css({opacity: 0});
+        $('.calendarContainer').addClass('full');
+        
+    
         $.ajax({    //create an ajax request to load_page.php
         type: "POST",
         url: "/PHP/calendar/newCalendar.php",
         data: {startDate: start, endDate: end, workouts: workouts, weeks: weeks} ,
         dataType: "html",   //expect html to be returned                
         success: function(response){
-            $('.weekDays p').css({opacity: 1});
-            $('.calendarContainer').css({opacity: 1});
-            $('.calendarContainer').addClass('full');
-
+            
             $('.calendarContainer').html(response);
             
             $('.calendarContainer').animate({opacity: 1}, 600);
-            $('.weekDays p').animate({opacity: 1}, 600);
+            
         }
 
         });
         
+        $('.bodyCover').fadeOut(600);
+        $('.addCalPopup').fadeOut(600);
     
     });
 

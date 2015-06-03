@@ -41,13 +41,17 @@ body {
     position: absolute;
     left: 65px; 
     top: -20px;
+    width: 173px;
+    height: 62px;
 }
 
 .hangboardPic_right {
     display: inline-block;
     position: absolute;
     left: 283px; 
-    top: -21px;
+    top: -22px;
+    width: 173px;
+    height: 66px;
 }
 
 .hangboardPic_left img {
@@ -113,6 +117,13 @@ body {
     top: 10px;
 }
 
+
+.newDate {
+    width: 100%;
+    text-align: center;
+}
+
+
 .calDay {
     width: 90%;
     height: 6em;
@@ -120,6 +131,23 @@ body {
     position: absolute;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.dayInfo {
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+    font-size: .85em;
+    height: 1.8em;
+    width: 2em;
+    float: right;
+    top: 0%;
+    outline: #c4c4ff solid;
+    outline-width: 2px;
+}
+
+.calDayEmpty {
+    border-color: #FFFFFF;
 }
 
 .calRow {

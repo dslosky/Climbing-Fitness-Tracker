@@ -1,5 +1,8 @@
 body {
-    overflow: hidden;
+    overflow: auto;
+    min-width: 1000px;
+    max-height: 100px;
+    min-height: 500px;
 }
 
 .showDiv {
@@ -195,6 +198,11 @@ body {
     text-align: center;
     display: none;
     cursor: pointer;
+}
+
+.workoutName {
+    font-weight: bold;
+    margin: 0px;
 }
 
 #toolbar {
@@ -401,9 +409,173 @@ body {
     top: 15%;
 }
 
+/* Calendar Day popup */
+
 .calDayPopup {
+    position: absolute;
+    left: 35%;
+    top: 10%;
+    height: 70%;
+    width: 30%;
+    background: #FFFFFF;
+    opacity: 1;
+    z-index: 3;
     display: none;
 }
+
+.calDayHeader {
+    width: 90%;
+    left: 5%;
+    margin-top: 10%;
+    border-radius: 10%;
+    position: relative;
+    display: inline-block;
+    height: 15%;
+    background: #c4c4ff;
+}
+
+
+.calDayWorkouts {
+    width: 100%;
+    height: 65%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 10%;
+}
+
+.workout {
+    width: 70%;
+    height: 10%;
+    margin-top: 5%;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #345456;
+}
+
+.addWorkout.notAdded {
+    width: 80%;
+    height: 12%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    display: block;
+    position: relative;
+    border-color: #a3a3a3;
+    border-style: dashed;
+    border-radius: 1%;
+    color: #a3a3a3;
+    text-align: center;
+    cursor: pointer;
+}
+
+.addWorkout h3 {
+    width: 100%;
+    margin-top: 0%;
+    top: 10%;
+    position: relative;
+}
+
+.addWorkout.added {
+    width: 80%;
+    height: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    display: block;
+    position: relative;
+    color: #a1a1ff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.newWorkout {
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.workoutTypes {
+    display: inline-block;
+    margin-top: 5%;
+    margin-left: 12.5%;
+    width: 60%;
+}
+
+.createWorkout {
+    display: inline-block;
+    text-align: center;
+    width: 15%;
+}
+
+/* Add ARC popup */
+
+.addArcPopup {
+    position: absolute;
+    left: -40%;
+    top: 10%;
+    height: 70%;
+    width: 40%;
+    background: #FFFFFF;
+    opacity: 1;
+    z-index: 3;
+    display: none;
+}
+
+.arcHeader {
+    width: 90%;
+    left: 5%;
+    margin-top: 10%;
+    border-radius: 10%;
+    position: relative;
+    display: inline-block;
+    height: 15%;
+    background: #c4c4ff;
+}
+
+.arcOptions {
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    bottom: 0%;
+}
+
+.arcSave {
+    display: inline-block;
+    left: 10%;
+    position: relative;
+    background: #B98645;
+    color: #315B76;
+    text-align: center;
+    width: 25%;
+    height: 95%;
+    cursor: pointer;
+}
+
+.save h3 {
+    top: -15%;
+    position: relative;
+}
+
+.arcCancel{
+    display: inline-block;
+    left: 40%;
+    position: relative;
+    background: #B98645;
+    color: #315B76;
+    text-align: center;
+    width: 25%;
+    height: 95%;
+    cursor: pointer;
+}
+
+.cancel h3{
+    top: -15%;
+    position: relative;
+}
+
 /* Bootstrap changes */
 .col-xs-12 {
     float:left}

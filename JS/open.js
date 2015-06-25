@@ -90,10 +90,48 @@ main = function() {
                             success: function(response) {
                                 $('body').html(response);
                                 $('body').css("background", "#FFFFFF");
+                                
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/PHP/open/login.php",
+                                    dataType: "html",
+                                    data: { username: user, password: pass},
+                                    success: function(html){    
+                                        if(html === 'false')    {
+                                            // $("#add_err").css('display', 'inline', 'important');
+                                            // $("#add_err").html("<img src='images/alert.png' />Wrong username or password");
+                                            $('.loginResponse p').html('Wrong username or password');
+                                            $('#usernameUp').css("color", "#FF0000");
+                                        } else {
+                                            //$('body').html(html);
+                                            
+                                            // Load climber's data using ajax 
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "/PHP/data/getData.php",
+                                                dataType: "html",
+                                                success: function(response) {
+                                                    $('body').html(response);
+                                                    $('body').css("background", "#FFFFFF");
+                                                }
+                                            });
+                                            
+                                            window.location="/App/calendar.php";
+                        
+                        
+                                        }       
+                                    },
+                                    beforeSend:function() {
+                                        // show some loading window
+                                        
+                                    }
+                                });
                             }
                         });
                         
-                        window.location="/App/calendar.php";
+                        //window.location="/App/calendar.php";
+                        
+
                     }
                 },
                 beforeSend:function() {

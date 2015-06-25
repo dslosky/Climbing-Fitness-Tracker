@@ -89,6 +89,8 @@ if (isset($_SESSION['calendars']))  {
                 </div>
             </div>
 
+<!-- Add Calendar popup -->
+
             <div class="addCalPopup">
                 <div class="row" style="width: 100%; right: 0px">
                     <div class="col-md-12" style="left: 5%; width: 100%">
@@ -137,20 +139,51 @@ if (isset($_SESSION['calendars']))  {
                 </div>
             </div>
             
+            
+<!-- Calendar day popup -->
+            
             <div class="calDayPopup">
-                <div class="row"></div>
-                <div class="row dayTitle">
-                    <h1></h1>
+                <div class="row" style="width: 100%; right: 0px">
+                    <div class="col-md-12" style="left: 5%; width: 100%">
+                        <p class="exitCalDay" style="text-align: right; right: 3%; cursor: pointer; display: inline-block; position: absolute;">X</p>
+                    </div>
                 </div>
-                <div class="workoutsContainer">
-                    
+                <div class="calDayHeader">
+                    <div class="row" style="width: 100%; text-align: center; margin: 0px;">
+                        <h1>Workouts</h1>
+                        <h3 class="calDayTitle"></h3>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="whatever"></div>
+                
+                <div class="calDayWorkouts">
                 </div>
+
             </div>
+            
+<!-- Add Arc -->
 
-
+            <div class="addArcPopup">
+                <div class="arcHeader">
+                    <div class="row" style="width: 100%; text-align: center; margin: 0px;">
+                        <h1>ARC</h1>
+                    </div>
+                </div>
+                
+                <div class="arcContent">
+                </div>
+                
+                <div class="arcOptions">
+                    <div class="arcSave save">
+                        <h3>Save</h3>
+                    </div>
+                    <div class="arcCancel cancel">
+                        <h3>Cancel</h3>
+                    </div>
+                </div>
+                
+            </div>
+            
+<!-- Page Title -->            
 
             <div class="titleContainer">
                 <div class="calendarTitle">
@@ -190,7 +223,7 @@ if (isset($_SESSION['calendars']))  {
             </div>
             
 
-
+<!-- Calendar page content -->
 
             <div class="pagecontentContainer">
                 
@@ -218,9 +251,6 @@ if (isset($_SESSION['calendars']))  {
                             <p>Saturday</p>
                         </div>
                     </div>
-                
-                
-                    
                     
                         <?php
                             //if (count($calendars) > 0) {

@@ -293,6 +293,81 @@ var main = function () {
         }
       }
     });
+    
+//---------------- Calendar day popup ------------------------
+
+    $(document).on("click", ".calDay", function() {
+        
+        $('.calDayTitle').html($(this).children('.dayInfo').children('.date').html());
+        
+        $.ajax({
+            type: "POST",
+            url: "/PHP/calendar/loadWorkouts.php",
+            dataType: "html",
+            data:{date: $('.calDayTitle').html()},
+            success: function(response) {
+                $('.calDayWorkouts').html(response);
+            }
+        });
+        
+        $('.calDayPopup').fadeIn(600);
+        $('.bodyCover').fadeIn(600);
+            
+    });
+
+    $('.exitCalDay').click(function() {
+    
+        $('.calDayPopup').fadeOut(600)
+        $('.bodyCover').fadeOut(600)
+        
+        $('.calDayWorkouts').children('.newWorkout').remove()
+    
+    });
+    
+    $(document).on("mouseenter", ".addWorkout", function () {
+        if ($(this).is('.notAdded')) {
+            $(this).css("border-color", "#c4c4ff");
+            $(this).children("h3").css("color", "#a1a1ff");
+            $(this).css('background', "#dfdfdf");
+        } else {
+            $(this).children('h3').css("font-size", "30px");
+        }
+    });
+    
+    $(document).on("mouseleave", ".addWorkout", function () {
+        if ($(this).is('.notAdded')) {
+            $(this).css("border-color", "#a3a3a3")
+            $(this).children("h3").css("color", "#a3a3a3");
+            $(this).css('background', "#FFFFFF");
+        } else {
+            $(this).children('h3').css("font-size", "24px");
+        }
+    });
+    /*
+    $(".addWorkout").hover(function() {
+        $(this).children("h2").css("color", "#000000");
+    });
+    */
+    $(document).on('click', '.addWorkout', function() {
+        
+        $('.calDayPopup').animate({"left": "100%"}, 600)
+        
+        if ($(this).is('.ARC')) {
+            $('.addArcPopup').show()
+            $('.addArcPopup').animate({"left": "30%"}, 600)
+        }
+    });    
+        
+    $('.cancel').click(function() {
+        $(this).parent().parent().animate({"left": "-40%"}, 600, function() {
+            $(this).hide(); // this is now the object passed into the function
+        });
+        
+        $('.calDayPopup').animate({"left": "35%"}, 600);
+    });
+// ------------------------------------------------------------------------    
+
+
 
 //--------------------- Log Out ------------------------------     
     $('.logOut').on("click", function() {

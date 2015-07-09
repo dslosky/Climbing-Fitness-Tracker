@@ -345,9 +345,21 @@ var main = function () {
             $('.calDayPopup').hide();
         });
         
+        //if (($(this).is('.ARC')) && ($(this).is('.notAdded'))) {
         if ($(this).is('.ARC')) {
-            $('.addArcPopup').show()
-            $('.addArcPopup').animate({"left": "30%"}, 600)
+            $.ajax({
+                type: "POST",
+                url: "/PHP/calendar/loadWorkout.php",
+                dataType: "html",
+                data:{date: $('.calDayTitle').html(), workout: 'arc'},
+                success: function(response) {
+                    
+                    $('.addWorkoutPopup').html(response);
+                    $('.addWorkoutPopup').show();
+                    $('.addWorkoutPopup').animate({"left": "30%"}, 600)
+                }
+            });
+            
         }
     });
     
@@ -366,7 +378,7 @@ var main = function () {
 
 
     // add an arc
-    $('.addSet').click(function() {
+    $(document).on('click', '.addSet', function() {
         
         setNum = $('.arcSets .set').size() + 1;
         
@@ -378,11 +390,8 @@ var main = function () {
                                 <div class="deleteSet"><p>delete</p></div> \
                             </div> \
                         ')
-        /*
-        if ($('.arcSets').height() === 0) {
-            $('.arcSets').height("25px")
-        }
-        */
+
+                        
         $('.arcSets').animate({height: ($('.arcSets').height() + $('.set').height()) + "px"});
     });
     
@@ -428,6 +437,8 @@ var main = function () {
         } else {
             $('.arcSets').animate({height: ($('.set').length - 1) * 35 + 25});
         }
+        
+        // remove the set
         $(this).parent().parent().remove()
         
         
@@ -442,7 +453,7 @@ var main = function () {
     
     
 
-    $('.cancelARC').click(function() {
+    $(document).on('click', '.cancelARC', function() {
         $(this).parent().parent().animate({"left": "-55%"}, 600, function() {
             $(this).hide(); // this is now the object passed into the function
         });
@@ -451,13 +462,13 @@ var main = function () {
     });
     
     // save and cancel day buttons
-    $('.windowOption').hover(function() {
+    $(document).on('mouseenter', '.windowOption', function() {
         $(this).css({backgroundColor: "#315B76",
                      color: "#B98645"});
-            }, function() {
+            });
+    $(document).on('mouseleave', '.windowOption',function() {
         $(this).css({backgroundColor: "#B98645",
                      color: "#315B76"});
-    
         });
     
     $('.closeCalDay').click(function() {

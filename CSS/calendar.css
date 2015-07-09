@@ -562,7 +562,7 @@ body {
 
 /* Add ARC popup */
 
-.addArcPopup {
+.addWorkoutPopup {
     position: absolute;
     left: -55%;
     top: 10%;
@@ -619,6 +619,18 @@ body {
     margin-left: 4%;
     font-size: 20px;
     width: 60%;
+}
+
+.workoutOption .date {
+    display: inline-block;
+    font-weight: bold;
+    margin-left: 4%;
+    font-size: 20px;
+    width: 60%;
+}
+
+.workoutOption.double {
+    text-align: center;
 }
 
 .workoutOption.double label {

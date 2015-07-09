@@ -177,72 +177,7 @@ if (isset($_SESSION['calendars']))  {
             
 <!-- Add Arc -->
 
-            <div class="addArcPopup">
-                
-                <div class="popupHeader ARC">
-                    <h1>Add ARC</h1>
-                </div>
-                
-                <div class="arcInfoContainer">
-                    <div class="workoutOption arcDate">
-                        <label for="Date">Date: </label>
-                        <input class="date" name="Date" type="text"/>
-                    </div>
-                    
-                    <div class="workoutOption arcLoc">
-                        <label for="Location">Location: </label>
-                        <input class="location" name="Location" type="text"/>
-                    </div>
-                    
-                    <div class="workoutOption arcLoc">
-                        <label for="Difficulty">Difficulty: </label>
-                        <input class="difficulty" name="Difficulty" type="text"/>
-                    </div>
-                    
-                    <div class="workoutOption arcDesc double">
-                        <label for="Description">Description of Terrain: </label>
-                        <textarea class="desc" name="Description" placeholder="Enter your description here"></textarea>
-                    </div>
-                    
-                    <div class="arcSetsHead workoutOption double">
-                        <label>Sets:</label>
-                        <p class="col-1" style="">Set:</p>
-                        <p class="col-2" style="">Duration:</p>
-                        <p class="col-3" style="">Comments:</p>
-                    </div>
-                    
-                    <div class="arcSets">
-                    </div>
-                    
-                    <div class="addSet">
-                        <h3>Add Set</h3>
-                    </div>
-                    
-                    <!--
-                    <div class="workoutOption arcDate">
-                        <label for="Date">Date: </label>
-                        <input class="date" name="Date" type="text"/>
-                    </div>
-                    
-                    <div class="workoutOption arcDate">
-                        <label for="Date">Date: </label>
-                        <input class="date" name="Date" type="text"/>
-                    </div>
-                    -->
-                </div>
-                
-                <div class="windowOptions">
-                    
-                    <div class="windowOption saveARC">
-                        <h3>Save</h3>
-                    </div>
-                    
-                    <div class="windowOption cancelARC">
-                        <h3>Cancel</h3>
-                    </div>
-
-                </div>
-
+            <div class="addWorkoutPopup">
             </div>
             
 <!-- Page Title -->            

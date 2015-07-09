@@ -122,7 +122,8 @@ body {
 
 
 .newDate {
-    width: 100%;
+    margin-left: 17%;
+    width: 83%;
     text-align: center;
 }
 
@@ -282,7 +283,7 @@ body {
     height: 100%;
     width: 100%;
     background: #000000;
-    opacity: .6;
+    opacity: .8;
     z-index: 2;
     display: none;
 }
@@ -311,14 +312,14 @@ body {
     height: 15%;
     background: #c4c4ff;
 }
-
+/*
 .calOptionsContainer {
     position: relative;
     width: 100%;
     top: 5%;
     height: 80%;
 }
-
+*/
 .newCalBuffer {
     height: 10%;
     position: absolute;
@@ -414,13 +415,24 @@ body {
 .calDayPopup {
     position: absolute;
     left: 35%;
-    top: 10%;
+    top: 5%;
     height: 70%;
     width: 30%;
-    background: #FFFFFF;
     opacity: 1;
     z-index: 3;
     display: none;
+}
+
+.popupHeader {
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    position: relative;
+    color: #FFFFFF;
+}
+
+.popupHeader h1 {
+    font-size: 70px;
 }
 
 .calDayHeader {
@@ -434,13 +446,25 @@ body {
     background: #c4c4ff;
 }
 
+.workoutsContainer {
+    width: 100%;
+    height: 75%;
+    background: #FFFFFF;
+    margin-top: 5%;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #c4c4ff;
+    border-width: 5px;
+}
 
 .calDayWorkouts {
     width: 100%;
-    height: 65%;
+    height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
-    margin-top: 10%;
+    top: 10%;
+    background: #FFFFFF;
+    position: relative;
 }
 
 .workout {
@@ -504,6 +528,32 @@ body {
     width: 60%;
 }
 
+.windowOptions {
+    margin-top: 5%;
+    width: 100%;
+    height: 15%;
+}
+
+.windowOption {
+    width: 25%;
+    height: 85%;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    background: #B98645;
+    color: #315B76;
+    border-radius: 5px;
+}
+
+.saveCalDay {
+    left: -30%;
+}
+
+.closeCalDay {
+    left: 80%;
+}
+
 .createWorkout {
     display: inline-block;
     text-align: center;
@@ -514,67 +564,188 @@ body {
 
 .addArcPopup {
     position: absolute;
-    left: -40%;
+    left: -55%;
     top: 10%;
     height: 70%;
     width: 40%;
-    background: #FFFFFF;
     opacity: 1;
     z-index: 3;
     display: none;
 }
 
-.arcHeader {
-    width: 90%;
-    left: 5%;
-    margin-top: 10%;
-    border-radius: 10%;
-    position: relative;
-    display: inline-block;
-    height: 15%;
-    background: #c4c4ff;
+.popupHeader.ARC {
+    height: 20%;
 }
 
-.arcOptions {
-    position: absolute;
+.arcInfoContainer {
     width: 100%;
-    height: 10%;
-    bottom: 0%;
+    height: 80%;
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #c4c4ff;
+    border-width: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.arcSave {
-    display: inline-block;
-    left: 10%;
+.workoutOption {
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
-    background: #B98645;
-    color: #315B76;
+    width: 85%;
+}
+
+.arcDate {
+    height: 8%;
+}
+
+.arcLoc {
+    height: 8%;
+}
+
+.arcDesc {
+    height: 20%;
+}
+
+.workoutOption label {
+    font-size: 20px;
+    width: 30%;
+}
+
+.workoutOption input {
+    margin-left: 4%;
+    font-size: 20px;
+    width: 60%;
+}
+
+.workoutOption.double label {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 220px;
+}
+
+.workoutOption.double textarea {
+    width: 100%;
+    max-width: 100%;
+}
+
+.arcSetsHead {
+    width: 100%;
+    height: 60px;
+}
+
+.arcSets {
+    width: 100%;
+}
+
+.arcSets.workoutOption.double label {
+    position: relative;
+    width: 50px;
+}
+
+.arcSets p {
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+}
+
+.arcSets .set {
+    width: 100%;
+    height: 35px;
+}
+
+.arcSets .col-1 {
+    margin-left: 5%;
+    width:10%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+}
+
+.arcSets .col-2 {
+    width:30%;
+    margin-left: 0px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+}
+
+.arcSets .col-3 {
+    width:50%;
+    margin-left: 0px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+}
+
+.arcSetsHead .col-1 {
+    margin-left: 5%;
+    width:10%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+}
+
+.arcSetsHead .col-2 {
+    width:30%;
+    margin-left: 0px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+}
+
+.arcSetsHead .col-3 {
+    width:50%;
+    margin-left: 0px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+}
+
+.deleteSet {
+    opacity: 0;
+    display: block;
+    position: relative;
+    width: 100%;
     text-align: center;
-    width: 25%;
-    height: 95%;
+    height: 0px;
+    color: #a1a1ff;
     cursor: pointer;
 }
 
-.save h3 {
-    top: -15%;
-    position: relative;
-}
-
-.arcCancel{
-    display: inline-block;
-    left: 40%;
-    position: relative;
-    background: #B98645;
-    color: #315B76;
-    text-align: center;
-    width: 25%;
-    height: 95%;
+.addSet {
+    width: 110px;
+    height: 35px;
     cursor: pointer;
+    text-align: center;
+    position: relative;
+    display: block;
+    background: #a3a3a3;
+    border-style: dashed;
+    border-color: #a3a3a3;
+    color: #a1a1ff;
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.cancel h3{
-    top: -15%;
-    position: relative;
+.addSet h3 {
+    margin: 0px;
 }
+
+.saveARC {
+    left: -30%;
+}
+
+.cancelARC {
+    left: 80%;
+}
+
 
 /* Bootstrap changes */
 .col-xs-12 {

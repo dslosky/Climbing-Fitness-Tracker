@@ -314,15 +314,6 @@ var main = function () {
         $('.bodyCover').fadeIn(600);
             
     });
-
-    $('.exitCalDay').click(function() {
-    
-        $('.calDayPopup').fadeOut(600)
-        $('.bodyCover').fadeOut(600)
-        
-        $('.calDayWorkouts').children('.newWorkout').remove()
-    
-    });
     
     $(document).on("mouseenter", ".addWorkout", function () {
         if ($(this).is('.notAdded')) {
@@ -350,23 +341,133 @@ var main = function () {
     */
     $(document).on('click', '.addWorkout', function() {
         
-        $('.calDayPopup').animate({"left": "100%"}, 600)
+        $('.calDayPopup').animate({"left": "115%"}, 600, function() {
+            $('.calDayPopup').hide();
+        });
         
         if ($(this).is('.ARC')) {
             $('.addArcPopup').show()
             $('.addArcPopup').animate({"left": "30%"}, 600)
         }
-    });    
+    });
+    
+// ------------------------------------------------------------------------
+
+// --------------------------- Add Arc Weekend ----------------------------
+
+    $(document).on("mouseenter", ".addSet", function () {
+        $(this).css("border-color", "#c4c4ff");
+        $(this).css('background', "#dfdfdf");
+    });
+    $(document).on("mouseleave", ".addSet", function() {
+        $(this).css("border-color", "#a3a3a3");
+        $(this).css('background', "#a3a3a3");
+    });
+
+
+    // add an arc
+    $('.addSet').click(function() {
         
-    $('.cancel').click(function() {
-        $(this).parent().parent().animate({"left": "-40%"}, 600, function() {
+        setNum = $('.arcSets .set').size() + 1;
+        
+        $('.arcSets').html($('.arcSets').html() + ' \
+                            <div class="set"> \
+                                <p class="setNum col-1">' + setNum + '</p>\
+                                <input class="duration col-2" name="duration"/>\
+                                <input class="comments col-3" name="comments"/>\
+                                <div class="deleteSet"><p>delete</p></div> \
+                            </div> \
+                        ')
+        /*
+        if ($('.arcSets').height() === 0) {
+            $('.arcSets').height("25px")
+        }
+        */
+        $('.arcSets').animate({height: ($('.arcSets').height() + $('.set').height()) + "px"});
+    });
+    
+    $(document).on('mouseenter', '.arcSets', function() {
+        $('.arcSets').stop(true).animate({height: ($('.set').length * 35) + 25})
+        //$('.addSet').stop(true).animate({"margin-top": "25px"})
+    });
+    
+    $(document).on('mouseleave', '.arcSets', function() {
+        $('.arcSets').stop(true).animate({height: $('.set').length * 35})
+        //$('.addSet').stop(true).animate({"margin-top": "0px"})
+    });
+    
+    // show the delete option
+    
+    $(document).on('mouseenter', '.set', function() {
+        $(this).stop(true).animate({height: "60px"});
+        $(this).children('.deleteSet').stop(true).animate({height: '25px',
+                                                          opacity: 1});
+        //$('.addSet').stop(true).animate({"margin-top": "50px"});
+    });
+    
+    $(document).on('mouseleave', '.set', function() {
+        $(this).stop(true).animate({height: "35px"});
+        $(this).children('.deleteSet').stop(true).animate({height: '25px',
+                                                          opacity: 0});
+        //$('.addSet').stop(true).animate({"margin-top": "10px"});
+    });
+    
+    // delete arc behaviour
+    $(document).on('mouseenter', '.deleteSet p', function() {
+        $(this).css("text-decoration", "underline")
+    });
+    
+    $(document).on('mouseleave', '.deleteSet p', function() {
+        $(this).css("text-decoration", "none")
+    });
+    
+    $(document).on('click', '.deleteSet p', function() {
+        
+        if (($('.set').length - 1 <= 0))  {
+            $('.arcSets').animate({height: 0});
+        } else {
+            $('.arcSets').animate({height: ($('.set').length - 1) * 35 + 25});
+        }
+        $(this).parent().parent().remove()
+        
+        
+        // renumber sets //
+        n = 1
+        $('.set').each(function() {
+            $(this).children('.setNum').html(n);
+            
+            n++
+        });
+    });
+    
+    
+
+    $('.cancelARC').click(function() {
+        $(this).parent().parent().animate({"left": "-55%"}, 600, function() {
             $(this).hide(); // this is now the object passed into the function
         });
-        
+        $('.calDayPopup').show();
         $('.calDayPopup').animate({"left": "35%"}, 600);
     });
-// ------------------------------------------------------------------------    
-
+    
+    // save and cancel day buttons
+    $('.windowOption').hover(function() {
+        $(this).css({backgroundColor: "#315B76",
+                     color: "#B98645"});
+            }, function() {
+        $(this).css({backgroundColor: "#B98645",
+                     color: "#315B76"});
+    
+        });
+    
+    $('.closeCalDay').click(function() {
+    
+        $('.calDayPopup').fadeOut(600)
+        $('.bodyCover').fadeOut(600)
+        
+        $('.calDayWorkouts').children('.newWorkout').remove()
+    
+    });
 
 
 //--------------------- Log Out ------------------------------     

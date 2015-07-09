@@ -1,15 +1,14 @@
 <?php
 if (!session_id()){session_start();};
 
+// If there is no username in cookies, send the user to login screen
 if (!isset($_COOKIE['username'])) {
     header("location: /App/open.php");
 };
 
-
-
-
+// if there is a username stored in cookies but not the session
 while (!isset($_SESSION['username'])) {
-    include($_SERVER[DOCUMENTROOT]/PHP/data/getData.php);
+    include("$_SERVER[DOCUMENTROOT]/PHP/data/getData.php");
 }
 
 
@@ -143,19 +142,35 @@ if (isset($_SESSION['calendars']))  {
 <!-- Calendar day popup -->
             
             <div class="calDayPopup">
+                
+                <div class="popupHeader">
+                    <h1>Workouts</h1>
+                    <h3 class="calDayTitle"></h3>
+                </div>
+                
+                <!--
                 <div class="row" style="width: 100%; right: 0px">
                     <div class="col-md-12" style="left: 5%; width: 100%">
                         <p class="exitCalDay" style="text-align: right; right: 3%; cursor: pointer; display: inline-block; position: absolute;">X</p>
                     </div>
                 </div>
-                <div class="calDayHeader">
-                    <div class="row" style="width: 100%; text-align: center; margin: 0px;">
-                        <h1>Workouts</h1>
-                        <h3 class="calDayTitle"></h3>
+                -->
+                
+                <div class="workoutsContainer">
+                    <div class="calDayWorkouts">
                     </div>
                 </div>
                 
-                <div class="calDayWorkouts">
+                <div class="windowOptions">
+                    
+                    <div class="windowOption saveCalDay">
+                        <h3>Save</h3>
+                    </div>
+                    
+                    <div class="windowOption closeCalDay exitCalDay">
+                        <h3>Close</h3>
+                    </div>
+
                 </div>
 
             </div>
@@ -163,24 +178,71 @@ if (isset($_SESSION['calendars']))  {
 <!-- Add Arc -->
 
             <div class="addArcPopup">
-                <div class="arcHeader">
-                    <div class="row" style="width: 100%; text-align: center; margin: 0px;">
-                        <h1>ARC</h1>
+                
+                <div class="popupHeader ARC">
+                    <h1>Add ARC</h1>
+                </div>
+                
+                <div class="arcInfoContainer">
+                    <div class="workoutOption arcDate">
+                        <label for="Date">Date: </label>
+                        <input class="date" name="Date" type="text"/>
                     </div>
+                    
+                    <div class="workoutOption arcLoc">
+                        <label for="Location">Location: </label>
+                        <input class="location" name="Location" type="text"/>
+                    </div>
+                    
+                    <div class="workoutOption arcLoc">
+                        <label for="Difficulty">Difficulty: </label>
+                        <input class="difficulty" name="Difficulty" type="text"/>
+                    </div>
+                    
+                    <div class="workoutOption arcDesc double">
+                        <label for="Description">Description of Terrain: </label>
+                        <textarea class="desc" name="Description" placeholder="Enter your description here"></textarea>
+                    </div>
+                    
+                    <div class="arcSetsHead workoutOption double">
+                        <label>Sets:</label>
+                        <p class="col-1" style="">Set:</p>
+                        <p class="col-2" style="">Duration:</p>
+                        <p class="col-3" style="">Comments:</p>
+                    </div>
+                    
+                    <div class="arcSets">
+                    </div>
+                    
+                    <div class="addSet">
+                        <h3>Add Set</h3>
+                    </div>
+                    
+                    <!--
+                    <div class="workoutOption arcDate">
+                        <label for="Date">Date: </label>
+                        <input class="date" name="Date" type="text"/>
+                    </div>
+                    
+                    <div class="workoutOption arcDate">
+                        <label for="Date">Date: </label>
+                        <input class="date" name="Date" type="text"/>
+                    </div>
+                    -->
                 </div>
                 
-                <div class="arcContent">
-                </div>
-                
-                <div class="arcOptions">
-                    <div class="arcSave save">
+                <div class="windowOptions">
+                    
+                    <div class="windowOption saveARC">
                         <h3>Save</h3>
                     </div>
-                    <div class="arcCancel cancel">
+                    
+                    <div class="windowOption cancelARC">
                         <h3>Cancel</h3>
                     </div>
+
                 </div>
-                
+
             </div>
             
 <!-- Page Title -->            

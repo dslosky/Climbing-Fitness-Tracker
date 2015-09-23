@@ -133,7 +133,8 @@ body {
 .jumbotron {
     margin-top: 5%;
     color: #ffffff;
-    background: rgba(196, 196, 255, .5);
+    /* background: rgba(196, 196, 255, .5); */
+    background: rgba(0, 0, 0,.1);
     text-align: center;
     z-index: 1;
 }

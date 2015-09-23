@@ -1,4 +1,6 @@
 <?php
+if (!session_id()){session_start();};
+
 function dateRange($start_date, $end_date, $date_check)
 {
   // Convert to timestamp
@@ -9,11 +11,6 @@ function dateRange($start_date, $end_date, $date_check)
   // Check that user date is between start & end
   return (($check_ts >= $start_ts) && ($check_ts <= $end_ts));
 }
-?>
-
-<?php
-
-if (!session_id()){session_start();};
 
 //include($_SERVER[DOCUMENT_ROOT] . "/PHP/data/getData.php");
 
@@ -72,6 +69,7 @@ echo $calEnd;
 */
 
 $i = 0;
+$done = 0;
 while ($done < count($curWorkouts)) {
     
     // check arcs
@@ -82,13 +80,13 @@ while ($done < count($curWorkouts)) {
             $curWorkouts["curArcs"][$arcCount] = $arcs['arc' . $i];
             $arcCount++;
         }
-    } else {
+    } elseif ($arcDone == False) {
         $arcDone = True;
         $done++;
     }
     
     // check Hangs
-    if (($i < count($hangs)) && $hangDone == False) {
+    if (($i < count($hangs)) && ($hangDone == False)) {
         $checkDate = $hangs['hang' . $i]['date'];
         //print_r($hangs[$i]);
         
@@ -96,13 +94,13 @@ while ($done < count($curWorkouts)) {
             $curWorkouts["curHangs"][$hangCount] = $hangs['hang' . $i];
             $hangCount++;
         }
-    } else {
+    } elseif ($hangDone == False) {
         $hangDone = True;
         $done++;
     }       
     
     // check Campus
-    if (($i < count($campuss)) && $campusDone == False) {
+    if (($i < count($campuss)) && ($campusDone == False)) {
         $checkDate = $campuss['campus' . $i]['date'];
         
         if (dateRange($start, $end, $checkDate)) {
@@ -110,50 +108,49 @@ while ($done < count($curWorkouts)) {
             $campusCount++;
             
         }
-    } else {
+    } elseif ($campusDone == False) {
         $campusDone = True;
         $done++;
     } 
     
     // check OM
-    if (($i < count($oms)) && $omDone == False) {
+    if (($i < count($oms)) && ($omDone == False)) {
         $checkDate = $oms['om' . $i]['date'];
         
         if (dateRange($start, $end, $checkDate)) {
             $curWorkouts["curOms"][$omCount] = $oms['om' . $i];
             $omCount++;
         }
-    } else {
+    } elseif ($omDone == False) {
         $omDone = True;
         $done++;
     }
     
     // check LBCs
-    if (($i < count($lbcs)) && $lbcDone == False) {
+    if (($i < count($lbcs)) && ($lbcDone == False)) {
         $checkDate = $lbs['lbc' . $i]['date'];
         
         if (dateRange($start, $end, $checkDate)) {
             $curWorkouts["curLBCs"][$omCount] = $lbcs['lbc' . $i];
             $lbcCount++;
         }
-    } else {
+    } elseif ($lbcDone == False) {
         $lbcDone = True;
         $done++;
     }  
     
     // Check Others
-    if (($i < count($others)) && $otherDone == False) {
+    if (($i < count($others)) && ($otherDone == False)) {
         $checkDate = $others['other' . $i]['date'];
         
         if (dateRange($start, $end, $checkDate)) {
             $curWorkouts["curOthers"][$otherCount] = $others['other' . $i];
             $otherCount++;
         }
-    } else {
+    } elseif ($otherDone == True) {
         $otherDone = True;
         $done++;
-    }      
-    
+    }
     
     $i++;
 }
@@ -232,6 +229,7 @@ echo '<div class="row calRow">
         $repeat++;
     }
 
+    // loop through days of the week
     for ($j = 1; $j <= 7; $j++) {
         
         $date = date('m/d/Y', strtotime($start . " +". ($dayCount - $dayStart) ." days"));
@@ -289,9 +287,11 @@ echo '<div class="row calRow">
             foreach ($workoutKeys as $workoutType) {
                 $workoutsArr = $curWorkouts[$workoutType];
                 foreach($workoutsArr as $workout) {
+                    //print_r($workout);
                     
                     if (strtotime($workout['date']) == strtotime($date)) {
                         // echo key($curWorkouts);
+                        
                         switch ($workoutType) {
                             case "curArcs":
                                 $workoutName = "ARC";

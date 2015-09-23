@@ -357,10 +357,20 @@ var main = function () {
                     $('.addWorkoutPopup').html(response);
                     $('.addWorkoutPopup').show();
                     $('.addWorkoutPopup').animate({"left": "30%"}, 600)
+                    $('.addWorkoutPopup').addClass('.ARC')
                 }
             });
             
         }
+    });
+    
+    $('.closeCalDay').click(function() {
+    
+        $('.calDayPopup').fadeOut(600)
+        $('.bodyCover').fadeOut(600)
+        
+        $('.calDayWorkouts').children('.newWorkout').remove()
+    
     });
     
 // ------------------------------------------------------------------------
@@ -452,13 +462,65 @@ var main = function () {
     });
     
     
-
-    $(document).on('click', '.cancelARC', function() {
+    
+    
+    // cancel windowOption
+    $(document).on('click', '.cancel', function() {
         $(this).parent().parent().animate({"left": "-55%"}, 600, function() {
             $(this).hide(); // this is now the object passed into the function
         });
         $('.calDayPopup').show();
         $('.calDayPopup').animate({"left": "35%"}, 600);
+    });
+    
+    // save windowOption
+    $(document).on('click', '.save', function() {
+        var type = ''
+        var workouts = []
+        
+        var date = $('.addworkoutPopup .date').html()
+        var new_date = []
+        date = date.split('/')
+        new_date[0] = date[2]
+        new_date[1] = date[0]
+        new_date[2] = date[1]
+        date = new_date.join('-')
+        
+        var workouts = ''
+        if ($('.popupheader').is('.ARC')) {
+            type = 'arc';
+            
+            $('.set').each(function() {
+                var location = $('.addworkoutPopup .location').val()
+                var duration = $(this).children('.duration').val()
+                var comments = $(this).children('.comments').val()
+                var terrain = $('.addworkoutPopup .desc').val()
+                var difficulty = $('.addworkoutPopup .difficulty').val()
+                var setnum = $(this).children('.setNum').html()
+                workout = [date, location, duration, comments, terrain, difficulty, setnum]
+                workout = workout.join('!%$%!')
+                
+                if (workouts.length == 0) {
+                    workouts = [workout]
+                } else {
+                    workouts = workouts.concat([workout])
+                }
+            });
+            
+            workouts = workouts.join('%!$!%')
+        }
+        
+        if (workouts.length > 0) {
+            $.ajax({
+                type: "POST",
+                url: "/PHP/dbi.php",
+                data:{type: type, workouts: workouts},
+                success: function(response) {
+                    $('.body').html('worked@')
+                }
+            });
+        }
+    
     });
     
     // save and cancel day buttons
@@ -471,14 +533,7 @@ var main = function () {
                      color: "#315B76"});
         });
     
-    $('.closeCalDay').click(function() {
-    
-        $('.calDayPopup').fadeOut(600)
-        $('.bodyCover').fadeOut(600)
-        
-        $('.calDayWorkouts').children('.newWorkout').remove()
-    
-    });
+
 
 
 //--------------------- Log Out ------------------------------     

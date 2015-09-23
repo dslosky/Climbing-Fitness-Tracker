@@ -130,11 +130,11 @@ echo               '</div>
                 
                 <div class="windowOptions">
                     
-                    <div class="windowOption saveARC">
+                    <div class="windowOption save">
                         <h3>Save</h3>
                     </div>
                     
-                    <div class="windowOption cancelARC">
+                    <div class="windowOption cancel">
                         <h3>Cancel</h3>
                     </div>
 

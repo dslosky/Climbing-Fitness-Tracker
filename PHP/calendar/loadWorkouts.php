@@ -49,21 +49,10 @@ if (!session_id()){session_start();};
                         "curArcs"       => array(),
                         "curHangs"      => array(),
                         "curCampuss"    => array(),
+                        "curLbcs"       => array(),
                         "curOms"        => array(),
                         "curOthers"     => array(),
                          );
-    
-    /*
-    $dayWorkouts = array(
-                        "curArcs"       => array(),
-                        "curHangs"      => array(),
-                        "curCampuss"    => array(),
-                        "curOms"        => array(),
-                        "curOthers"     => array(),
-                         );
-    */
-    //$calStart = strtotime($start);
-    //$calEnd = strtotime($end);
     
     $arcCount = 0;
     $arcDone = False;
@@ -91,49 +80,39 @@ if (!session_id()){session_start();};
     */
     
     $i = 0;
+    $done = 0;
     while ($done < count($curWorkouts)) {
         
         // check arcs
         if (($i < count($arcs)) && ($arcDone == False)) {
             $checkDate = $arcs['arc' . $i]['date'];
             
-            //debugging
-            /* 
-            echo '<br><br>ARCS<br>';
-            echo $checkDate;
-            echo '<br>' . dateRange($calStart, $calEnd, $checkDate);
-            echo '<br><br>';
-            */
-            
             if (sameDate($date, $checkDate)) {
                 $curWorkouts["curArcs"][$arcCount] = $arcs['arc' . $i];
                 $arcCount++;
             }
-        } else {
+        } elseif ($arcDone == False) {
             $arcDone = True;
             $done++;
+            //echo 'arc';
         }
         
         // check Hangs
-        if (($i < count($hangs)) && $hangDone == False) {
+        if (($i < count($hangs)) && ($hangDone == False)) {
             $checkDate = $hangs['hang' . $i]['date'];
-            //print_r($hangs[$i]);
-            
-            //debugging
-            //echo "DATE: " . $date . "<br>";
-            //echo "CHECK: " . $checkDate . "<br>";
             
             if (sameDate($date, $checkDate)) {
                 $curWorkouts["curHangs"][$hangCount] = $hangs['hang' . $i];
                 $hangCount++;
             }
-        } else {
+        } elseif ($hangDone == False) {
             $hangDone = True;
             $done++;
+            //echo 'hang';
         }       
         
         // check Campus
-        if (($i < count($campuss)) && $campusDone == False) {
+        if (($i < count($campuss)) && ($campusDone == False)) {
             $checkDate = $campuss['campus' . $i]['date'];
             
             if (sameDate($date, $checkDate)) {
@@ -141,50 +120,55 @@ if (!session_id()){session_start();};
                 $campusCount++;
                 
             }
-        } else {
+        } elseif ($campusDone == False) {
             $campusDone = True;
             $done++;
+            //echo 'campus';
         } 
         
         // check OM
-        if (($i < count($oms)) && $omDone == False) {
+        if (($i < count($oms)) && ($omDone == False)) {
             $checkDate = $oms['om' . $i]['date'];
             
            if (sameDate($date, $checkDate)) {
                 $curWorkouts["curOms"][$omCount] = $oms['om' . $i];
                 $omCount++;
             }
-        } else {
+        } elseif ($omDone == False) {
             $omDone = True;
             $done++;
+            
+            //echo 'om';
         }
         
         // check LBCs
-        if (($i < count($lbcs)) && $lbcDone == False) {
+        if (($i < count($lbcs)) && ($lbcDone == False)) {
             $checkDate = $lbs['lbc' . $i]['date'];
             
             if (sameDate($date, $checkDate)) {
                 $curWorkouts["curLBCs"][$omCount] = $lbcs['lbc' . $i];
                 $lbcCount++;
             }
-        } else {
-            $omDone = True;
+        } elseif ($lbcDone == False) {
+            $lbcDone = True;
             $done++;
+            
+            //echo 'lbc';
         }  
         
         // Check Others
-        if (($i < count($others)) && $otherDone == False) {
+        if (($i < count($others)) && ($otherDone == False)) {
             $checkDate = $others['other' . $i]['date'];
             
             if (sameDate($date, $checkDate)) {
                 $curWorkouts["curOthers"][$otherCount] = $others['other' . $i];
                 $otherCount++;
             }
-        } else {
+        } elseif ($otherDone == False) {
             $otherDone = True;
             $done++;
+            //echo 'other';
         }      
-        
         
         $i++;
     }

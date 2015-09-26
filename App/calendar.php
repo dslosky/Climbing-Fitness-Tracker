@@ -3,12 +3,18 @@ if (!session_id()){session_start();};
 
 // If there is no username in cookies, send the user to login screen
 if (!isset($_COOKIE['username'])) {
-    header("location: /App/open.php");
+    header("location: $_SERVER[DOCUMENTROOT]/App/open.php", True);
 };
 
 // if there is a username stored in cookies but not the session
+$count = 0;
 while (!isset($_SESSION['username'])) {
-    include("$_SERVER[DOCUMENTROOT]/PHP/data/getData.php");
+    include_once "$_SERVER[DOCUMENTROOT]/PHP/data/getData.php";
+    $count++;
+    
+    if ($count > 100) {
+        header("location: $_SERVER[DOCUMENTROOT]/App/open.php", True);
+    }
 }
 
 
@@ -163,12 +169,8 @@ if (isset($_SESSION['calendars']))  {
                 
                 <div class="windowOptions">
                     
-                    <div class="windowOption saveCalDay">
-                        <h3>Save</h3>
-                    </div>
-                    
-                    <div class="windowOption closeCalDay exitCalDay">
-                        <h3>Close</h3>
+                    <div class="windowOption done">
+                        <h2>Done</h2>
                     </div>
 
                 </div>

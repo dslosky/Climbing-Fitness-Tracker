@@ -13,31 +13,6 @@ echo 'id: ' . $_SESSION['id'];
 $username = $_SESSION['username'];
 $id = $_SESSION['id'];
 
-//$qry = "select * from calendar,arc,hangboard,campus,lbc,limitboulder,om,other,userinfo where calendar.userid=arc.userid=hangboard.userid=campus.userid=lbc.userid=limitboulder.userid=om.userid=other.userid=userinfo.userid=(select id from users where username=".$username.")";
-
-/*
-$qry = "select calendar.*,arc.*,hangboard.*,campus.*,lbc.*,limitboulder.*,om.*,other.*,userinfo.* from calendar
-left join arc on arc.userid = (select id from users where username='".$username."')
-left join hangboard on hangboard.userid = (select id from users where username='".$username."')
-left join campus on campus.userid = (select id from users where username='".$username."')
-left join lbc on lbc.userid = (select id from users where username='".$username."')
-left join limitboulder on limitboulder.userid = (select id from users where username='".$username."')
-left join om on om.userid = (select id from users where username='".$username."')
-left join other on other.userid = (select id from users where username='".$username."')
-left join userinfo on userinfo.userid = (select id from users where username='".$username."')
-where calendar.id = (select id from users where username='".$username."')";
-
-,null,null,null,null,null,null,null,null,null,null,null
-
-
-$qry = "select *,null,null,null,null,null,null,null,null,null,null,null from calendar where calendar.userid = $id
-UNION
-select * from hangboard where hangboard.UserID = $id";/*
-UNION ALL
-select *,null,null,null,null,null,null,null,null,null from campus where campus.UserID = $id";
-*/
-//$qry = "select * from hangboard where hangboard.UserID = $id";
-
 // get all information out of the database. This should probably be one request...
 $calqry = "select * from calendar where calendar.userid = $id order by id";
 $arcqry = "select * from arc where arc.userid = $id order by id";

@@ -20,7 +20,8 @@
             }
             
             if ($deleted == FALSE) {
-                // delete all arcs with this date
+                
+                // delete all arcs with this date from DB
                 $sql = "DELETE FROM arc where date='$arc[0]'";
                 if ($conn->query($sql) === TRUE) {
                     echo "Old records deleted";
@@ -28,9 +29,34 @@
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
                 
+                // removes all arcs from the session
+                foreach (array_keys($_SESSION['arc']) as $arc_tmp) {
+                    if ($_SESSION['arc'][$arc_tmp]['date'] == $arc[0]) {
+                        unset($_SESSION['arc'][$arc_tmp]);
+                    }
+                }
+                
                 $deleted = TRUE;
             }
             
+            echo "Should be empty arc: <br>";
+            print_r($_SESSION['arc']);
+            echo "<br><br>";
+            
+            # create arc hash that we can add to $_SESSION
+            $fields = ["date",
+                       "location",
+                       "duration",
+                       "comments",
+                       "terrain",
+                       "difficulty",
+                       "daynum"];
+            $fields = array_flip($fields);
+            $arc_hash = array();
+            foreach (array_keys($fields) as $field) {
+                $arc_hash[$field] = $arc[$fields[$field]];
+            }
+
             $sql = "INSERT INTO arc (UserID,
                                      date,
                                      location,
@@ -40,24 +66,32 @@
                                      difficulty,
                                      daynum)
                     VALUES ($user_id,
-                            '$arc[0]',
-                            '$arc[1]',
-                            '$arc[2]',
-                            '$arc[3]',
-                            '$arc[4]',
-                            '$arc[5]',
-                            $arc[6])";
-    
+                            '" . $arc_hash['date'] . "',
+                            '" . $arc_hash['location'] . "',
+                            '" . $arc_hash['duration'] . "',
+                            '" . $arc_hash['comments'] . "',
+                            '" . $arc_hash['terrain'] . "',
+                            '" . $arc_hash['difficulty'] . "',
+                             " . $arc_hash['daynum'] . ")";
+
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
+            
+    
+            $arc_num = count($_SESSION['arc']);
+            $_SESSION['arc']['arc' . $arc_num] = $arc_hash;
         }
+        
+        echo "SESSION OUT: <br>";
+        print_r($_SESSION['arc']);
+        
     }
 
 
-
+    /***********************************************************************/
     $user_id = $_SESSION['id'];
     
         

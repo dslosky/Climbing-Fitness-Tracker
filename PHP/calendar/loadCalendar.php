@@ -36,6 +36,7 @@ $curWorkouts = array(
                     "curArcs"       => array(),
                     "curHangs"      => array(),
                     "curCampuss"    => array(),
+                    "curLbcs"       => array(),
                     "curOms"        => array(),
                     "curOthers"     => array(),
                      );
@@ -83,6 +84,7 @@ while ($done < count($curWorkouts)) {
     } elseif ($arcDone == False) {
         $arcDone = True;
         $done++;
+        //echo 'arc';
     }
     
     // check Hangs
@@ -97,6 +99,7 @@ while ($done < count($curWorkouts)) {
     } elseif ($hangDone == False) {
         $hangDone = True;
         $done++;
+        //echo 'hang';
     }       
     
     // check Campus
@@ -111,6 +114,7 @@ while ($done < count($curWorkouts)) {
     } elseif ($campusDone == False) {
         $campusDone = True;
         $done++;
+        //echo 'campus';
     } 
     
     // check OM
@@ -124,6 +128,7 @@ while ($done < count($curWorkouts)) {
     } elseif ($omDone == False) {
         $omDone = True;
         $done++;
+        //echo 'om';
     }
     
     // check LBCs
@@ -137,6 +142,7 @@ while ($done < count($curWorkouts)) {
     } elseif ($lbcDone == False) {
         $lbcDone = True;
         $done++;
+        //echo 'lbc';
     }  
     
     // Check Others
@@ -147,9 +153,10 @@ while ($done < count($curWorkouts)) {
             $curWorkouts["curOthers"][$otherCount] = $others['other' . $i];
             $otherCount++;
         }
-    } elseif ($otherDone == True) {
+    } elseif ($otherDone == False) {
         $otherDone = True;
         $done++;
+        //echo 'other';
     }
     
     $i++;

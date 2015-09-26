@@ -300,6 +300,9 @@ var main = function () {
         
         $('.calDayTitle').html($(this).children('.dayInfo').children('.date').html());
         
+        
+        load_cal_day($('.calDayTitle').html());
+        /*
         $.ajax({
             type: "POST",
             url: "/PHP/calendar/loadWorkouts.php",
@@ -309,6 +312,7 @@ var main = function () {
                 $('.calDayWorkouts').html(response);
             }
         });
+        */
         
         $('.calDayPopup').fadeIn(600);
         $('.bodyCover').fadeIn(600);
@@ -364,7 +368,7 @@ var main = function () {
         }
     });
     
-    $('.closeCalDay').click(function() {
+    $('.windowOption.done').click(function() {
     
         $('.calDayPopup').fadeOut(600)
         $('.bodyCover').fadeOut(600)
@@ -469,6 +473,9 @@ var main = function () {
         $(this).parent().parent().animate({"left": "-55%"}, 600, function() {
             $(this).hide(); // this is now the object passed into the function
         });
+        
+        // load_cal_day($('.calDayTitle').html());
+        
         $('.calDayPopup').show();
         $('.calDayPopup').animate({"left": "35%"}, 600);
     });
@@ -516,7 +523,11 @@ var main = function () {
                 url: "/PHP/dbi.php",
                 data:{type: type, workouts: workouts},
                 success: function(response) {
-                    $('.body').html('worked@')
+                    $('.save').parent().parent().animate({"left": "-55%"}, 600, function() {
+                        $(this).hide(); // this is now the object passed into the function
+                    });
+                    $('.calDayPopup').show();
+                    $('.calDayPopup').animate({"left": "35%"}, 600);
                 }
             });
         }
@@ -597,6 +608,33 @@ function fluidToStatic() {
 };
 
 function dateDiffWeeks(startDate, endDate) {
+    
+}
+
+function load_cal_day(date_in) {
+    
+    $.ajax({
+        type: "POST",
+        url: "/PHP/calendar/loadWorkouts.php",
+        dataType: "html",
+        data:{date: date_in},
+        success: function(response) {
+            $('.calDayWorkouts').html(response);
+        }
+    });
+    
+}
+
+function get_session(var_in) {
+    
+    $.ajax({
+        type: "POST",
+        url: "/PHP/my_session.php",
+        dataType: "html",
+        data:{var_in: var_in},
+        success: function(response) {
+        }
+    });
     
 }
 

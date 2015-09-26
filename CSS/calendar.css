@@ -546,11 +546,16 @@ body {
     border-radius: 5px;
 }
 
-.saveCalDay {
+.windowOption.done {
+    width: 80%;
+    left: 10%;
+}
+
+.save {
     left: -30%;
 }
 
-.closeCalDay {
+.cancel {
     left: 80%;
 }
 

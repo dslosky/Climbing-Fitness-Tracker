@@ -369,13 +369,25 @@ var main = function () {
     });
     
     $('.windowOption.done').click(function() {
-    
-        $('.calDayPopup').fadeOut(600)
-        $('.bodyCover').fadeOut(600)
-        
-        $('.calDayWorkouts').children('.newWorkout').remove()
-    
-    });
+            
+                $.ajax({    //create an ajax request to load_page.php
+                type: "POST",
+                url: "/PHP/calendar/loadCalendar.php",
+                //data: {startDate: start, endDate: end, workouts: workouts, weeks: weeks} ,
+                dataType: "html",   //expect html to be returned                
+                success: function(response){
+                    
+                    $('.calendarContainer').html(response);
+                    
+                    //$('.calendarContainer').animate({opacity: 1}, 600);
+                    
+                    $('.calDayPopup').fadeOut(600)
+                    $('.bodyCover').fadeOut(600)
+                    $('.calDayWorkouts').children('.newWorkout').remove()
+                    
+                    }
+                });
+        });
     
 // ------------------------------------------------------------------------
 

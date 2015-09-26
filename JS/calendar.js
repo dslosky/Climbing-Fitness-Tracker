@@ -376,13 +376,14 @@ var main = function () {
                 //data: {startDate: start, endDate: end, workouts: workouts, weeks: weeks} ,
                 dataType: "html",   //expect html to be returned                
                 success: function(response){
+                    $('.calendarContainer').fadeOut(600)
+                    $('.calDayPopup').fadeOut(600, function() {
+                        $('.calendarContainer').html(response);
+                    });
                     
-                    $('.calendarContainer').html(response);
                     
-                    //$('.calendarContainer').animate({opacity: 1}, 600);
-                    
-                    $('.calDayPopup').fadeOut(600)
                     $('.bodyCover').fadeOut(600)
+                    $('.calendarContainer').fadeIn(600)
                     $('.calDayWorkouts').children('.newWorkout').remove()
                     
                     }

@@ -350,6 +350,29 @@ var main = function () {
         });
         
         //if (($(this).is('.ARC')) && ($(this).is('.notAdded'))) {
+        var workout = ""
+        var wo_class = ""
+        if ($(this).is('.ARC')) {
+            workout = 'arc'
+            wo_class = '.ARC'
+        } else if ($(this).is('.Hangboard')) {
+            workout = 'hangboard'
+            wo_class = '.Hangboard'
+        } else if ($(this).is('.OM')) {
+            workout = 'om'
+            wo_class = '.OM'
+        } else if ($(this).is('.LBC')) {
+            workout = 'lbc'
+            wo_class = '.LBC'
+        } else if ($(this).is('.Campus')) {
+            workout = 'campus'
+            wo_class = '.Campus'
+        } else if ($(this).is('.Others')) {
+            workout = 'others'
+            wo_class = '.Others'
+        }
+        
+        /*
         if ($(this).is('.ARC')) {
             $.ajax({
                 type: "POST",
@@ -366,6 +389,21 @@ var main = function () {
             });
             
         }
+        */
+        
+        $.ajax({
+            type: "POST",
+            url: "/PHP/calendar/loadWorkout.php",
+            dataType: "html",
+            data:{date: $('.calDayTitle').html(), workout: workout},
+            success: function(response) {
+                
+                $('.addWorkoutPopup').addClass(wo_class)
+                $('.addWorkoutPopup').html(response);
+                $('.addWorkoutPopup').show();
+                $('.addWorkoutPopup').animate({"left": "30%"}, 600)
+            }
+        });
     });
     
     $('.windowOption.done').click(function() {
@@ -539,6 +577,7 @@ var main = function () {
                     $('.save').parent().parent().animate({"left": "-55%"}, 600, function() {
                         $(this).hide(); // this is now the object passed into the function
                     });
+                    load_cal_day($('.calDayTitle').html())
                     $('.calDayPopup').show();
                     $('.calDayPopup').animate({"left": "35%"}, 600);
                 }

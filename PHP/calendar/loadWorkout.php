@@ -26,9 +26,9 @@
 // set timezome
 date_default_timezone_set('America/Denver');
 
-$workoutType = $_POST['workout'];
+$workoutType = strtolower($_POST['workout']);
 
-if ($workoutType == 'arc') {
+if ($workoutType === 'arc') {
     $workouts = $_SESSION['arc'];
 }
 
@@ -49,86 +49,86 @@ foreach ($workouts as $workout) {
     
 }
 
-echo '<div class="popupHeader ARC">';
-
-                 if ($workoutType=='arc') {
-                    echo '<h1>Add ARC</h1>';
-                 } elseif ($workoutType=='om') {
+                 if ($workoutType === 'arc') {
+                    make_arc_form($curWorkouts, $date);
+                
+                 } elseif ($workoutType === 'om') {
                     echo '<h1>Add OM</h1>';
-                 } elseif ($workoutType=='hangboard') {
+                 } elseif ($workoutType === 'hangboard') {
                     echo '<h1>Add Hangboard</h1>';
-                 } elseif ($workoutType=='limit') {
+                 } elseif ($workoutType === 'limit') {
                     echo '<h1>Add Limit Boulder</h1>';
-                 } elseif ($workoutType=='bl') {
+                 } elseif ($workoutType === 'bl') {
                     echo '<h1>Add Boulder Ladder</h1>';
-                 } elseif ($workoutType=='other') {
+                 } elseif ($workoutType === 'other') {
                     echo '<h1>Add Other</h1>';
                  }
-                 
-echo           '</div>
-                
-                <div class="arcInfoContainer">
-                    <div class="workoutOption arcDate">
-                        <label for="Date">Date: </label>
-                        <p class="date">' . $date . '</p>
-                    </div>
+
+window_options();
+
+////////////////////// Functions ///////////////////////////
+
+function make_arc_form($curWorkouts, $date) {
+
+    echo '<div class="popupHeader ARC">
+               <h1>Add ARC</h1>
+          </div>
                     
-                    <div class="workoutOption arcLoc">
-                        <label for="Location">Location: </label>
-                        <input class="location" name="Location" type="text" value="' . $curWorkouts[0]['location'] . '"/>
-                    </div>
-                    
-                    <div class="workoutOption arcDiff">
-                        <label for="Difficulty">Difficulty: </label>
-                        <input class="difficulty" name="Difficulty" type="text" value="' . $curWorkouts[0]['difficulty'] . '"/>
-                    </div>
-                    
-                    <div class="workoutOption arcDesc double">
-                        <label for="Description">Description of Terrain: </label>
-                        <textarea class="desc" name="Description" placeholder="Enter your description here">' . $curWorkouts[0]['description'] . '</textarea>
-                    </div>
-                    
-                    <div class="arcSetsHead workoutOption double">
-                        <label>Sets:</label>
-                        <p class="col-1" style="">Set:</p>
-                        <p class="col-2" style="">Duration:</p>
-                        <p class="col-3" style="">Comments:</p>
-                    </div>
-                    
-                    <div class="arcSets">';
-                    
-                    $setNum = 1;
-                    foreach ($curWorkouts as $workout) {
+                    <div class="arcInfoContainer">
+                        <div class="workoutOption arcDate">
+                            <label for="Date">Date: </label>
+                            <p class="date">' . $date . '</p>
+                        </div>
+    
+                        <div class="workoutOption arcLoc">
+                            <label for="Location">Location: </label>
+                            <input class="location" name="Location" type="text" value="' . $curWorkouts[0]['location'] . '"/>
+                        </div>
                         
-                        echo '<div class="set"> 
-                                <p class="setNum col-1">' . $setNum . '</p>
-                                <input class="duration col-2" name="duration" value="' . $workout['duration'] . '"/>
-                                <input class="comments col-3" name="comments" value="' . $workout['comments'] . '"/>
-                                <div class="deleteSet"><p>delete</p></div> 
-                            </div>';
+                        <div class="workoutOption arcDiff">
+                            <label for="Difficulty">Difficulty: </label>
+                            <input class="difficulty" name="Difficulty" type="text" value="' . $curWorkouts[0]['difficulty'] . '"/>
+                        </div>
+                        
+                        <div class="workoutOption arcDesc double">
+                            <label for="Description">Description of Terrain: </label>
+                            <textarea class="desc" name="Description" placeholder="Enter your description here">' . $curWorkouts[0]['description'] . '</textarea>
+                        </div>
+                        
+                        <div class="arcSetsHead workoutOption double">
+                            <label>Sets:</label>
+                            <p class="col-1" style="">Set:</p>
+                            <p class="col-2" style="">Duration:</p>
+                            <p class="col-3" style="">Comments:</p>
+                        </div>
+                        
+                        <div class="arcSets">';
+                        
+                        $setNum = 1;
+                        foreach ($curWorkouts as $workout) {
                             
-                        $setNum++;
-                    }
-                    
-echo               '</div>
-                    
-                    <div class="addSet">
-                        <h3>Add Set</h3>
-                    </div>
-                    
-                    <!--
-                    <div class="workoutOption arcDate">
-                        <label for="Date">Date: </label>
-                    </div>
-                    
-                    <div class="workoutOption arcDate">
-                        <label for="Date">Date: </label>
-                        <input class="date" name="Date" type="text"/>
-                    </div>
-                    -->
-                </div>
-                
-                <div class="windowOptions">
+                            echo '<div class="set"> 
+                                    <p class="setNum col-1">' . $setNum . '</p>
+                                    <input class="duration col-2" name="duration" value="' . $workout['duration'] . '"/>
+                                    <input class="comments col-3" name="comments" value="' . $workout['comments'] . '"/>
+                                    <div class="deleteSet"><p>delete</p></div> 
+                                </div>';
+                                
+                            $setNum++;
+                        }
+                        
+    echo               '</div>
+                        
+                        <div class="addSet">
+                            <h3>Add Set</h3>
+                        </div>
+                        
+                    </div>';
+    
+}
+
+function window_options() {
+echo '          <div class="windowOptions">
                     
                     <div class="windowOption save">
                         <h3>Save</h3>
@@ -139,5 +139,5 @@ echo               '</div>
                     </div>
 
                 </div>';
-
+}
 ?>

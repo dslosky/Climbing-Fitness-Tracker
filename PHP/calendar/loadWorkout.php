@@ -30,6 +30,8 @@ $workoutType = strtolower($_POST['workout']);
 
 if ($workoutType === 'arc') {
     $workouts = $_SESSION['arc'];
+} else if ($workoutType === 'om') {
+    $workouts = $_SESSION['om'];
 }
 
 $date = $_POST['date'];
@@ -53,7 +55,8 @@ foreach ($workouts as $workout) {
                     make_arc_form($curWorkouts, $date);
                 
                  } elseif ($workoutType === 'om') {
-                    echo '<h1>Add OM</h1>';
+                    make_om_form($curWorkouts, $date);
+                    
                  } elseif ($workoutType === 'hangboard') {
                     echo '<h1>Add Hangboard</h1>';
                  } elseif ($workoutType === 'limit') {
@@ -111,6 +114,70 @@ function make_arc_form($curWorkouts, $date) {
                                     <p class="setNum col-1">' . $setNum . '</p>
                                     <input class="duration col-2" name="duration" value="' . $workout['duration'] . '"/>
                                     <input class="comments col-3" name="comments" value="' . $workout['comments'] . '"/>
+                                    <div class="deleteSet"><p>delete</p></div> 
+                                </div>';
+                                
+                            $setNum++;
+                        }
+                        
+    echo               '</div>
+                        
+                        <div class="addSet">
+                            <h3>Add Set</h3>
+                        </div>
+                        
+                    </div>';
+    
+}
+
+function make_om_form($curWorkouts, $date) {
+
+    echo '<div class="popupHeader OM">
+               <h1>Add Outdoor Mileage</h1>
+          </div>
+                    
+                    <div class="omInfoContainer">
+                        <div class="workoutOption omDate">
+                            <label for="Date">Date: </label>
+                            <p class="date">' . $date . '</p>
+                        </div>
+    
+                        <div class="workoutOption omLoc">
+                            <label for="Location">Crag: </label>
+                            <input class="location" name="Location" type="text" value="' . $curWorkouts[0]['location'] . '"/>
+                        </div>
+                        
+                        <div class="workoutOption omTime">
+                            <label for="Location">Total Time: </label>
+                            <input class="time" name="Time" type="text" value="' . $curWorkouts[0]['total_time'] . '"/>
+                        </div>
+                        
+                        <div class="workoutOption omDesc double">
+                            <label for="Description">Description of Terrain: </label>
+                            <textarea class="desc" name="Description" placeholder="Enter your description here">' . $curWorkouts[0]['description'] . '</textarea>
+                        </div>
+                        
+                        <div class="workoutOption omComments double">
+                            <label for="Description">Comments: </label>
+                            <textarea class="comments" name="Comments" placeholder="Comments on the climbing">' . $curWorkouts[0]['comments'] . '</textarea>
+                        </div>
+                        
+                        <div class="omSetsHead workoutOption double">
+                            <label>Sets:</label>
+                            <p class="col-1" style="">Set:</p>
+                            <p class="col-2" style="">Route Name:</p>
+                            <p class="col-3" style="">Difficulty:</p>
+                        </div>
+                        
+                        <div class="omSets">';
+                        
+                        $setNum = 1;
+                        foreach ($curWorkouts as $workout) {
+                            
+                            echo '<div class="set"> 
+                                    <p class="setNum col-1">' . $setNum . '</p>
+                                    <input class="route col-2" name="route" value="' . $workout['route'] . '"/>
+                                    <input class="difficulty col-3" name="difficulty" value="' . $workout['rating'] . '"/>
                                     <div class="deleteSet"><p>delete</p></div> 
                                 </div>';
                                 

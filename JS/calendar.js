@@ -444,17 +444,29 @@ var main = function () {
 
     // add an arc
     $(document).on('click', '.addSet', function() {
-        
-        setNum = $('.arcSets .set').size() + 1;
-        
-        $('.arcSets').html($('.arcSets').html() + ' \
-                            <div class="set"> \
-                                <p class="setNum col-1">' + setNum + '</p>\
-                                <input class="duration col-2" name="duration"/>\
-                                <input class="comments col-3" name="comments"/>\
-                                <div class="deleteSet"><p>delete</p></div> \
-                            </div> \
-                        ')
+        if ($('.addWorkoutPopup').hasClass('.ARC')) {
+            setNum = $('.arcSets .set').size() + 1;
+            
+            $('.arcSets').html($('.arcSets').html() + ' \
+                                <div class="set"> \
+                                    <p class="setNum col-1">' + setNum + '</p>\
+                                    <input class="duration col-2" name="duration"/>\
+                                    <input class="comments col-3" name="comments"/>\
+                                    <div class="deleteSet"><p>delete</p></div> \
+                                </div> \
+                            ')
+        } else if ($('.addWorkoutPopup').hasClass('.OM')) {
+            setNum = $('.omSets .set').size() + 1;
+            
+            $('.omSets').html($('.omSets').html() + ' \
+                                <div class="set"> \
+                                    <p class="setNum col-1">' + setNum + '</p>\
+                                    <input class="route col-2" name="Route"/>\
+                                    <input class="difficulty col-3" name="Difficulty"/>\
+                                    <div class="deleteSet"><p>delete</p></div> \
+                                </div> \
+                            ')
+        }
 
                         
         $('.arcSets').animate({height: ($('.arcSets').height() + $('.set').height()) + "px"});
@@ -481,7 +493,7 @@ var main = function () {
     
     $(document).on('mouseleave', '.set', function() {
         $(this).stop(true).animate({height: "35px"});
-        $(this).children('.deleteSet').stop(true).animate({height: '25px',
+        $(this).children('.deleteSet').stop(true).animate({height: '0px',
                                                           opacity: 0});
         //$('.addSet').stop(true).animate({"margin-top": "10px"});
     });
@@ -566,6 +578,27 @@ var main = function () {
             });
             
             workouts = workouts.join('%!$!%')
+            
+        } else if ($('.popupheader').is('.OM')) {
+            type = 'om';
+            
+            $('.set').each(function() {
+                var crag = $('.addworkoutPopup .crag').val()
+                var total_time = $('.addworkoutPopup .total_time').val()
+                var comments = $('.addworkoutPopup .comments').val()
+                var description = $('.addworkoutPopup .desc').val()
+                var route = $(this).children('.route').val()
+                var rating = $(this).children('.rating').val()
+                var setnum = $(this).children('.setNum').html()
+                workout = [date, crag, total_time, comments, description, route, rating, setnum]
+                workout = workout.join('!%$%!')
+                
+                if (workouts.length == 0) {
+                    workouts = [workout]
+                } else {
+                    workouts = workouts.concat([workout])
+                }
+            });
         }
         
         if (workouts.length > 0) {

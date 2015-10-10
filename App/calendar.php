@@ -280,8 +280,10 @@ if (isset($_SESSION['calendars']))  {
         </div>
         
 
-        
+        <!--
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        -->
+        <script src="/JS/jquery-2.1.4.js"></script>
         <script src="/JS/jquery-ui.js"></script>
         <script src="/JS/jquery.cookie.js"></script>
         <script src="/JS/bootstrap.js"></script>

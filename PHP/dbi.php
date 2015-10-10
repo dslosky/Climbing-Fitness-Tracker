@@ -31,7 +31,7 @@
                 
                 // removes all arcs from the session
                 foreach (array_keys($_SESSION['arc']) as $arc_tmp) {
-                    if ($_SESSION['arc'][$arc_tmp]['date'] == $arc[0]) {
+                    if ($_SESSION['arc'][$arc_tmp]['date'] === $arc[0]) {
                         unset($_SESSION['arc'][$arc_tmp]);
                     }
                 }
@@ -88,6 +88,10 @@
     
     function submit_om($user_id, $oms, $conn) {
         
+        echo 'OMS in: ';
+        print_r($oms);
+        echo '<br><br>';
+        
         $deleted = FALSE;
         
         foreach ($oms as $om) {
@@ -104,27 +108,23 @@
             
             if ($deleted == FALSE) {
                 
-                // delete all arcs with this date from DB
-                $sql = "DELETE FROM om where date='$om[0]'";
+                // delete all OMs with this date from DB
+                $sql = "DELETE FROM om where date='" . $om[0] . "'";
                 if ($conn->query($sql) === TRUE) {
                     echo "Old records deleted";
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
                 
-                // removes all arcs from the session
+                // removes all OMs from the session
                 foreach (array_keys($_SESSION['om']) as $om_tmp) {
-                    if ($_SESSION['om'][$arc_tmp]['om'] == $om[0]) {
+                    if ($_SESSION['om'][$om_tmp]['date'] === $om[0]) {
                         unset($_SESSION['om'][$om_tmp]);
                     }
                 }
                 
                 $deleted = TRUE;
             }
-            
-            //echo "Should be empty arc: <br>";
-            //print_r($_SESSION['arc']);
-            //echo "<br><br>";
             
             # create arc hash that we can add to $_SESSION
             $fields = ["date",
@@ -141,7 +141,7 @@
                 $om_hash[$field] = $om[$fields[$field]];
             }
 
-            $sql = "INSERT INTO arc (UserID,
+            $sql = "INSERT INTO om (UserID,
                                      date,
                                      crag,
                                      total_time,
@@ -153,12 +153,14 @@
                     VALUES ($user_id,
                             '" . $om_hash['date'] . "',
                             '" . $om_hash['crag'] . "',
-                            " . $om_hash['total_time'] . ",
+                            "  . $om_hash['total_time'] . ",  
                             '" . $om_hash['comments'] . "',
                             '" . $om_hash['description'] . "',
                             '" . $om_hash['route'] . "',
                             '" . $om_hash['rating'] . "',
-                            " . $om_hash['daynum'] . ")";
+                            " . $om_hash['setNum'] . ")";
+                            
+                            //. $om_hash['total_time'] . 
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
@@ -181,7 +183,9 @@
     include_once "$_SERVER[DOCUMENT_ROOT]/PHP/config.php";
     
     // seperate workouts
-    echo "WORKOUTS: " . $_POST['workouts'] . "<br><br>";
+    echo "WORKOUTS: ";
+    print_r($_POST['workouts']);
+    echo "<br><br>";
     $workouts = explode('%!$!%', $_POST['workouts']);
     $type = $_POST['type'];
     
@@ -189,7 +193,11 @@
         submit_arc($user_id, $workouts, $conn);
         
     } else if ($type === 'om') {
+        echo 'WORKOUTS IN: ';
+        print_r($workouts);
+        echo '<br><br>';
         submit_om($user_id, $workouts, $conn);
+        
     }
 
     $conn->close;

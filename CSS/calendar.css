@@ -551,6 +551,25 @@ body {
     left: 10%;
 }
 
+.createWorkout {
+    display: inline-block;
+    text-align: center;
+    width: 15%;
+}
+
+/* generic workout popups */
+
+.deleteSet {
+    opacity: 0;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    height: 0px;
+    color: #a1a1ff;
+    cursor: pointer;
+}
+
 .save {
     left: -30%;
 }
@@ -559,10 +578,8 @@ body {
     left: 80%;
 }
 
-.createWorkout {
-    display: inline-block;
-    text-align: center;
-    width: 15%;
+.deleteSet p {
+    cursor: pointer;
 }
 
 /* Add ARC popup */
@@ -668,7 +685,7 @@ body {
     width: 50px;
 }
 
-.arcSets p {
+.Sets p {
     display: inline-block;
     position: relative;
     font-weight: bold;
@@ -726,20 +743,6 @@ body {
     display: inline-block;
     position: relative;
     font-weight: bold;
-}
-
-.deleteSet {
-    opacity: 0;
-    display: block;
-    position: relative;
-    width: 100%;
-    text-align: center;
-    height: 0px;
-    color: #a1a1ff;
-}
-
-.deleteSet p {
-    cursor: pointer;
 }
 
 .addSet {
@@ -864,7 +867,6 @@ body {
 }
 
 .omSets p {
-    display: inline-block;
     position: relative;
     font-weight: bold;
 }
@@ -930,20 +932,6 @@ body {
     font-weight: bold;
     text-align: left;
     float: left;
-}
-
-.deleteSet {
-    opacity: 0;
-    display: block;
-    position: relative;
-    width: 100%;
-    text-align: center;
-    height: 0px;
-    color: #a1a1ff;
-}
-
-.deleteSet p {
-    cursor: pointer;
 }
 
 .addSet {

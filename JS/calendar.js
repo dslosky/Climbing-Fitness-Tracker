@@ -455,31 +455,59 @@ var main = function () {
                                     <div class="deleteSet"><p>delete</p></div> \
                                 </div> \
                             ')
+            
+        $('.arcSets').animate({height: ($('.arcSets').height() + $('.set').height()) + "px"});
+            
         } else if ($('.addWorkoutPopup').hasClass('.OM')) {
             setNum = $('.omSets .set').size() + 1;
             
-            $('.omSets').html($('.omSets').html() + ' \
+            var ratings = ['5.5', '5.6', '5.7', '5.8',
+                           '5.9', '5.10a','5.10b', '5.10c',
+                           '5.10d', '5.11a', '5.11b', '5.11c',
+                           '5.11d', '5.12a', '5.12b', '5.12c',
+                           '5.12d', '5.13a', '5.13b', '5.13c',
+                           '5.13d', '5.14a', '5.14b', '5.14c']
+            
+            var set_string = ' \
                                 <div class="set"> \
                                     <p class="setNum col-1">' + setNum + '</p>\
                                     <input class="route col-2" name="Route"/>\
-                                    <input class="difficulty col-3" name="Difficulty"/>\
+                                    <select class="rating col-3">'
+            
+            ratings.forEach(function(rating) {
+                set_string = set_string + '<option value=' + rating + '>' + rating + '</option>'    
+            });
+            
+            $('.omSets').html($('.omSets').html() + set_string +         
+                                    '</select>\
                                     <div class="deleteSet"><p>delete</p></div> \
                                 </div> \
                             ')
         }
 
                         
-        $('.arcSets').animate({height: ($('.arcSets').height() + $('.set').height()) + "px"});
+        //$('.omSets').animate({height: ($('.omSets').height() + $('.set').height()) + "px"});
+        $('.omSets').animate({height: (setNum * $('.set').height()) + "px"});
     });
     
+    // make arc sets grow and shrink on hover
+    /*
     $(document).on('mouseenter', '.arcSets', function() {
         $('.arcSets').stop(true).animate({height: ($('.set').length * 35) + 25})
-        //$('.addSet').stop(true).animate({"margin-top": "25px"})
+        //$('.addSet').stop(true).animate({"height": "25px"})
     });
-    
     $(document).on('mouseleave', '.arcSets', function() {
         $('.arcSets').stop(true).animate({height: $('.set').length * 35})
-        //$('.addSet').stop(true).animate({"margin-top": "0px"})
+        //$('.addSet').stop(true).animate({"height": "0px"})
+    });
+    */
+    $(document).on('mouseenter', '.Sets', function() {
+        $('.Sets').stop(true).animate({height: ($('.set').length * 35) + 25})
+        //$('.addSet').stop(true).animate({"height": "25px"})
+    });
+    $(document).on('mouseleave', '.Sets', function() {
+        $('.Sets').stop(true).animate({height: $('.set').length * 35})
+        //$('.addSet').stop(true).animate({"height": "0px"})
     });
     
     // show the delete option
@@ -510,9 +538,9 @@ var main = function () {
     $(document).on('click', '.deleteSet p', function() {
         
         if (($('.set').length - 1 <= 0))  {
-            $('.arcSets').animate({height: 0});
+            $('.Sets').animate({height: 0});
         } else {
-            $('.arcSets').animate({height: ($('.set').length - 1) * 35 + 25});
+            $('.Sets').animate({height: ($('.set').length - 1) * 35 + 25});
         }
         
         // remove the set
@@ -538,7 +566,7 @@ var main = function () {
         });
         
         // load_cal_day($('.calDayTitle').html());
-        
+        remove_workout_class($('.addWorkoutPopup'))
         $('.calDayPopup').show();
         $('.calDayPopup').animate({"left": "35%"}, 600);
     });
@@ -577,8 +605,6 @@ var main = function () {
                 }
             });
             
-            workouts = workouts.join('%!$!%')
-            
         } else if ($('.popupheader').is('.OM')) {
             type = 'om';
             
@@ -600,6 +626,8 @@ var main = function () {
                 }
             });
         }
+        
+        workouts = workouts.join('%!$!%')
         
         if (workouts.length > 0) {
             $.ajax({
@@ -656,6 +684,8 @@ var main = function () {
 
 $(document).ready(main);
 
+
+///////////////////////////////// FUNCTIONS ///////////////////////////
 var adjustPageSize = function() {
     var screenHeight = window.screen.height;
     var screenWidth = window.screen.width;
@@ -718,9 +748,16 @@ function get_session(var_in) {
         dataType: "html",
         data:{var_in: var_in},
         success: function(response) {
+            // debugging
+            console.log(response)
         }
     });
     
+}
+
+function remove_workout_class(element) {
+    element.removeClass('.ARC')
+    element.removeClass('.OM')
 }
 
 

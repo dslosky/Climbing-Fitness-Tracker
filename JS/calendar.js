@@ -159,9 +159,6 @@ var main = function () {
         $('.addCalPopup').fadeOut(600);
     
     });
-
-  
-    //$('#jqDrop').selectmenu();
     
     $('.createCal').hover(function() {
     $(this).css({backgroundColor: "#315B76",
@@ -173,9 +170,7 @@ var main = function () {
                  'font-weight': 'bold'});
 
     });
-    
-    
-    
+
     $('#startDate').datepicker({
       showOtherMonths: true,
       selectOtherMonths: true,
@@ -338,11 +333,7 @@ var main = function () {
             $(this).children('h3').css("font-size", "24px");
         }
     });
-    /*
-    $(".addWorkout").hover(function() {
-        $(this).children("h2").css("color", "#000000");
-    });
-    */
+
     $(document).on('click', '.addWorkout', function() {
         
         $('.calDayPopup').animate({"left": "115%"}, 600, function() {
@@ -430,7 +421,7 @@ var main = function () {
     
 // ------------------------------------------------------------------------
 
-// --------------------------- Add Arc Weekend ----------------------------
+// --------------------------- Add Arc Popup ------------------------------
 
     $(document).on("mouseenter", ".addSet", function () {
         $(this).css("border-color", "#c4c4ff");

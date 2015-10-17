@@ -177,7 +177,7 @@ if (isset($_SESSION['calendars']))  {
 
             </div>
             
-<!-- Add Arc -->
+<!-- Add Workout -->
 
             <div class="addWorkoutPopup">
             </div>

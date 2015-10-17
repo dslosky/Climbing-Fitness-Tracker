@@ -345,42 +345,23 @@ var main = function () {
         var wo_class = ""
         if ($(this).is('.ARC')) {
             workout = 'arc'
-            wo_class = '.ARC'
+            wo_class = 'ARC'
         } else if ($(this).is('.Hangboard')) {
             workout = 'hangboard'
-            wo_class = '.Hangboard'
+            wo_class = 'Hangboard'
         } else if ($(this).is('.OM')) {
             workout = 'om'
-            wo_class = '.OM'
+            wo_class = 'OM'
         } else if ($(this).is('.LBC')) {
             workout = 'lbc'
-            wo_class = '.LBC'
+            wo_class = 'LBC'
         } else if ($(this).is('.Campus')) {
             workout = 'campus'
-            wo_class = '.Campus'
+            wo_class = 'Campus'
         } else if ($(this).is('.Others')) {
             workout = 'others'
-            wo_class = '.Others'
+            wo_class = 'Others'
         }
-        
-        /*
-        if ($(this).is('.ARC')) {
-            $.ajax({
-                type: "POST",
-                url: "/PHP/calendar/loadWorkout.php",
-                dataType: "html",
-                data:{date: $('.calDayTitle').html(), workout: 'arc'},
-                success: function(response) {
-                    
-                    $('.addWorkoutPopup').html(response);
-                    $('.addWorkoutPopup').show();
-                    $('.addWorkoutPopup').animate({"left": "30%"}, 600)
-                    $('.addWorkoutPopup').addClass('.ARC')
-                }
-            });
-            
-        }
-        */
         
         $.ajax({
             type: "POST",
@@ -421,7 +402,7 @@ var main = function () {
     
 // ------------------------------------------------------------------------
 
-// --------------------------- Add Arc Popup ------------------------------
+// --------------------------- Add Workout Popup ------------------------------
 
     $(document).on("mouseenter", ".addSet", function () {
         $(this).css("border-color", "#c4c4ff");
@@ -435,8 +416,8 @@ var main = function () {
 
     // add an arc
     $(document).on('click', '.addSet', function() {
-        if ($('.addWorkoutPopup').hasClass('.ARC')) {
-            setNum = $('.arcSets .set').size() + 1;
+        if ($('.addWorkoutPopup').hasClass('ARC')) {
+            var setNum = $('.arcSets .set').size() + 1;
             
             $('.arcSets').html($('.arcSets').html() + ' \
                                 <div class="set"> \
@@ -449,8 +430,8 @@ var main = function () {
             
         $('.arcSets').animate({height: ($('.arcSets').height() + $('.set').height()) + "px"});
             
-        } else if ($('.addWorkoutPopup').hasClass('.OM')) {
-            setNum = $('.omSets .set').size() + 1;
+        } else if ($('.addWorkoutPopup').hasClass('OM')) {
+            var setNum = $('.omSets .set').size() + 1;
             
             var ratings = ['5.5', '5.6', '5.7', '5.8',
                            '5.9', '5.10a','5.10b', '5.10c',
@@ -474,24 +455,30 @@ var main = function () {
                                     <div class="deleteSet"><p>delete</p></div> \
                                 </div> \
                             ')
-        }
+        
 
-                        
-        //$('.omSets').animate({height: ($('.omSets').height() + $('.set').height()) + "px"});
-        $('.omSets').animate({height: (setNum * $('.set').height()) + "px"});
+            $('.omSets').animate({height: (setNum * $('.set').height()) + "px"});
+        } else if ($('.addWorkoutPopup').hasClass('Hangboard')) {
+            var setNum = $('.hangSets .set').size() + 1;
+            
+            $('.hangSets').html($('.hangSets').html() + ' \
+                                <div class="set"> \
+                                    <p class="setNum col-1">' + setNum + '</p> \
+                                    <input class="grip col-2" name="grip" /> \
+                                    <input class="goal col-3" name="goal"/> \
+                                    <input class="resistance col-4" name="resistance"/> \
+                                    <input class="reps col-5" name="reps"/> \
+                                    <input class="comments col-6" name="comments"/> \
+                                    <div class="deleteSet"><p>delete</p></div>\
+                                  </div>'
+                            )
+            
+            $('.hangSets').animate({height: ($('.hangSets').height() + $('.set').height()) + "px"});
+        
+        }
     });
     
     // make arc sets grow and shrink on hover
-    /*
-    $(document).on('mouseenter', '.arcSets', function() {
-        $('.arcSets').stop(true).animate({height: ($('.set').length * 35) + 25})
-        //$('.addSet').stop(true).animate({"height": "25px"})
-    });
-    $(document).on('mouseleave', '.arcSets', function() {
-        $('.arcSets').stop(true).animate({height: $('.set').length * 35})
-        //$('.addSet').stop(true).animate({"height": "0px"})
-    });
-    */
     $(document).on('mouseenter', '.Sets', function() {
         $('.Sets').stop(true).animate({height: ($('.set').length * 35) + 25})
         //$('.addSet').stop(true).animate({"height": "25px"})
@@ -616,9 +603,39 @@ var main = function () {
                     workouts = workouts.concat([workout])
                 }
             });
+        } else if ($('.popupheader').is('.Hangboard')) {
+            type = "hangboard"
+            
+            $('.set').each(function() {
+                var weight = $('.addworkoutPopup .weight').val()
+                var humidity = $('.addworkoutPopup .humidity').val()
+                var temp = $('.addworkoutPopup .temp').val()
+                var rep_duration = $('.addworkoutPopup .rep_dur').val()
+                var rest_duration = $('.addworkoutPopup .rest_dur').val()
+                var grip = $(this).children('.grip').val()
+                var goal = $(this).children('.goal').val()
+                var resistance = $(this).children('.resistance').val()
+                var reps = $(this).children('.reps').val()
+                var comments = $(this).children('.comments').val()
+                var setnum = $(this).children('.setNum').html()
+                workout = [date, weight, humidity, temp,
+                           rep_duration, rest_duration,
+                           grip, goal, resistance,
+                           reps, comments, setnum]
+                workout = workout.join('!%$%!')
+                
+                if (workouts.length == 0) {
+                    workouts = [workout]
+                } else {
+                    workouts = workouts.concat([workout])
+                }
+            });
+            
         }
         
         workouts = workouts.join('%!$!%')
+        
+        console.log(workouts)
         
         if (workouts.length > 0) {
             $.ajax({
@@ -632,6 +649,8 @@ var main = function () {
                     load_cal_day($('.calDayTitle').html())
                     $('.calDayPopup').show();
                     $('.calDayPopup').animate({"left": "35%"}, 600);
+                    
+                    remove_workout_class($('.addWorkoutPopup'))
                 }
             });
         }
@@ -747,8 +766,9 @@ function get_session(var_in) {
 }
 
 function remove_workout_class(element) {
-    element.removeClass('.ARC')
-    element.removeClass('.OM')
+    element.removeClass('ARC')
+    element.removeClass('OM')
+    element.removeClass('Hangboard')
 }
 
 

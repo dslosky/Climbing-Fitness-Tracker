@@ -173,6 +173,98 @@
             $_SESSION['om']['om' . $om_num] = $om_hash;
         }   
     }
+    
+    function submit_hangboard($user_id, $hangs, $conn) {
+        
+        $deleted = FALSE;
+        
+        foreach ($hangs as $hang) {
+            
+            $hang = explode('!%$%!', $hang);
+            
+            for ($i = 0; $i < count($hang); $i++) {
+                if (empty($hang[$i])) {
+                    $hang[$i] = " ";
+                }
+            }
+            
+            if ($deleted == FALSE) {
+                
+                // delete all arcs with this date from DB
+                $sql = "DELETE FROM arc where date='$hang[0]'";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Old records deleted";
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+                
+                // removes all arcs from the session
+                foreach (array_keys($_SESSION['hang']) as $hang_tmp) {
+                    if ($_SESSION['hang'][$hang_tmp]['date'] === $hang[0]) {
+                        unset($_SESSION['hang'][$hang_tmp]);
+                    }
+                }
+                
+                $deleted = TRUE;
+            }
+            
+            # create arc hash that we can add to $_SESSION
+            $fields = ["date",
+                       "weight",
+                       "humidity",
+                       "temp",
+                       "rep_duration",
+                       "rest_duration",
+                       "grip",
+                       "goal",
+                       "resistance",
+                       "reps",
+                       "comments",
+                       "daynum"];
+            $fields = array_flip($fields);
+            $hang_hash = array();
+            foreach (array_keys($fields) as $field) {
+                $hang_hash[$field] = $hang[$fields[$field]];
+            }
+
+            $sql = "INSERT INTO hangboard (UserID,
+                                           date,
+                                           weight,
+                                           humidity,
+                                           temp,
+                                           rep_duration,
+                                           rest_duration,
+                                           grip,
+                                           goal,
+                                           resistance,
+                                           reps,
+                                           comments,
+                                           daynum)
+                    VALUES ($user_id,
+                            '" . $hang_hash['date'] . "',
+                            " . $hang_hash['weight'] . ",
+                            " . $hang_hash['humidity'] . ",
+                            " . $hang_hash['temp'] . ",
+                            " . $hang_hash['rep_duration'] . ",
+                            " . $hang_hash['rest_duration'] . ",
+                            '" . $hang_hash['grip'] . "',
+                            " . $hang_hash['goal'] . ",
+                            " . $hang_hash['resistance'] . ",
+                            " . $hang_hash['reps'] . ",
+                            '" . $hang_hash['comments'] . "',
+                             " . $hang_hash['daynum'] . ")";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            
+    
+            $hang_num = count($_SESSION['hang']);
+            $_SESSION['hang']['hang' . $hang_num] = $hang_hash;
+        }   
+    }
 
 
     /***********************************************************************/
@@ -183,9 +275,6 @@
     include_once "$_SERVER[DOCUMENT_ROOT]/PHP/config.php";
     
     // seperate workouts
-    echo "WORKOUTS: ";
-    print_r($_POST['workouts']);
-    echo "<br><br>";
     $workouts = explode('%!$!%', $_POST['workouts']);
     $type = $_POST['type'];
     
@@ -193,12 +282,12 @@
         submit_arc($user_id, $workouts, $conn);
         
     } else if ($type === 'om') {
-        echo 'WORKOUTS IN: ';
-        print_r($workouts);
-        echo '<br><br>';
         submit_om($user_id, $workouts, $conn);
         
-    }
+    } else if ($type === 'hangboard') {
+        submit_hangboard($user_id, $workouts, $conn);
+        
+    } 
 
     $conn->close;
     exit();

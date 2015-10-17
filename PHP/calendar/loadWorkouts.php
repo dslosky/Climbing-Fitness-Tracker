@@ -227,7 +227,7 @@ if (!session_id()){session_start();};
     
     //print_r($dayWorkouts);
     
-    $workoutTypes = array("ARC", "Hangboard", "OM", "LBC", "Campus", "Others");
+    $workoutTypes = array("ARC", "Hangboard", "OM", "Boulder Ladder", "LBC", "Campus", "Others");
 
     foreach ($workoutTypes as $type) {
         if (in_array($type, $dayWorkouts)) {

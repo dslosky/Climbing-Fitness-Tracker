@@ -380,7 +380,7 @@ body {
     left: 10%;
     height: 100%;
     width: 80%;
-    height 10%;
+    height: 10%;
 }
 
 .workoutsDrop select {
@@ -583,7 +583,6 @@ body {
 }
 
 /* Add ARC popup */
-
 .addWorkoutPopup {
     position: absolute;
     left: -55%;
@@ -766,6 +765,7 @@ body {
 }
 
 /* Add OM Popup Window */
+/*
 .addWorkoutPopup {
     position: absolute;
     left: -55%;
@@ -776,6 +776,7 @@ body {
     z-index: 3;
     display: none;
 }
+*/
 
 .popupHeader.OM {
     height: 20%;
@@ -925,7 +926,7 @@ body {
 }
 
 .omSetsHead .col-3 {
-    width:50%;
+    width: 50%;
     margin-left: 2%;
     display: inline-block;
     position: relative;
@@ -933,6 +934,244 @@ body {
     text-align: left;
     float: left;
 }
+
+/* Add Hangboard Popup Window */
+.popupHeader.Hangboard{
+    height: 20%;
+    width: 200%;
+    left: -50%;
+}
+
+.hangInfoContainer {
+    width: 100%;
+    height: 80%;
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #c4c4ff;
+    border-width: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.hangDate {
+    margin-left: 10px;
+    width: 35%;
+}
+
+.hangWeight {
+    margin-left: 10px;
+    height: 8%;
+    display: inline-block;
+    width: 35%
+}
+
+.rep_dur_container {
+    height: 8%;
+    display: inline-block;
+    width: 30%;
+}
+
+.rep_dur_container label {
+    width: 70%;
+}
+
+.rep_dur select {
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+}
+
+.hangHumid {
+    margin-left: 10px;
+    height: 8%;
+    display: inline-block;
+    width: 35%
+}
+
+.rest_dur_container {
+    height: 8%;
+    display: inline-block;
+    width: 30%;
+}
+
+.rest_dur_container label {
+    width: 70%;
+}
+
+.rest_dur select {
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+}
+
+.hangTemp {
+    height: 8%;
+    margin-left: 10px;
+    width: 35%;
+}
+
+.hangTemp input {
+    width: 10%;
+}
+
+.hangTemp label {
+    width: 45%;
+}
+
+.omSetsHead {
+    width: 100%;
+    height: 60px;
+}
+
+.omSets {
+    width: 100%;
+}
+
+.omSets.workoutOption.double label {
+    position: relative;
+    width: 50px;
+}
+
+.hangSets p {
+    position: relative;
+    font-weight: bold;
+}
+
+.hangSets .set {
+    width: 100%;
+    height: 35px;
+}
+
+.hangSets .col-1 {
+    margin-left: 2%;
+    width:10%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSets .col-2 {
+    width:15%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSets .col-3 {
+    width:10%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSets .col-4 {
+    width:10%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSets .col-5 {
+    width:10%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSets .col-6 {
+    width:30%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSetsHead {
+    height: 65px;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.hangSetsHead .col-1 {
+    margin-left: 2%;
+    width:10%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSetsHead .col-2 {
+    width:15%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSetsHead .col-3 {
+    width:10%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSetsHead .col-4 {
+    width:10%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSetsHead .col-5 {
+    width:10%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+.hangSetsHead .col-6 {
+    width:30%;
+    margin-left: 2%;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
+/*/////////////////////////////*/
 
 .addSet {
     width: 110px;
@@ -948,6 +1187,7 @@ body {
     border-radius: 2px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 }
 
 .addSet h3 {

@@ -32,6 +32,8 @@ if ($workoutType === 'arc') {
     $workouts = $_SESSION['arc'];
 } else if ($workoutType === 'om') {
     $workouts = $_SESSION['om'];
+} else if ($workoutType === 'hangboard') {
+    $workouts = $_SESSION['hang'];
 }
 
 $date = $_POST['date'];
@@ -58,7 +60,8 @@ foreach ($workouts as $workout) {
                     make_om_form($curWorkouts, $date);
                     
                  } elseif ($workoutType === 'hangboard') {
-                    echo '<h1>Add Hangboard</h1>';
+                    make_hangboard_form($curWorkouts, $date);
+                    
                  } elseif ($workoutType === 'limit') {
                     echo '<h1>Add Limit Boulder</h1>';
                  } elseif ($workoutType === 'bl') {
@@ -215,6 +218,106 @@ function make_om_form($curWorkouts, $date) {
                             echo   '</select>
                                     <div class="deleteSet"><p>delete</p></div> 
                                 </div>';
+                                
+                            $setNum++;
+                        }
+                        
+    echo               '</div>
+                        
+                        <div class="addSet">
+                            <h3>Add Set</h3>
+                        </div>
+                        
+                    </div>';
+    
+}
+
+
+function make_hangboard_form($curWorkouts, $date) {
+//<input class="time" name="Time" type="text" value="' . $curWorkouts[0]['total_time'] . '"/>
+    echo '<div class="popupHeader Hangboard">
+               <h1>Add Hangboard</h1>
+          </div>
+                    
+                    <div class="hangInfoContainer" style="width: 150%; left: -25%">
+                        <div class="workoutOption hangDate">
+                            <label for="Date">Date: </label>
+                            <p class="date">' . $date . '</p>
+                        </div>
+                        
+                        <div class="workoutOption hangWeight">
+                            <label for="weight">Weight: </label>
+                            <input class="weight" name="weight" type="text" value="' . $curWorkouts[0]['weight'] . '"/>
+                        </div>
+                        
+                        <div class="workoutOption rep_dur_container">
+                            <label for="rep_dur">Rep. Duration: </label>
+                            <select class="rep_dur">';
+                            
+                        for ($i=1; $i<60; $i++) {
+                            if ($i == $curWorkouts[0]['rep_duration']) {
+                                echo '<option value=' . $i . ' selected="true">' . $i . '</option>';
+                            } else {
+                                echo '<option value=' . $i . '>' . $i . '</option>';
+                            }
+                        }
+                        
+                        
+    echo                   '</select>
+                        </div>
+                        <label for="rep_dur">Seconds</label>
+                        
+                        <div class="workoutOption hangHumid">
+                            <label for="humidity">Humidity: </label>
+                            <input class="humidity" name="humidity" type="text" value="' . $curWorkouts[0]['humidity'] . '"/>
+                        </div>
+                        
+                        <div class="workoutOption rest_dur_container">
+                            <label for="rest_dur">Rest Duration: </label>
+                            <select class="rest_dur">';
+                            
+                        for ($i=1; $i<60; $i++) {
+                            if ($i == $curWorkouts[0]['rest_duration']) {
+                                echo '<option value=' . $i . ' selected="true">' . $i . '</option>';
+                            } else {
+                                echo '<option value=' . $i . '>' . $i . '</option>';
+                            }
+                        }
+                        
+    echo                   '</select>
+                        </div>
+                        <label for="rest_dur">Seconds</label>
+                        
+                        <div class="workoutOption hangTemp">
+                            <label for="temp">Temperature: </label>
+                            <input class="temp" name="temp" type="text" value="' . $curWorkouts[0]['temp'] . '"/>
+                        </div>
+                        
+                        <div class="hangSetsHead workoutOption double">
+                            <label>Sets:</label>
+                            <p class="col-1" style="">Set:</p>
+                            <p class="col-2" style="">Grip:</p>
+                            <p class="col-3" style="">Goal:</p>
+                            <p class="col-4" style="">Resistance:</p>
+                            <p class="col-5" style="">Reps:</p>
+                            <p class="col-6" style="">Comments:</p>
+                        </div>
+                        
+                        <div class="hangSets Sets">';
+                        
+                        $setNum = 1;
+                        foreach ($curWorkouts as $workout) {
+                            
+                            echo '<div class="set"> 
+                                    <p class="setNum col-1">' . $setNum . '</p>
+                                    <input class="grip col-2" name="grip" value="' . $workout['grip'] . '"/>
+                                    <input class="goal col-3" name="goal" value="' . $workout['goal'] . '"/>
+                                    <input class="resistance col-4" name="resistance" value="' . $workout['resistance'] . '"/>
+                                    <input class="reps col-5" name="reps" value="' . $workout['reps'] . '"/>
+                                    <input class="comments col-6" name="comments" value="' . $workout['comments'] . '"/>
+                                    
+                                    <div class="deleteSet"><p>delete</p></div> 
+                                  </div>';
                                 
                             $setNum++;
                         }

@@ -1,8 +1,7 @@
 <?php
 if (!session_id()){session_start();};
 
-function dateRange($start_date, $end_date, $date_check)
-{
+function dateRange($start_date, $end_date, $date_check) {
   // Convert to timestamp
   $start_ts = strtotime($start_date);
   $end_ts = strtotime($end_date);
@@ -26,16 +25,17 @@ date_default_timezone_set('America/Denver');
 $arcs = $_SESSION['arc'];
 $hangs = $_SESSION['hang'];
 $campuss = $_SESSION['campus'];
+$lbs = $_SESSION['limit'];
 $lbcs = $_SESSION['lbc'];
 $oms = $_SESSION['om'];
 $others = $_SESSION['other'];
-
 
 // get workouts in the calendar
 $curWorkouts = array(
                     "curArcs"       => array(),
                     "curHangs"      => array(),
                     "curCampuss"    => array(),
+                    "curLbs"        => array(),
                     "curLbcs"       => array(),
                     "curOms"        => array(),
                     "curOthers"     => array(),
@@ -55,6 +55,9 @@ $campusDone = False;
 
 $omCount = 0;
 $omDone = False;
+
+$lbCount = 0;
+$lbDone = False;
 
 $lbcCount = 0;
 $lbcDone = False;
@@ -130,6 +133,25 @@ while ($done < count($curWorkouts)) {
         $done++;
         //echo 'om';
     }
+    
+    
+    // check Limit Boulders
+    if (($i < count($lbs)) && ($lbDone == False)) {
+        
+        $checkDate = $lbs['limit' . $i]['date'];
+
+       if (dateRange($start, $end, $checkDate)) {
+            $curWorkouts["curLbs"][$lbCount] = $lbs['limit' . $i];
+            $lbCount++;
+        }
+        
+    } elseif ($lbDone == False) {
+        $lbDone = True;
+        $done++;
+        
+        //echo 'LB';
+    }
+    
     
     // check LBCs
     if (($i < count($lbcs)) && ($lbcDone == False)) {
@@ -295,10 +317,8 @@ echo '<div class="row calRow">
                 $workoutsArr = $curWorkouts[$workoutType];
                 foreach($workoutsArr as $workout) {
                     //print_r($workout);
-                    
                     if (strtotime($workout['date']) == strtotime($date)) {
                         // echo key($curWorkouts);
-                        
                         switch ($workoutType) {
                             case "curArcs":
                                 $workoutName = "ARC";
@@ -311,6 +331,9 @@ echo '<div class="row calRow">
                                 break;
                             case "curCampuss":
                                 $workoutName = "Campus";
+                                break;
+                            case "curLbs":
+                                $workoutName = "Limit Bouldering";
                                 break;
                             case "curLBCs":
                                 $workoutName = "LBC";

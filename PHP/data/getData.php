@@ -124,6 +124,7 @@ $_SESSION['calendars'] = $calArray;
 $_SESSION['arc'] = $arcArray;
 $_SESSION['hang'] = $hangArray;
 $_SESSION['campus'] = $campusArray;
+$_SESSION['limit'] = $limitArray;
 $_SESSION['lbc'] = $lbcArray;
 $_SESSION['om'] = $omArray;
 $_SESSION['other'] = $otherArray;

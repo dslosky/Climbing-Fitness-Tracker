@@ -352,6 +352,9 @@ var main = function () {
         } else if ($(this).is('.OM')) {
             workout = 'om'
             wo_class = 'OM'
+        } else if ($(this).is('.Limit_Bouldering')) {
+            workout = 'limit_bouldering'
+            wo_class = 'Limit_Bouldering'
         } else if ($(this).is('.LBC')) {
             workout = 'lbc'
             wo_class = 'LBC'
@@ -475,6 +478,21 @@ var main = function () {
             
             $('.hangSets').animate({height: ($('.hangSets').height() + $('.set').height()) + "px"});
         
+        } else if ($('.addWorkoutPopup').hasClass('Limit_Bouldering')) {
+            var setNum = $('.lbSets .set').size() + 1;
+            
+            $('.lbSets').html($('.lbSets').html() + ' \
+                                <div class="set"> \
+                                    <p class="setNum col-1">' + setNum + '</p> \
+                                    <input class="description col-2" name="description" /> \
+                                    <input class="grade col-3" name="grade"/> \
+                                    <input class="attempts col-4" name="attempts"/> \
+                                    <input class="comments col-5" name="comments"/> \
+                                    <div class="deleteSet"><p>delete</p></div>\
+                                  </div>'
+                            )
+            
+            $('.lbSets').animate({height: ($('.lbSets').height() + $('.set').height()) + "px"});
         }
     });
     
@@ -631,29 +649,63 @@ var main = function () {
                 }
             });
             
-        }
-        
-        workouts = workouts.join('%!$!%')
-        
-        console.log(workouts)
-        
-        if (workouts.length > 0) {
-            $.ajax({
-                type: "POST",
-                url: "/PHP/dbi.php",
-                data:{type: type, workouts: workouts},
-                success: function(response) {
-                    $('.save').parent().parent().animate({"left": "-55%"}, 600, function() {
-                        $(this).hide(); // this is now the object passed into the function
-                    });
-                    load_cal_day($('.calDayTitle').html())
-                    $('.calDayPopup').show();
-                    $('.calDayPopup').animate({"left": "35%"}, 600);
-                    
-                    remove_workout_class($('.addWorkoutPopup'))
+        } else if ($('.popupheader').is('.Limit_Bouldering')) {
+            type = "limit_bouldering"
+            
+            $('.set').each(function() {
+                var location = $('.addworkoutPopup .location').val()
+                var duration = $('.addworkoutPopup .duration').val()
+                var prob_num = $('.addworkoutPopup .prob_num').val()
+                var wbl = $('.addworkoutPopup .wbl').val()
+                var description = $(this).children('.description').val()
+                var grade = $(this).children('.grade').val()
+                var attempts = $(this).children('.attempts').val()
+                var comments = $(this).children('.comments').val()
+                var setnum = $(this).children('.setNum').html()
+                workout = [date, location, duration,
+                           prob_num, wbl, description,
+                           grade, attempts, comments, setnum]
+                
+                workout = workout.join('!%$%!')
+                
+                if (workouts.length == 0) {
+                    workouts = [workout]
+                } else {
+                    workouts = workouts.concat([workout])
                 }
             });
+            
         }
+        if (workouts.length > 0) {
+            workouts = workouts.join('%!$!%')
+            del = 'NO'
+        } else {
+            del = 'YES'
+        }
+            
+            console.log(workouts)
+            
+            
+                $.ajax({
+                    type: "POST",
+                    url: "/PHP/dbi.php",
+                    data:{type: type, workouts: workouts, date: date, del: del},
+                    success: function(response) {
+                        $('.save').parent().parent().animate({"left": "-55%"}, 600, function() {
+                            $(this).hide(); // this is now the object passed into the function
+                        });
+                        
+                        console.log('RESPONSE: ' + response)
+                        
+                        load_cal_day($('.calDayTitle').html())
+                        $('.calDayPopup').show();
+                        $('.calDayPopup').animate({"left": "35%"}, 600);
+                        
+                        remove_workout_class($('.addWorkoutPopup'))
+                    }
+                });
+            
+        
     
     });
     
@@ -769,6 +821,8 @@ function remove_workout_class(element) {
     element.removeClass('ARC')
     element.removeClass('OM')
     element.removeClass('Hangboard')
+    element.removeClass('Limit_Boulder')
+    element.removeClass('Other')
 }
 
 

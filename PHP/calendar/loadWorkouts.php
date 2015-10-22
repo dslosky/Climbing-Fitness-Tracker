@@ -40,6 +40,7 @@ if (!session_id()){session_start();};
     $arcs = $_SESSION['arc'];
     $hangs = $_SESSION['hang'];
     $campuss = $_SESSION['campus'];
+    $lbs = $_SESSION['limit'];
     $lbcs = $_SESSION['lbc'];
     $oms = $_SESSION['om'];
     $others = $_SESSION['other'];
@@ -49,6 +50,7 @@ if (!session_id()){session_start();};
                         "curArcs"       => array(),
                         "curHangs"      => array(),
                         "curCampuss"    => array(),
+                        "curLbs"        => array(),
                         "curLbcs"       => array(),
                         "curOms"        => array(),
                         "curOthers"     => array(),
@@ -62,6 +64,9 @@ if (!session_id()){session_start();};
     
     $campusCount = 0;
     $campusDone = False;
+    
+    $lbCount = 0;
+    $lbDone = False;
     
     $omCount = 0;
     $omDone = False;
@@ -141,6 +146,21 @@ if (!session_id()){session_start();};
             //echo 'om';
         }
         
+        // check Limit Boulders
+        if (($i < count($lbs)) && ($lbDone == False)) {
+            $checkDate = $lbs['limit' . $i]['date'];
+            
+           if (sameDate($date, $checkDate)) {
+                $curWorkouts["curLbs"][$lbCount] = $lbs['limit' . $i];
+                $lbCount++;
+            }
+        } elseif ($lbDone == False) {
+            $lbDone = True;
+            $done++;
+            
+            //echo 'LB';
+        }
+        
         // check LBCs
         if (($i < count($lbcs)) && ($lbcDone == False)) {
             $checkDate = $lbs['lbc' . $i]['date'];
@@ -197,6 +217,9 @@ if (!session_id()){session_start();};
                     case "curOms":
                         $workoutName = "OM";
                         break;
+                    case "curLbs":
+                        $workoutName = "Limit Bouldering";
+                        break;
                     case "curCampuss":
                         $workoutName = "Campus";
                         break;
@@ -227,11 +250,14 @@ if (!session_id()){session_start();};
     
     //print_r($dayWorkouts);
     
-    $workoutTypes = array("ARC", "Hangboard", "OM", "Boulder Ladder", "LBC", "Campus", "Others");
+    $workoutTypes = array("ARC", "Hangboard", "OM", "Limit Bouldering", "LBC", "Campus", "Others");
 
     foreach ($workoutTypes as $type) {
+        
+        $class_str = str_replace(" ", "_", $type);
+        
         if (in_array($type, $dayWorkouts)) {
-            echo    "<div class='addWorkout added " . $type . "'>
+            echo    "<div class='addWorkout added " . $class_str . "'>
                         <h3>" . $type . "</h3>
                     </div>";
         }
@@ -240,8 +266,10 @@ if (!session_id()){session_start();};
     
     foreach ($workoutTypes as $type) {
         
+        $class_str = str_replace(" ", "_", $type);
+        
         if (!in_array($type, $dayWorkouts)) {
-            echo    "<div class='addWorkout notAdded " . $type . "'>
+            echo    "<div class='addWorkout notAdded " . $class_str . "'>
                         <h3>" . "Add " . $type . "</h3>
                     </div>";
         }

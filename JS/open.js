@@ -88,14 +88,14 @@ main = function() {
                             url: "/PHP/data/getData.php",
                             dataType: "html",
                             success: function(response) {
-                                $('body').html(response);
-                                $('body').css("background", "#FFFFFF");
+                                //$('body').html(response);
+                                //$('body').css("background", "#FFFFFF");
                                 
                                 $.ajax({
                                     type: "POST",
                                     url: "/PHP/open/login.php",
                                     dataType: "html",
-                                    data: { username: user, password: pass},
+                                    data: { username: username, password: password},
                                     success: function(html){    
                                         if(html === 'false')    {
                                             // $("#add_err").css('display', 'inline', 'important');

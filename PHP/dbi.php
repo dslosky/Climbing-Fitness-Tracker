@@ -3,6 +3,71 @@
     if (!session_id()){session_start();};
         
     // functions
+    function delete_workout($type, $date, $conn) {
+        if ($type === 'arc') {
+            // delete from DB
+            $sql = "DELETE FROM arc where date='" .$date . "'";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Old records deleted <br>";
+                    echo $sql;
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+                
+            // removes all arcs from the session
+            foreach (array_keys($_SESSION['arc']) as $arc_tmp) {
+                if ($_SESSION['arc'][$arc_tmp]['date'] === $date) {
+                    unset($_SESSION['arc'][$arc_tmp]);
+                }
+            }
+        } else if ($type === 'om') {
+            $sql = "DELETE FROM om where date='" . $date . "'";
+            if ($conn->query($sql) === TRUE) {
+                echo "Old records deleted";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            
+            // removes all OMs from the session
+            foreach (array_keys($_SESSION['om']) as $om_tmp) {
+                if ($_SESSION['om'][$om_tmp]['date'] === $date) {
+                    unset($_SESSION['om'][$om_tmp]);
+                }
+            }
+        } else if ($type === 'hangboard') {
+            $sql = "DELETE FROM arc where date='" . $date . "'";
+            if ($conn->query($sql) === TRUE) {
+                echo "Old records deleted";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            
+            // removes all arcs from the session
+            foreach (array_keys($_SESSION['hang']) as $hang_tmp) {
+                if ($_SESSION['hang'][$hang_tmp]['date'] === $date) {
+                    unset($_SESSION['hang'][$hang_tmp]);
+                }
+            }
+        } else if ($type === 'limit_bouldering') {
+            $sql = "DELETE FROM limitboulder where date='" . $date . "'";
+            if ($conn->query($sql) === TRUE) {
+                echo "Old records deleted";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            
+            // removes all arcs from the session
+            foreach (array_keys($_SESSION['limit']) as $lb_tmp) {
+                if ($_SESSION['limit'][$lb_tmp]['date'] === $date) {
+                    unset($_SESSION['limit'][$lb_tmp]);
+                }
+            }
+        }
+    }
+    
+    
+    ////////////////// SUBMIT FUNCTIONS ////////////////////
+    
     function submit_arc($user_id, $arcs, $conn) {
         
         $deleted = FALSE;
@@ -39,10 +104,6 @@
                 $deleted = TRUE;
             }
             
-            echo "Should be empty arc: <br>";
-            print_r($_SESSION['arc']);
-            echo "<br><br>";
-            
             # create arc hash that we can add to $_SESSION
             $fields = ["date",
                        "location",
@@ -50,7 +111,7 @@
                        "comments",
                        "terrain",
                        "difficulty",
-                       "daynum"];
+                       "setnum"];
             $fields = array_flip($fields);
             $arc_hash = array();
             foreach (array_keys($fields) as $field) {
@@ -64,7 +125,7 @@
                                      comments,
                                      terrain,
                                      difficulty,
-                                     daynum)
+                                     setnum)
                     VALUES ($user_id,
                             '" . $arc_hash['date'] . "',
                             '" . $arc_hash['location'] . "',
@@ -72,7 +133,7 @@
                             '" . $arc_hash['comments'] . "',
                             '" . $arc_hash['terrain'] . "',
                             '" . $arc_hash['difficulty'] . "',
-                             " . $arc_hash['daynum'] . ")";
+                             " . $arc_hash['setnum'] . ")";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
@@ -265,6 +326,92 @@
             $_SESSION['hang']['hang' . $hang_num] = $hang_hash;
         }   
     }
+    
+    function submit_limit($user_id, $lbs, $conn) {
+        
+        $deleted = FALSE;
+        
+        foreach ($lbs as $lb) {
+            
+            $lb = explode('!%$%!', $lb);
+            
+            for ($i = 0; $i < count($lb); $i++) {
+                if (empty($lb[$i])) {
+                    $lb[$i] = " ";
+                }
+            }
+            
+            if ($deleted == FALSE) {
+                
+                // delete all arcs with this date from DB
+                $sql = "DELETE FROM limitboulder where date='$lb[0]'";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Old records deleted";
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+                
+                // removes all arcs from the session
+                foreach (array_keys($_SESSION['limit']) as $lb_tmp) {
+                    if ($_SESSION['limit'][$lb_tmp]['date'] === $lb[0]) {
+                        unset($_SESSION['limit'][$lb_tmp]);
+                    }
+                }
+                
+                $deleted = TRUE;
+            }
+            
+            # create arc hash that we can add to $_SESSION
+            $fields = ["date",
+                       "location",
+                       "duration",
+                       "numproblems",
+                       "wbl",
+                       "description",
+                       "grade",
+                       "attempts",
+                       "comments",
+                       "setnum"];
+            $fields = array_flip($fields);
+            $lb_hash = array();
+            foreach (array_keys($fields) as $field) {
+                $lb_hash[$field] = $lb[$fields[$field]];
+            }
+
+            $sql = "INSERT INTO limitboulder (UserID,
+                                           date,
+                                           location,
+                                           duration,
+                                           numproblems,
+                                           wbl,
+                                           description,
+                                           grade,
+                                           attempts,
+                                           comments,
+                                           setnum)
+                    VALUES ($user_id,
+                            '" . $lb_hash['date'] . "',
+                            '" . $lb_hash['location'] . "',
+                            " . $lb_hash['duration'] . ",
+                            " . $lb_hash['numproblems'] . ",
+                            '" . $lb_hash['wbl'] . "',
+                            '" . $lb_hash['description'] . "',
+                            '" . $lb_hash['grade'] . "',
+                            " . $lb_hash['attempts'] . ",
+                            '" . $lb_hash['comments'] . "',
+                            " . $lb_hash['setnum'] . ")";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            
+    
+            $lb_num = count($_SESSION['limit']);
+            $_SESSION['limit']['limit' . $lb_num] = $lb_hash;
+        }   
+    }
 
 
     /***********************************************************************/
@@ -273,21 +420,31 @@
         
     // connect to database
     include_once "$_SERVER[DOCUMENT_ROOT]/PHP/config.php";
-    
-    // seperate workouts
-    $workouts = explode('%!$!%', $_POST['workouts']);
     $type = $_POST['type'];
     
-    if ($type === 'arc') {
-        submit_arc($user_id, $workouts, $conn);
-        
-    } else if ($type === 'om') {
-        submit_om($user_id, $workouts, $conn);
-        
-    } else if ($type === 'hangboard') {
-        submit_hangboard($user_id, $workouts, $conn);
-        
-    } 
+    if ($_POST['del'] === 'NO') {
+    // seperate workouts
+    $workouts = explode('%!$!%', $_POST['workouts']);
+    
+    
+        if ($type === 'arc') {
+            submit_arc($user_id, $workouts, $conn);
+            
+        } else if ($type === 'om') {
+            submit_om($user_id, $workouts, $conn);
+            
+        } else if ($type === 'hangboard') {
+            submit_hangboard($user_id, $workouts, $conn);
+            
+        } else if ($type === 'limit_bouldering') {
+            submit_limit($user_id, $workouts, $conn);
+            
+        }
+    
+    } else {
+        $date = $_POST['date'];
+        delete_workout($type, $date, $conn);
+    }
 
     $conn->close;
     exit();

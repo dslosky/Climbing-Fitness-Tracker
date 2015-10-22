@@ -34,6 +34,8 @@ if ($workoutType === 'arc') {
     $workouts = $_SESSION['om'];
 } else if ($workoutType === 'hangboard') {
     $workouts = $_SESSION['hang'];
+} else if ($workoutType === 'limit_bouldering') {
+    $workouts = $_SESSION['limit'];
 }
 
 $date = $_POST['date'];
@@ -61,9 +63,10 @@ foreach ($workouts as $workout) {
                     
                  } elseif ($workoutType === 'hangboard') {
                     make_hangboard_form($curWorkouts, $date);
+
+                 } elseif ($workoutType === 'limit_bouldering') {
+                    make_limit_form($curWorkouts, $date);
                     
-                 } elseif ($workoutType === 'limit') {
-                    echo '<h1>Add Limit Boulder</h1>';
                  } elseif ($workoutType === 'bl') {
                     echo '<h1>Add Boulder Ladder</h1>';
                  } elseif ($workoutType === 'other') {
@@ -98,7 +101,7 @@ function make_arc_form($curWorkouts, $date) {
                         
                         <div class="workoutOption arcDesc double">
                             <label for="Description">Description of Terrain: </label>
-                            <textarea class="desc" name="Description" placeholder="Enter your description here">' . $curWorkouts[0]['description'] . '</textarea>
+                            <textarea class="desc" name="Description" placeholder="Enter your description here">' . $curWorkouts[0]['terrain'] . '</textarea>
                         </div>
                         
                         <div class="arcSetsHead workoutOption double">
@@ -318,6 +321,74 @@ function make_hangboard_form($curWorkouts, $date) {
                                     
                                     <div class="deleteSet"><p>delete</p></div> 
                                   </div>';
+                                
+                            $setNum++;
+                        }
+                        
+    echo               '</div>
+                        
+                        <div class="addSet">
+                            <h3>Add Set</h3>
+                        </div>
+                        
+                    </div>';
+    
+}
+
+function make_limit_form($curWorkouts, $date) {
+
+    echo '<div class="popupHeader Limit_Bouldering">
+               <h1>Add Limit Boulder</h1>
+          </div>
+                    
+                    <div class="lbInfoContainer">
+                        <div class="workoutOption lbDate">
+                            <label for="Date">Date: </label>
+                            <p class="date">' . $date . '</p>
+                        </div>
+    
+                        <div class="workoutOption lbLoc">
+                            <label for="Location">Location: </label>
+                            <input class="location" name="Location" type="text" value="' . $curWorkouts[0]['location'] . '"/>
+                        </div>
+                        
+                        <div class="workoutOption lbDuration">
+                            <label for="duration">Duration: </label>
+                            <input class="duration" name="duration" type="text" value="' . $curWorkouts[0]['duration'] . '"/>
+                        </div>
+                        
+                        <div class="workoutOption prob_num_container">
+                            <label for="prob_num">Number of problems attempted: </label>
+                            <input class="prob_num" name="prob_num" type="text" value="' . $curWorkouts[0]['numproblems'] . '"/>
+                        </div>
+                        
+                        <div class="workoutOption wblDesc double">
+                            <label for="wbl">Warmup Boulder Ladder: </label>
+                            <textarea class="wbl" name="wbl" placeholder="Describe your Warmup Boulder Ladder">' . $curWorkouts[0]['wbl'] . '</textarea>
+                        </div>
+                        
+                        <div class="lbSetsHead workoutOption double">
+                            <label>Sets:</label>
+                            <p class="col-1" style="">Set:</p>
+                            <p class="col-2" style="">Description:</p>
+                            <p class="col-3" style="">Grade:</p>
+                            <p class="col-4" style="">Attempts:</p>
+                            <p class="col-5" style="">Comments:</p>
+                        </div>
+                        
+                        <div class="lbSets Sets">';
+                        
+                        $setNum = 1;
+                        foreach ($curWorkouts as $workout) {
+                            
+                            echo '<div class="set"> 
+                                    <p class="setNum col-1">' . $setNum . '</p>
+                                    <input class="description col-2" name="description" value="' . $workout['description'] . '"/>
+                                    <input class="grade col-3" name="grade" value="' . $workout['grade'] . '"/>
+                                    <input class="attempts col-4" name="attempts" value="' . $workout['attempts'] . '"/>
+                                    <input class="comments col-5" name="comments" value="' . $workout['comments'] . '"/>
+                                    <div class="deleteSet"><p>delete</p></div> 
+                                </div>';
                                 
                             $setNum++;
                         }

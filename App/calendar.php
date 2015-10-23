@@ -97,50 +97,43 @@ if (isset($_SESSION['calendars']))  {
 <!-- Add Calendar popup -->
 
             <div class="addCalPopup">
-                <div class="row" style="width: 100%; right: 0px">
-                    <div class="col-md-12" style="left: 5%; width: 100%">
-                        <p class="exitAddCal" style="text-align: right; right: 3%; cursor: pointer; display: inline-block; position: absolute;">X</p>
-                    </div>
-                </div>
                 <div class="addCalHeader">
-                    <div class="row" style="width: 100%; text-align: center; margin: 0px;">
-                        <h1 class="title">Create a Calendar</h1>
-                    </div>
+                    <h1 class="title">Create a Calendar</h1>
                 </div>
+                
                 <div class="calOptionsContainer">
-                    <div class="row newCalBuffer"></div>
-                    <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 10%;">
-                        <div class="startDateContainer">
-                            <p>Start Date: </p><input type="text" name="startDate" id="startDate" class="startDate"/>
-                        </div>
-                    </div>
-                    <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 10%;">
-                        <div class="endDateContainer">
-                            <p>End Date: </p><input type="text" name="endDate" id="endDate" />
-                        </div>
-                    </div>
-                    <div class="row" style="width: 100%; text-align: center; margin: 0px; height: 20%;">
-                        <div class="durationContainer">
-                            <h2 style="width: 100%">Workout Duration: </h2>
-                            <h3 style="width: 100%"> </h3>
-                        </div>
-                    </div>
-                    <div class="selectWorkoutsContainer">
-
-                        <select class="workoutsDrop" id="workoutsDrop">
-                            <option value="" selected>-- Load Default Workouts --</option>
-                            <option value="noneSelect">None</option>
-                            <option value="beginnerSelect">Beginner</option>
-                            <option value="intSelect">Intermediate</option>
-                            <option value="advSelect">Advanced</option>
-                            <option value="prevSelect">Previous</option>
-                        </select>
-                        
+                    <div class="startDateContainer">
+                        <label for="startDate">Start Date: </label><input type="text" name="startDate" id="startDate" class="startDate"/>
                     </div>
                     
-                    <div class="createContainer">
-                        <div class="createCal"><h1 class="go">Go</h1></div>
+                    <div class="endDateContainer">
+                        <label for="endDate">End Date: </label><input type="text" name="endDate" id="endDate" />
                     </div>
+                    
+                    <div class="durationContainer">
+                        <h2 style="width: 100%">Workout Duration: </h2>
+                        <h3 style="width: 100%"> </h3>
+                    </div>
+
+                    <select class="workoutsDrop" id="workoutsDrop">
+                        <option value="" selected>-- Load Default Workouts --</option>
+                        <option value="none">None</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="previous">Previous</option>
+                    </select>
+                    
+                </div>
+                <div class="windowOptions">
+                    <div class="windowOption go left">
+                        <h3>Go</h3>
+                    </div>
+                    
+                    <div class="windowOption exitAddCal right">
+                        <h3>Cancel</h3>
+                    </div>
+
                 </div>
             </div>
             

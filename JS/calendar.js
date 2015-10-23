@@ -126,7 +126,7 @@ var main = function () {
     });
     
     // create a new calendar
-    $('.createCal .go').click(function() {
+    $('.addCalPopup .go').click(function() {
         var start = $('#startDate').val().split('/');
         var end = $('#endDate').val().split('/');
         var workouts = $('#workoutsDrop').val()

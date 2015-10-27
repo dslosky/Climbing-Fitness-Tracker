@@ -113,10 +113,10 @@ main = function() {
                                                 success: function(response) {
                                                     $('body').html(response);
                                                     $('body').css("background", "#FFFFFF");
+                                                    window.location="/App/calendar.php";
                                                 }
                                             });
                                             
-                                            window.location="/App/calendar.php";
                         
                         
                                         }       
@@ -172,10 +172,10 @@ main = function() {
                         success: function(response) {
                             $('body').html(response);
                             $('body').css("background", "#FFFFFF");
+                            window.location="/App/calendar.php";    
                         }
                     });
                     
-                    window.location="/App/calendar.php";
 
 
                 }       

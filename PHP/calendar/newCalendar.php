@@ -7,11 +7,11 @@
     $end = $_POST['endDate'];
     $weekCount = $_POST['weeks'];
     
-    $qry = "INSERT INTO Calendar (UserID, StartDate, EndDate, weeks) VALUES ('" . $_SESSION['id'] . "', '" . $start . "', '" . $end . "', '" . $weekCount . "')";
+    $qry = "INSERT INTO calendar (UserID, StartDate, EndDate, weeks) VALUES ('" . $_SESSION['id'] . "', '" . $start . "', '" . $end . "', '" . $weekCount . "')";
    
     $calendars = $conn->query($qry);
    
-    $qry = "SELECT * from Calendar where UserID=" . $_SESSION['id'];
+    $qry = "SELECT * from calendar where UserID=" . $_SESSION['id'];
  
     $calendars = $conn->query($qry);
     // add calendar to the calendar array

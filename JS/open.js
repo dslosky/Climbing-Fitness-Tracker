@@ -170,8 +170,8 @@ main = function() {
                         url: "/PHP/data/getData.php",
                         dataType: "html",
                         success: function(response) {
-                            $('body').html(response);
-                            $('body').css("background", "#FFFFFF");
+                            //$('body').html(response);
+                            //$('body').css("background", "#FFFFFF");
                             window.location="/App/calendar.php";    
                         }
                     });

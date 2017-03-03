@@ -3,6 +3,6 @@ Training records shouldn't be left in a notebook to slowly fade and be forgotten
 
 I created this application for two reasons: One, I had just landed a job as a web developer and needed to develop my skills FAST. And two, I honestly couldn't believe it didn't exist already.
 
-![Landing Page](/images/homepage.png)
-![Training Calendar](/images/calendar.png)
-![Workouts List](/images/workouts.png)
+![Landing Page](/Images/homepage.png)
+![Training Calendar](/Images/calendar.png)
+![Workouts List](/Images/workouts.png)
